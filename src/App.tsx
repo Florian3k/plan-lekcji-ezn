@@ -1,6 +1,6 @@
 import React from 'react';
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
@@ -19,5 +19,3 @@ const App: React.FC = () => {
     </div>
   );
 }
-
-export default App;
