@@ -1,0 +1,14 @@
+.day-names {
+  grid-area: dayNames;
+  
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 2em;
+  font-weight: 550;
+}

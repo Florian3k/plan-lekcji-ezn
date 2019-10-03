@@ -3,6 +3,6 @@ main {
   grid-template-columns: 120px auto;
   grid-template-rows: 3em auto;
   grid-template-areas: 
-  ". ."
+  ". dayNames"
   "hours .";
 }
