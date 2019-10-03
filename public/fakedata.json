@@ -1,0 +1,154 @@
+{
+  "4H": 
+    [{
+      "nazwa": "Poniedziałek",
+      "lekcje": [{
+        "0": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "1": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "2": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "3": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "4": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        }
+      }]
+    },
+    {
+      "nazwa": "Wtorek",
+      "lekcje": [{
+        "0": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "1": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "2": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "3": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "4": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        }
+      }]
+    },
+    {
+      "nazwa": "Środa",
+      "lekcje": [{
+        "0": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "1": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "2": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "3": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "4": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        }
+      }]
+    },
+    {
+      "nazwa": "Czwartek",
+      "lekcje": [{
+        "0": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "1": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "2": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "3": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "4": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        }
+      }]
+    },
+    {
+      "nazwa": "Piątek",
+      "lekcje": [{
+        "0": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "1": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "2": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "3": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        },
+        "4": {
+          "nauczyciel": "Jerzy Sikorenko",
+          "lekcja": "Matematyka",
+          "Sala": "102"
+        }
+      }]
+    }
+    ]
+}
