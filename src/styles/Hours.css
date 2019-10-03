@@ -24,8 +24,8 @@
   display: inline-block;
 }
 .lesson-starts {
-
+  font-size: 1.15em;
 }
 .lesson-ends {
-
+  font-size: 0.9em;
 }

@@ -1,154 +1,162 @@
 {
-  "4H": 
-    [{
-      "nazwa": "Poniedziałek",
-      "lekcje": [{
-        "0": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "1": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "2": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "3": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "4": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        }
-      }]
+  "00001": {
+    "0": {
+      "period":"3",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
     },
-    {
-      "nazwa": "Wtorek",
-      "lekcje": [{
-        "0": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "1": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "2": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "3": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "4": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        }
-      }]
+    "1": {
+      "period": "4",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
     },
-    {
-      "nazwa": "Środa",
-      "lekcje": [{
-        "0": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "1": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "2": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "3": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "4": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        }
-      }]
+    "2": {
+      "period": "5",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
     },
-    {
-      "nazwa": "Czwartek",
-      "lekcje": [{
-        "0": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "1": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "2": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "3": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "4": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        }
-      }]
+    "3": {
+      "period": "6",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
     },
-    {
-      "nazwa": "Piątek",
-      "lekcje": [{
-        "0": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "1": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "2": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "3": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        },
-        "4": {
-          "nauczyciel": "Jerzy Sikorenko",
-          "lekcja": "Matematyka",
-          "Sala": "102"
-        }
-      }]
+    "4": {
+      "period": "7",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
     }
-    ]
+  },
+  "00010": {
+    "0": {
+      "period": "3",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    },
+    "1": {
+      "period": "4",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    },
+    "2": {
+      "period": "5",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    },
+    "3": {
+      "period": "6",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    },
+    "4": {
+      "period": "7",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    }
+  },
+  "00100": {
+    "0": {
+      "period": "3",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    },
+    "1": {
+      "period": "4",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    },
+    "2": {
+      "period": "5",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    },
+    "3": {
+      "period": "6",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    },
+    "4": {
+      "period": "7",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    }
+  },
+  "01000": {
+    "0": {
+      "period": "3",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    },
+    "1": {
+      "period": "4",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    },
+    "2": {
+      "period": "5",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    },
+    "3": {
+      "period": "6",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    },
+    "4": {
+      "period": "7",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    }
+  },
+  "10000": {
+    "0": {
+      "period": "3",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    },
+    "1": {
+      "period": "4",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    },
+    "2": {
+      "period": "5",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    },
+    "3": {
+      "period": "6",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    },
+    "4": {
+      "period": "7",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    }
+  }
 }

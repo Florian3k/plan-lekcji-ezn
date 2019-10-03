@@ -10,14 +10,13 @@ export const App: React.FC = () => {
     fetch('/fakedata.json')
       .then(res => res.json())
       .then( returned  => {
-        setData({ ...returned})
+        setData(returned)
       })
   }, []);
-
   return (
     <div className="App">
       <SettingsPanel />
-      <Schedule />
+      <Schedule class={data}/>
     </div>
   );
 }

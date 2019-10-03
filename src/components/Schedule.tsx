@@ -4,13 +4,17 @@ import { Hours } from './Hours';
 import { DayNames } from './DayNames';
 import { ScheduleWireframe } from './ScheduleWireframe';
 
-export const Schedule: React.FC = () => {
+interface ClassProps {
+  class: object
+}
+
+export const Schedule: React.FC<ClassProps> = props => {
   return (
     <main>
       <div className="covering-area"></div>
       <Hours />
       <DayNames />
-      <ScheduleWireframe />
+      <ScheduleWireframe class={props.class}/>
     </main>
   )
 }

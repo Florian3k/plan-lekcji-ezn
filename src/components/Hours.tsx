@@ -24,7 +24,6 @@ export const Hours: React.FC = () => {
       </div>
     </li>
   ))
-  console.log(listItems);
   return (
     <ul className="hours-field">
       {listItems}
