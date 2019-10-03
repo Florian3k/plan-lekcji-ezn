@@ -1,0 +1,29 @@
+.hours-field {
+  grid-area: hours;
+
+  display: flex;
+  flex-flow: column wrap;
+
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.hours-field-item {
+  height: 7vh;
+  overflow: hidden;
+
+  text-align: center;
+}
+.lesson-number {
+  display: inline-block;
+  font-size: 52px;
+}
+.lesson-length {
+  display: inline-block;
+}
+.lesson-starts {
+
+}
+.lesson-ends {
+
+}

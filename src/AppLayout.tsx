@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { SettingsPanel } from './components/SettingsPanel';
 import './styles/App.css';
+import { Schedule } from './components/Schedule';
 
 export const App: React.FC = () => {
   const [data, setData] = useState<any>(null);
@@ -16,6 +17,7 @@ export const App: React.FC = () => {
   return (
     <div className="App">
       <SettingsPanel />
+      <Schedule />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 .settings-panel {
   background-color: rgba(13, 33, 73, .86);
   color: #c7c7c7;
+  box-shadow: 0 3px 6px rgba(0,0,0,.36);
 }
 .label-for-main-search {
   display: inline-block;
