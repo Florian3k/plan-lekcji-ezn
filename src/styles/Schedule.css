@@ -1,8 +1,14 @@
+
 main {
   display: grid;
-  grid-template-columns: 120px auto;
-  grid-template-rows: 3em auto;
+  grid-template-columns: var(--hours-width) auto;
+  grid-template-rows: 4em auto;
   grid-template-areas: 
-  ". dayNames"
-  "hours .";
+  "coveringArea dayNames"
+  "hours scheduleWireframe";
+}
+.covering-area {
+  background-color: white;
+  grid-area: coveringArea;
+  z-index: 30;
 }

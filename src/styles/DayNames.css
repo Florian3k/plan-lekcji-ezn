@@ -1,8 +1,12 @@
 .day-names {
   grid-area: dayNames;
   
+  /* padding-left: var(--hours-width); */
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  
+  z-index: 20;
+  box-shadow:  0 3px 6px rgba(0,0,0,.16);
 }
 .day {
   display: flex;
