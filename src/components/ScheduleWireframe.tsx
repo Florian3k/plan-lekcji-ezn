@@ -17,8 +17,9 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
         const dayArray = Object.keys(daysArray[i]).map((lesson) => {
           return daysArray[i][lesson];
         });
-  
+        
         const y = new Map(dayArray.map(({period, ...rest}) => [period, rest]))
+        console.log(y)
         
         for (let lessonNumber = 0; lessonNumber < 14; lessonNumber++) {
           const singleLesson = y.get(`${lessonNumber}`);
