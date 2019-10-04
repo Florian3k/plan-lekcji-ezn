@@ -1,0 +1,34 @@
+import { Timetable } from "./types";
+import * as R from 'ramda';
+
+const byId = (id: string) => R.propEq('id', id);
+
+export function getClassTimetable(timetable: Timetable, selectedClass: string) {
+  const clazz = timetable.classes.find(({ name }) => name === selectedClass)
+
+  const lessons = clazz && timetable.lessons
+    .filter(l => l.classids === clazz.id)
+    .map(l => ({
+      ...l,
+      subject: timetable.subjects.find(byId(l.subjectid))!.name,
+      week: timetable.weeksdefs.find(byId(l.weeksdefid)),
+      day: timetable.daysdefs.find(byId(l.daysdefid)),
+      teacher: timetable.teachers.find(byId(l.teacherids))!.name,
+      group: timetable.groups.find(byId(l.groupids))!.name,
+      // period: timetable.periods.find(byId())
+    }))
+
+  const lessonsIds = clazz && new Set(lessons!.map(x => x.id))
+
+  return lessons && timetable.cards
+    .filter(c => lessonsIds!.has(c.lessonid))
+    .map(c => ({
+      ...c,
+      classroom: timetable.classrooms.find(byId(c.classroomids))!.name,
+      lesson: lessons.find(l => l.id === c.lessonid),
+    })).map(c => ({
+      ...R.pick(['period', 'weeks', 'days', 'classroom'], c),
+      ...R.pick(['teacher', 'subject', 'group'], c.lesson),
+    })).sort((a, b) => (a.period as any) - (b.period as any))
+
+}
