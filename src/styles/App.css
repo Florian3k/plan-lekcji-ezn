@@ -5,6 +5,12 @@
   display: grid;
   grid-template-columns: 20% auto;
 }
+.App-mobile {
+  width: 100vw;
+
+  display: grid;
+  grid-template-rows: 140px auto;
+}
 @media (max-width: 1280px) {
   .App {
     grid-template-columns: 24% auto;
