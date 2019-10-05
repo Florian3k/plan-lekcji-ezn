@@ -1,162 +1,161 @@
 {
-  "00001": {
-    "0": {
+  "00001": [
+    {
       "period":"3",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "1": {
-      "period": "4",
-      "subject": "Matematyka",
+    {
+      "period": "3",
+      "subject": "Niemiecki",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "2": {
+    {
       "period": "5",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "3": {
-      "period": "6",
+    {
+      "period": "0",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "4": {
-      "period": "7",
+    {
+      "period": "1",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     }
-  },
-  "00010": {
-    "0": {
+  ],
+  "00010": [
+    {
       "period": "3",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "1": {
-      "period": "4",
-      "subject": "Matematyka",
+    {
+      "period": "3",
+      "subject": "Niemiecki",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "2": {
+    {
       "period": "5",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "3": {
-      "period": "6",
+    {
+      "period": "0",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "4": {
-      "period": "7",
+    {
+      "period": "1",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     }
-  },
-  "00100": {
-    "0": {
+  ],
+  "00100": [
+    {
       "period": "3",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "1": {
-      "period": "4",
-      "subject": "Matematyka",
+    {
+      "period": "3",
+      "subject": "Niemiecki",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "2": {
+    {
       "period": "5",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "3": {
-      "period": "6",
+    {
+      "period": "0",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "4": {
-      "period": "7",
+    {
+      "period": "1",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     }
-  },
-  "01000": {
-    "0": {
+  ],
+  "01000": [
+    {
       "period": "3",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "1": {
-      "period": "4",
-      "subject": "Matematyka",
+    {
+      "period": "3",
+      "subject": "Niemiecki",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "2": {
+    {
       "period": "5",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "3": {
-      "period": "6",
+    {
+      "period": "0",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "4": {
-      "period": "7",
+    {
+      "period": "1",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     }
-  },
-  "10000": {
-    "0": {
+  ],
+  "10000": [{
       "period": "3",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "1": {
-      "period": "4",
-      "subject": "Matematyka",
+    {
+      "period": "3",
+      "subject": "Niemiecki",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "2": {
+    {
       "period": "5",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "3": {
-      "period": "6",
+    {
+      "period": "0",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
-    "4": {
-      "period": "7",
+    {
+      "period": "1",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     }
-  }
+  ]
 }
