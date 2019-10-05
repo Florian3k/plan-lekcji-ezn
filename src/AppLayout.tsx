@@ -9,7 +9,11 @@ export const App: React.FC = () => {
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-width: 1224px)'
   })
-
+  
+  const isMobile = useMediaQuery({
+    query: '(max-width: 900px)'
+  })
+  
   useEffect(() => {
     fetch('/fakedata.json')
       .then(res => res.json())
@@ -18,7 +22,7 @@ export const App: React.FC = () => {
       })
   }, []);
   return ( 
-    <div className={`${isDesktopOrLaptop ? "App": "App-mobile"}`}>
+    <div className={`${isDesktopOrLaptop ? "App": isMobile? "App-mobile" : "App-medium"}`}>
       <SettingsPanel />
       <Schedule class={data} />
     </div>

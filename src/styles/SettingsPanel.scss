@@ -63,7 +63,7 @@
   }
 }
 
-.settings-panel-mobile {
+.settings-panel-medium {
   width: 100%;
   text-align: center;
   background-color: rgba(13, 33, 73, .86);
@@ -91,5 +91,17 @@
     font-weight: 600;
     font-size: 1em;
     margin: 0 2em;
+  }
+
+  @media (max-width: 900px) {
+    .search-filters {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+    }
+    .search {
+      margin: 0;
+      font-size: 0.75em;
+    }
   }
 }

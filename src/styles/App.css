@@ -5,11 +5,17 @@
   display: grid;
   grid-template-columns: 20% auto;
 }
-.App-mobile {
+.App-medium {
   width: 100vw;
 
   display: grid;
   grid-template-rows: 160px auto;
+}
+.App-mobile {
+  width: 100vw;
+  display: grid;
+
+  grid-template-rows: 30vh auto;
 }
 @media (max-width: 1280px) {
   .App {
