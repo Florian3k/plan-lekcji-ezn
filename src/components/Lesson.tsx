@@ -8,7 +8,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
   const updateRowHeight = (row: number, n: number) => {
     document.documentElement.style.setProperty(`--row-${row}-height`, `${(n-1)*2.4 + 4}em`);
   }
-  
+  const isWindowsOS = (window.navigator.userAgent.indexOf("Windows") !== -1 || window.navigator.userAgent.indexOf("Windows") !== -1)  
   if(props.lesson) {
     const period = props.lesson[0].period;
     const day = props.lesson[0].day.split("").reverse().indexOf("1");
@@ -18,7 +18,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
       const content = props.lesson.map((partLesson: any, i: number) => (
         <div className={`lesson-divided-part`}>
           <h3>{partLesson.subject}</h3>
-          <div className="teacher">{partLesson.teacher}</div>
+          <div className={`teacher ${partLesson.teacher === "Michał Gabor" && isWindowsOS ? "comic": ""}`}>{partLesson.teacher}</div>
           <div className="room">Sala {partLesson.classroom}</div>
         </div>
       ))
@@ -30,11 +30,11 @@ export const Lesson: React.FC<LessonProps> = (props) => {
     }
     else {
       // At this period of time lasts 1 lesson
-      
+      console.log(window.navigator.userAgent)
       return (
         <div className={`lesson lesson-${period}-${day}`}>
           <h3>{props.lesson[0].subject}</h3>
-          <div className="teacher">{props.lesson[0].teacher}</div>
+          <div className={`teacher ${props.lesson[0].teacher === "Michał Gabor" && isWindowsOS ? "comic" : ""}`}>{props.lesson[0].teacher}</div>
           <div className="room">Sala {props.lesson[0].classroom}</div>
         </div> 
       )

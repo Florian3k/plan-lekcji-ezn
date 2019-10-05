@@ -9,7 +9,6 @@ export const App: React.FC = () => {
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-width: 1224px)'
   })
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' })
 
   useEffect(() => {
     fetch('/fakedata.json')

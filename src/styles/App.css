@@ -9,7 +9,7 @@
   width: 100vw;
 
   display: grid;
-  grid-template-rows: 140px auto;
+  grid-template-rows: 160px auto;
 }
 @media (max-width: 1280px) {
   .App {

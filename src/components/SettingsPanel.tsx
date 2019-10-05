@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/SettingsPanel.css';
+import '../styles/SettingsPanel.scss';
+import { useMediaQuery } from 'react-responsive';
 
 export const SettingsPanel: React.FC = () => {
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 1224px)'
+  })
   return (
-    <form className="settings-panel">
+    <form className={`${isDesktopOrLaptop ? "settings-panel" : "settings-panel-mobile"}`}>
       <label className="label-for-main-search" htmlFor="searchingObject">plan</label>
       <div className="search-filters">
-        <input type="text" className="main-search search"name="searchingObject"/>
+        <h1 className="main-search"> 4H</h1>
         <button className="classes-search search">Oddziały (klasy)</button>
         <button className="teachers-search search">Nauczyciele</button>
         <button className="room-search search">Sale szkolne</button>
