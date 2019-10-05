@@ -1,9 +1,0 @@
-.schedule-wireframe {
-  grid-area: scheduleWireframe;
-
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(14, var(--row-height));
-  grid-auto-flow: column;
-  background-color: #E9E9E9;
-}

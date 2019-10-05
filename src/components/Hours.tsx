@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import "../styles/Hours.css";
+import "../styles/Hours.scss";
 
 export const Hours: React.FC = () => {
   const hoursArr: { starts: string; ends: string } [] = [];
@@ -12,7 +12,7 @@ export const Hours: React.FC = () => {
     );
   }
   const listItems = hoursArr.map((item, index) => (
-    <li className="hours-field-item">
+    <li className={`hours-field-item hours-field-item--${index}`}>
       <div className="lesson-number">{index}</div>
       <div className="lesson-length">
           <div className="lesson-starts">

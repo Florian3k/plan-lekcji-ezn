@@ -121,6 +121,22 @@
       "classroom": "102"
     },
     {
+      "period": "7",
+      "subject": "Język Polski",
+      "teacher": "Ewa Poozniac",
+      "classroom": "102"
+    }, {
+      "period": "7",
+      "subject": "Matematyka",
+      "teacher": "Jerzy Sikora",
+      "classroom": "102"
+    }, {
+      "period": "7",
+      "subject": "Fizyka",
+      "teacher": "Monika Makarewicz",
+      "classroom": "202"
+    },
+    {
       "period": "1",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
