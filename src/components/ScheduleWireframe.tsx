@@ -30,7 +30,8 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
           return p
         }
         else {
-          return p ? [...p, [{...c, day: dayId}]] : [[c]]
+          const newElem = p ? [...p, [{ ...c, day: dayId }]].sort((a, b) => a[0].period-b[0].period) : [[c]]; 
+          return newElem;
         }
       }, []));
     })

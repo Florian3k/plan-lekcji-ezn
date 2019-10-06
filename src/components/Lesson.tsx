@@ -11,14 +11,23 @@ export const Lesson: React.FC<LessonProps> = (props) => {
   }
   const hours = (period: number) => {
     return {
-      start: `${period+7}:15`,
-      end: `${period+8}:45`
+      start: `${+period+7}:15`,
+      end: `${+period+8}:45`
     }
   }
   const isMobile = useMediaQuery({
     query: '(max-width: 900px)'
   })
-
+  const displayingHoursElement = (isDisplayed: boolean) => {
+    if(isDisplayed) {
+      return (
+        <div className="hours">
+          <div className="hour-start">{hours(props.lesson[0].period).start}</div>
+          <div className="hour-end">{hours(props.lesson[0].period).end}</div>          
+        </div>
+    )}
+    else return null
+  }
   const isWindowsOS = (window.navigator.userAgent.indexOf("Windows") !== -1 || window.navigator.userAgent.indexOf("Windows") !== -1)  
   
   if(props.lesson) {
@@ -41,6 +50,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
       ))
       return (
         <div className={`lesson${isMobile ? "-mobile" : ""} part-${props.lesson.length}-of-lesson lesson-${period}-${day}`}>
+          {displayingHoursElement(isMobile)}
           { content }
         </div>
       )
@@ -49,6 +59,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
       // At this period of time lasts 1 lesson
       return (
         <div className={`lesson${isMobile? "-mobile" : ""} lesson-${period}-${day}`}>
+          {displayingHoursElement(isMobile)}          
           <div className="upper-side">
             <h3>{props.lesson[0].subject}</h3>
             <div className="room">Sala {props.lesson[0].classroom}</div>
