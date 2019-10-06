@@ -45,6 +45,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
           </div>
           <div className="bottom-side">
             <div className={`teacher ${partLesson.teacher === "Michał Gabor" && isWindowsOS ? "comic": ""}`}>{partLesson.teacher}</div>
+            {partLesson.group? (<div className="group"> {partLesson.group} </div>): null}
           </div>
         </div>
       ))
@@ -66,6 +67,8 @@ export const Lesson: React.FC<LessonProps> = (props) => {
           </div>
           <div className="bottom-side">
             <div className={`teacher ${props.lesson[0].teacher === "Michał Gabor" && isWindowsOS ? "comic" : ""}`}>{props.lesson[0].teacher}</div>
+            {props.lesson[0].group ? (<div className="group"> {props.lesson[0].group} </div>) : null}
+
           </div>
         </div> 
       )

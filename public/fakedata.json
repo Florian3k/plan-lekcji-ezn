@@ -1,13 +1,15 @@
 {
   "00001": [
     {
-      "period":"3",
+      "period": "3",
+      "group": "Gr 1",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
     {
       "period": "3",
+      "group": "Gr 1",
       "subject": "Niemiecki",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
@@ -34,12 +36,14 @@
   "00010": [
     {
       "period": "3",
+      "group": "Gr 1",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
     {
       "period": "3",
+      "group": "Gr 1",
       "subject": "Niemiecki",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
@@ -66,12 +70,14 @@
   "00100": [
     {
       "period": "3",
+      "group": "Gr 1",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
     {
       "period": "3",
+      "group": "Gr 1",
       "subject": "Niemiecki",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
@@ -98,12 +104,14 @@
   "01000": [
     {
       "period": "3",
+      "group": "Gr 1",
       "subject": "Matematyka",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
     },
     {
       "period": "3",
+      "group": "Gr 1",
       "subject": "Niemiecki",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
@@ -145,12 +153,14 @@
   ],
   "10000": [{
       "period": "3",
+      "group": "Gr 1",
       "subject": "Matematyka",
       "teacher": "Michał Gabor",
       "classroom": "102"
     },
     {
       "period": "3",
+      "group": "Gr 1",
       "subject": "Niemiecki",
       "teacher": "Jerzy Sikora",
       "classroom": "102"
