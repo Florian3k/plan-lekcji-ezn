@@ -107,7 +107,7 @@
     justify-content: space-between;
   }
   // grey rectangle at beginning of the lesson
-  &::before {
+  &::after {
     content: '';
     position: absolute;
     left: 0;
@@ -118,14 +118,14 @@
     background-color: rgba(0,0,0,.3);
   }
   // yellow line at the beginning of the lesson
-  &::after {
+  &::before {
     content: '';
     position: absolute;
     left: 0;
     top: 0;
 
     height: 100%;
-    width: 2px;
+    width: 4px;
     background-color: yellow;
   }
 }

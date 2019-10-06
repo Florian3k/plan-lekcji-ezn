@@ -6,13 +6,9 @@ import { useMediaQuery } from 'react-responsive';
 
 export const App: React.FC = () => {
   const [data, setData] = useState<any>(null);
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 1224px)'
-  })
   
-  const isMobile = useMediaQuery({
-    query: '(max-width: 900px)'
-  })
+  const isDesktopOrLaptop = useMediaQuery({query: '(min-width: 1224px)'})
+  const isMobile = useMediaQuery({query: '(max-width: 900px)'})
   
   useEffect(() => {
     fetch('/fakedata.json')
