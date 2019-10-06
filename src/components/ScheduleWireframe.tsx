@@ -20,7 +20,7 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
   if(props.class) {
     // Fill lessonsInfo with [days[lessons[lessonbyperiod]]] 
 
-    const daysId = Object.keys(props.class);
+    const daysId = Object.keys(props.class).sort((a: any, b: any) => a - b);
     // eslint-disable-next-line
     daysId.map(dayId => {
       lessonsInfo.push(
@@ -58,7 +58,7 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
   if(isMobile) {
     return (
       <SwipeableViews>
-          {lessonsByDay.map(column =><div> {column} </div>)}
+          {lessonsByDay.map(column => <div> {column} </div>)}
       </SwipeableViews>
     )
   }
