@@ -1,49 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import { Timetable } from './types';
+import React, { useState } from 'react';
+import * as R from 'ramda';
+import { useTimetable } from './hooks/useTimetable';
+import { getClassTimetable } from './utils';
 
 export const App: React.FC = () => {
-  const [data, setData] = useState<Timetable | null>(null);
-
-  const [selectedType, setSelectedType] = useState<'class' | 'teacher' | 'classroom'>('class')
-  const [selected, setSelected] = useState('lol')
-
-  useEffect(() => {
-    fetch('/data.json')
-      .then(res => res.json())
-      .then(({termsdefs, ...data}) => {
-        if (!data) {
-          console.log('zesrało się')
-          return;
-        }
-        setData(data)
-        console.log(data)
-      })
-  }, []);
-
-  if (!data) {
+  const timetable = useTimetable()
+  
+  // const [selectedType, setSelectedType] = useState<'class' | 'teacher' | 'classroom'>('class')
+  const [selected, setSelected] = useState('4 H')
+  
+  if (!timetable) {
     return <div>Loading...</div>
   }
 
-
-  const clazz = data.classes.find(({ name }) => name === selected)
+  const cards = getClassTimetable(timetable, selected)
 
   return (
     <div>
-      {Object.entries(data).map(([k, v]) => 
+      {Object.entries(timetable).map(([k, v]) => 
         <div key={k}>
         {k} - {Object.keys(v[0]).join(', ')}
         </div>
       )}
 
+      <div>
+        {
+          timetable.classes.map(x => <span style={{marginRight: "10px"}}>{x.name}</span>)
+        }
+      </div>
+
       <input value={selected} onChange={(e) => setSelected(e.target.value)}/>
 
-      { clazz ? data.lessons
-          .filter(l => l.classids === clazz.id)
-          .map(x => 
-            <div>
-              {Object.entries(x).map(([k,v])=> k + '=' +v).join('\n')}
-            </div>
-          ) : null }
+      { cards ?
+        <code>
+          <pre>
+          {
+            // JSON.stringify(R.groupBy((l) => l.daysdefid, lessons), null, 2)
+            // JSON.stringify(cards, null, 2)
+            JSON.stringify(R.groupBy((l) => l.days, cards!), null, 2)
+          }
+          </pre>
+        </code>
+        : null }
     </div>
   );
 }
