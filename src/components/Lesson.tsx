@@ -40,7 +40,11 @@ export const Lesson: React.FC<LessonProps> = (props) => {
       const content = props.lesson.map((partLesson: any, i: number) => (
         <div className={`lesson-divided-part`}>
           <div className="upper-side">
-            <h3>{partLesson.subject}</h3>
+            <h3>{
+              partLesson.subject.length > 20 ?
+                partLesson.subject.split(' ').reduce((p: any, c: any) => p+c[0], '') 
+                :partLesson.subject}
+            </h3>
             <div className="room">Sala {partLesson.classroom}</div>
           </div>
           <div className="bottom-side">
@@ -62,11 +66,14 @@ export const Lesson: React.FC<LessonProps> = (props) => {
         <div className={`lesson${isMobile? "-mobile" : ""} lesson-${period}-${day}`}>
           {displayingHoursElement(isMobile)}          
           <div className="upper-side">
-            <h3>{props.lesson[0].subject}</h3>
-            <div className="room">Sala {props.lesson[0].classroom}</div>
+            <h3>{
+              props.lesson[0].subject.length > 20 ?
+                props.lesson[0].subject.split(' ').reduce((p: any, c: any) => p + c[0], '')
+                : props.lesson[0].subject}
+            </h3>            <div className="room">Sala {props.lesson[0].classroom}</div>
           </div>
           <div className="bottom-side">
-            <div className={`teacher ${props.lesson[0].teacher === "Michał Gabor" && isWindowsOS ? "comic" : ""}`}>{props.lesson[0].teacher}</div>
+            <div className={`teacher ${props.lesson[0].teacher === "Michał Gabor" && isWindowsOS ? "comic" : ""}`}> {props.lesson[0].teacher} </div>
             {props.lesson[0].group ? (<div className="group"> {props.lesson[0].group} </div>) : null}
 
           </div>
