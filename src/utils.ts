@@ -3,6 +3,8 @@ import * as R from 'ramda';
 
 const byId = (id: string) => R.propEq('id', id);
 
+const maybeGetProp = <T extends Object>(obj: T | undefined | null, prop: keyof T) => obj ? obj[prop] : null;
+
 export function getClassTimetable(timetable: Timetable, selectedClass: string) {
   const clazz = timetable.classes.find(({ name }) => name === selectedClass)
 
@@ -10,10 +12,10 @@ export function getClassTimetable(timetable: Timetable, selectedClass: string) {
     .filter(l => l.classids === clazz.id)
     .map(l => ({
       ...l,
-      subject: timetable.subjects.find(byId(l.subjectid))!.name,
+      subject: maybeGetProp(timetable.subjects.find(byId(l.subjectid)), 'name'),
       week: timetable.weeksdefs.find(byId(l.weeksdefid)),
       day: timetable.daysdefs.find(byId(l.daysdefid)),
-      teacher: timetable.teachers.find(byId(l.teacherids))!.name,
+      teacher: maybeGetProp(timetable.teachers.find(byId(l.teacherids)), 'name'),
       group: timetable.groups.find(byId(l.groupids))!.name,
       // period: timetable.periods.find(byId())
     }))
@@ -24,7 +26,7 @@ export function getClassTimetable(timetable: Timetable, selectedClass: string) {
     .filter(c => lessonsIds!.has(c.lessonid))
     .map(c => ({
       ...c,
-      classroom: timetable.classrooms.find(byId(c.classroomids))!.name,
+      classroom: maybeGetProp(timetable.classrooms.find(byId(c.classroomids)), 'name'),
       lesson: lessons.find(l => l.id === c.lessonid),
     })).map(c => ({
       ...R.pick(['period', 'weeks', 'days', 'classroom'], c),
