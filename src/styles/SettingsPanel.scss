@@ -3,19 +3,29 @@
   position: absolute;
   left: 0;
 
+  border-radius: 4px;
+  padding: 8px;
+
+  width: min-content;
   bottom: 0;
   transform: translateY(100%);
   
-  background: white;
-  color: #343434;
+  background: #343434;
   
   display: flex;
   flex-flow: row nowrap;
   
-  padding: 0.75em 1.5em;
   .grade {
     display: flex;
     flex-flow: column nowrap;
+    
+    margin: 0 0.75em;
+  }
+  .class {
+    display: flex;
+    margin: 2px 8px;
+    width: max-content;
+    cursor: pointer;
   }
 }
 .btn-wrapper {

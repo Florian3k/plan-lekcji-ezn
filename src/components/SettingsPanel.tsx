@@ -6,22 +6,30 @@ export const SettingsPanel: React.FC<any> = (props) => {
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-width: 1224px)'
   })
-
   const [isDisplayingClasses, setIsDisplayingClasses] = useState(false)  
   const toggleDisplayClasses = () => {
     setIsDisplayingClasses(!isDisplayingClasses)
   }
 
-  const classesByGrade: any = [[],[],[],[],[]];
+  let classesByGrade: any = [[],[],[],[],[]];
+  // add all 5 grades
   props.classes.map((classData: {short: String}) => {
     classesByGrade[+classData.short[0] - 1].push(classData)
   })
+  // delete empty grades
+  classesByGrade = classesByGrade.filter((e: []) => e.length);
 
+  // final classes components
   const classesWindow = classesByGrade.map((grade: []) => (
     <div className="grade">
-      {grade.map((classData: {short: string}) => <div className="class"> {classData.short} </div>)}
+      {grade.map((classData: { short: string }) => (
+        <div className="class" onClick={() => props.changeClass(classData.short)}> 
+          {classData.short} 
+        </div>)
+      )}
     </div>
   ))
+
   return (
     <div className={`${isDesktopOrLaptop ? "settings-panel" : "settings-panel-medium"}`}>
       <label className="label-for-main-search" htmlFor="searchingObject">plan</label>
