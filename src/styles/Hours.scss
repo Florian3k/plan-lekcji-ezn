@@ -1,0 +1,36 @@
+.hours-field {
+  grid-area: hours;
+
+  display: flex;
+  flex-flow: column wrap;
+
+  z-index: 110;
+  background: white;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+@for $i from 0 through 13 {
+  .hours-field-item--#{$i} {
+    height: var(--row-#{$i}-height);
+  }
+
+}
+.hours-field-item {
+  overflow: hidden;
+
+  text-align: center;
+}
+.lesson-number {
+  display: inline-block;
+  font-size: 52px;
+}
+.lesson-length {
+  display: inline-block;
+}
+.lesson-starts {
+  font-size: 1.15em;
+}
+.lesson-ends {
+  font-size: 0.9em;
+}

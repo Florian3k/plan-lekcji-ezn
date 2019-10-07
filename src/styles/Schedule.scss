@@ -1,0 +1,21 @@
+.main {
+  display: grid;
+  grid-template-columns: var(--hours-width) auto;
+  grid-template-rows: 4em auto;
+  grid-template-areas: 
+  "coveringArea dayNames"
+  "hours scheduleWireframe";
+}
+.covering-area {
+  background-color: white;
+  grid-area: coveringArea;
+  z-index: 30;
+}
+@media (min-width: 900px) {
+  .main {
+    margin-right: 14px;
+  }
+}
+.mobile-main {
+  background-color: #ccc;
+}
