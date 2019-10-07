@@ -1,3 +1,26 @@
+.classes-window {
+  z-index: 200;
+  position: absolute;
+  left: 0;
+
+  bottom: 0;
+  transform: translateY(100%);
+  
+  background: white;
+  color: #343434;
+  
+  display: flex;
+  flex-flow: row nowrap;
+  
+  padding: 0.75em 1.5em;
+  .grade {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+}
+.btn-wrapper {
+  position: relative;
+}
 .settings-panel {
   background-color: rgba(13, 33, 73, .86);
   color: #c7c7c7;
@@ -10,10 +33,13 @@
 
     text-align: right;
   }
+  .btn-wrapper {
+    position: relative;
+    margin-bottom: 8vh;
+  }
 
   .search {
     width: 100%;
-    margin-bottom: 8vh;
 
     color: #c7c7c7;
     font-weight: bold;
