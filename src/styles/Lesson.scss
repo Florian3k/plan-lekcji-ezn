@@ -1,3 +1,13 @@
+.bottom-side {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.upper-side {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 .lesson {
   position: relative;
   padding: 0.5em;
@@ -25,15 +35,15 @@
   }
   .group {
     display: inline-block;
-    float: right;
+    font-size: 0.7em;
   }
   .lesson-divided-part {
     position: relative;
     width: 100%;
     font-size: .95rem;
 
-    &+& {
-      border-top: 2px solid rgba(0, 0, 0, .1);
+    &+.lesson-divided-part {
+      border-top: 2px dotted rgba(3, 3, 3, .2);
     }
   }
   h3 {
@@ -69,7 +79,7 @@
   }
   .teacher {
     display: inline-block;
-    font-size: 1em;
+    font-size: 0.85em;
   }
   .lesson-divided-part {
     position: relative;
@@ -103,8 +113,6 @@
   }
   .bottom-side {
     margin: 0 5vw 0 15vw;
-    display: flex;
-    justify-content: space-between;
   }
   // grey rectangle at beginning of the lesson
   &::after {

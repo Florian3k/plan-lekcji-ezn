@@ -28,7 +28,18 @@ export const SettingsPanel: React.FC<SettingsProps> = (props) => {
       }
     )
   }
+  const handleTargetClick = (name: string, type: 'class' | 'teacher' | 'classroom') => {
+    for (let i = 0; i < 14; i++) {  // set rows to default size
+      document.documentElement.style.setProperty(`--row-${i}-height`, "4em");
+    }
+    props.changeClass(name, type); //change current target
+    setIsDisplayingWindow({ //hide all choosement windows
+      classes: false,
+      teachers: false,
+      classrooms: false
+    });
 
+  }
   let classesByGrade: any = [[],[],[],[],[]];
   // add all 5 grades
   props.classes.map((classData: {short: string}) => {
@@ -43,7 +54,7 @@ export const SettingsPanel: React.FC<SettingsProps> = (props) => {
         return classesByGrade.map((grade: []) => (
           <div className="grade">
             {grade.map((classData: { name: string }) => (
-              <div className="class" onClick={() => props.changeClass(classData.name, 'class')}>
+              <div className="class" onClick={() => handleTargetClick(classData.name, 'class')}>
                 {classData.name}
               </div>)
             )}
@@ -51,7 +62,7 @@ export const SettingsPanel: React.FC<SettingsProps> = (props) => {
         ))
       case 'teachers':
         return props.teachers.map((teacher: {short: string, name: string}) => (
-          <div className="teacher" onClick={() => props.changeClass(teacher.name, 'teacher')}>
+          <div className="teacher" onClick={() => handleTargetClick(teacher.name, 'teacher')}>
             {teacher.short}
           </div>
         ))
