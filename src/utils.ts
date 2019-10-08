@@ -47,7 +47,7 @@ export function getTeacherTimetable(timetable: Timetable, selectedTeacher: strin
       week: timetable.weeksdefs.find(byId(l.weeksdefid)),
       day: timetable.daysdefs.find(byId(l.daysdefid)),
       teacher: maybeGetProp(timetable.teachers.find(byId(l.teacherids)), 'name'),
-      group: timetable.groups.find(byId(l.groupids))!.name,
+      group: timetable.groups.find(byId(l.groupids))! ? timetable.groups.find(byId(l.groupids))!.name : null,  // zmienilem bo czasem wywalal undefined
       // period: timetable.periods.find(byId())
     }))
 
