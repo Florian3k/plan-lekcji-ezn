@@ -1,16 +1,28 @@
-.classes-window {
+.choose-filter-window {
+  border-radius: 4px;
+  padding: 8px;
+  background: #343434;
   z-index: 200;
+}
+.teachers-window {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: translateY(100%);
+  .teacher {
+    padding: 4px 12px;
+  }
+}
+.classes-window {
   position: absolute;
   left: 0;
 
-  border-radius: 4px;
-  padding: 8px;
-
+  
   width: min-content;
   bottom: 0;
-  transform: translateY(100%);
-  
-  background: #343434;
+  transform: translateY(100%);  
   
   display: flex;
   flex-flow: row nowrap;

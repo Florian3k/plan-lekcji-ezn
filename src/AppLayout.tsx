@@ -30,7 +30,6 @@ export const App: React.FC<any> = (props) => {
     classroom: getClassTimetable,
   }[selectedType](timetable, selected)
 
-  console.log({cards})
 
   if (!cards) {
     return <div>
@@ -40,7 +39,7 @@ export const App: React.FC<any> = (props) => {
 
   return ( 
     <div className={`${isDesktopOrLaptop ? "App": isMobile? "App-mobile" : "App-medium"}`}>
-      <SettingsPanel classes = {timetable.classes} changeClass={changeClass}/>
+      <SettingsPanel classes = {timetable.classes} teachers = {timetable.teachers} changeClass={changeClass}/>
       <Schedule class={R.groupBy((l) => l.days, cards!)} />
     </div>
   )   
