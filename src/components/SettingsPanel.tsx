@@ -50,8 +50,8 @@ export const SettingsPanel: React.FC<SettingsProps> = (props) => {
           </div>
         ))
       case 'teachers':
-        return props.teachers.map((teacher: {short: string}) => (
-          <div className="teacher">
+        return props.teachers.map((teacher: {short: string, name: string}) => (
+          <div className="teacher" onClick={() => props.changeClass(teacher.name, 'teacher')}>
             {teacher.short}
           </div>
         ))

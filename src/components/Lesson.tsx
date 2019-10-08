@@ -41,7 +41,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
         <div className={`lesson-divided-part`}>
           <div className="upper-side">
             <h3>{
-              partLesson.subject.length > 20 ?
+              partLesson.subject.length > 17 ?
                 partLesson.subject.split(' ').reduce((p: any, c: any) => p+c[0], '') 
                 :partLesson.subject}
             </h3>
@@ -67,7 +67,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
           {displayingHoursElement(isMobile)}          
           <div className="upper-side">
             <h3>{
-              props.lesson[0].subject.length > 20 ?
+              props.lesson[0].subject.length > 17 ?
                 props.lesson[0].subject.split(' ').reduce((p: any, c: any) => p + c[0], '')
                 : props.lesson[0].subject}
             </h3>            <div className="room">Sala {props.lesson[0].classroom}</div>

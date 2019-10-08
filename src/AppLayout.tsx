@@ -16,6 +16,7 @@ export const App: React.FC<any> = (props) => {
   const [selected, setSelected] = useState('Gabor Michał')
   
   const changeClass = (name: string, type: typeof selectedType) => {
+    console.log({name, type})
     setSelectedType(type)
     setSelected(name)
   }
@@ -36,8 +37,7 @@ export const App: React.FC<any> = (props) => {
       "twoja stara"
     </div>
   }
-
-  return ( 
+  return (
     <div className={`${isDesktopOrLaptop ? "App": isMobile? "App-mobile" : "App-medium"}`}>
       <SettingsPanel classes = {timetable.classes} teachers = {timetable.teachers} changeClass={changeClass}/>
       <Schedule class={R.groupBy((l) => l.days, cards!)} />
