@@ -23,6 +23,14 @@ export const App: React.FC<any> = (props) => {
     return <div>Loading...</div>
   }
   const cards = getClassTimetable(timetable, selected)
+  console.log({cards})
+
+  if (!cards) {
+    return <div>
+      "twoja stara"
+    </div>
+  }
+
   return ( 
     <div className={`${isDesktopOrLaptop ? "App": isMobile? "App-mobile" : "App-medium"}`}>
       <SettingsPanel classes = {timetable.classes} changeClass={changeClass}/>

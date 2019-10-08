@@ -22,9 +22,9 @@ export const SettingsPanel: React.FC<any> = (props) => {
   // final classes components
   const classesWindow = classesByGrade.map((grade: []) => (
     <div className="grade">
-      {grade.map((classData: { short: string }) => (
-        <div className="class" onClick={() => props.changeClass(classData.short)}> 
-          {classData.short} 
+      {grade.map((classData: { name: string }) => (
+        <div className="class" onClick={() => props.changeClass(classData.name)}> 
+          {classData.name} 
         </div>)
       )}
     </div>
