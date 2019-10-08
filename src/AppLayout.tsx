@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { SettingsPanel } from './components/SettingsPanel';
-import { getClassTimetable } from './utils';
+import { getClassTimetable, getTeacherTimetable } from './utils';
 import { useTimetable } from './hooks/useTimetable';
 import * as R from 'ramda';
 import { Schedule } from './components/Schedule';
@@ -12,17 +12,24 @@ export const App: React.FC<any> = (props) => {
   const isDesktopOrLaptop = useMediaQuery({query: '(min-width: 1224px)'})
   const isMobile = useMediaQuery({query: '(max-width: 900px)'})
 
-  // const [selectedType, setSelectedType] = useState<'class' | 'teacher' | 'classroom'>('class')
-  const [selected, setSelected] = useState('4 H')
+  const [selectedType, setSelectedType] = useState<'class' | 'teacher' | 'classroom'>('teacher')
+  const [selected, setSelected] = useState('Gabor Michał')
   
-  const changeClass = (name: string) => {
+  const changeClass = (name: string, type: typeof selectedType) => {
+    setSelectedType(type)
     setSelected(name)
   }
-
+  
   if (!timetable) {
     return <div>Loading...</div>
   }
-  const cards = getClassTimetable(timetable, selected)
+
+  const cards = {
+    class: getClassTimetable,
+    teacher: getTeacherTimetable,
+    classroom: getClassTimetable,
+  }[selectedType](timetable, selected)
+
   console.log({cards})
 
   if (!cards) {

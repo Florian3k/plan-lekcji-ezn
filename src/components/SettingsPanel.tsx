@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import '../styles/SettingsPanel.scss';
 import { useMediaQuery } from 'react-responsive';
 
-export const SettingsPanel: React.FC<any> = (props) => {
+interface Props {
+  classes: Array<any>
+  changeClass: (arg1: string, arg2: 'class' | 'teacher' | 'classroom') => void,
+}
+
+export const SettingsPanel: React.FC<Props> = ({ classes, changeClass}) => {
   const isDesktopOrLaptop = useMediaQuery({
     query: '(min-width: 1224px)'
   })
@@ -13,7 +18,7 @@ export const SettingsPanel: React.FC<any> = (props) => {
 
   let classesByGrade: any = [[],[],[],[],[]];
   // add all 5 grades
-  props.classes.map((classData: {short: String}) => {
+  classes.map((classData: {short: String}) => {
     classesByGrade[+classData.short[0] - 1].push(classData)
   })
   // delete empty grades
@@ -23,7 +28,7 @@ export const SettingsPanel: React.FC<any> = (props) => {
   const classesWindow = classesByGrade.map((grade: []) => (
     <div className="grade">
       {grade.map((classData: { name: string }) => (
-        <div className="class" onClick={() => props.changeClass(classData.name)}> 
+        <div className="class" onClick={() => changeClass(classData.name, 'class')}> 
           {classData.name} 
         </div>)
       )}
