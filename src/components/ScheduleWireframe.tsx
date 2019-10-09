@@ -5,7 +5,8 @@ import { useMediaQuery } from 'react-responsive';
 import SwipeableViews from 'react-swipeable-views';
 
 interface ClassProps {
-  class: any //przepraszam
+  class: any,
+  periods: any[]
 }
 
 export const ScheduleWireframe: React.FC<ClassProps> = props => {
@@ -22,7 +23,7 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
     // eslint-disable-next-line
     
     daysId.map(dayId => {
-      lessonsByDaysArray.push(
+      return lessonsByDaysArray.push(
         unit[dayId].reduce((p: any[], c: { period: number }, i: number) => {
           if (p && p[p.length - 1] && c.period === p[p.length - 1][0].period) {
             p[p.length - 1].push(c);
@@ -52,11 +53,9 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
     }
     
     // lessons mobile style: daysArray of Lessons compontents
-    lessonsByDay = lessonsInfo.map(day => {
-      return day.map((lesson: any) => {
-        return <Lesson lesson={lesson} />
-      })
-    });
+    lessonsByDay = lessonsInfo.map(day => 
+      day.map((lesson: any) => <Lesson lesson={lesson} period={props.periods[lesson[0].period]}/>)
+    );
 
   }  
   if(isMobile) {

@@ -3,18 +3,18 @@ import '../styles/Lesson.scss';
 import { useMediaQuery } from 'react-responsive';
 
 interface LessonProps {
-  lesson: any //przepraszam
+  lesson: any,
+  period?: {
+    period: string,
+    endtime: string,
+    starttime: string
+  }
 }
 export const Lesson: React.FC<LessonProps> = (props) => {
   const updateRowHeight = (row: number, n: number) => {
     document.documentElement.style.setProperty(`--row-${row}-height`, `${(n-1)*2.4 + 4}em`);
   }
-  const hours = (period: number) => {
-    return {
-      start: `${+period+7}:15`,
-      end: `${+period+8}:45`
-    }
-  }
+
   const isMobile = useMediaQuery({
     query: '(max-width: 900px)'
   })
@@ -22,8 +22,8 @@ export const Lesson: React.FC<LessonProps> = (props) => {
     if(isDisplayed) {
       return (
         <div className="hours">
-          <div className="hour-start">{hours(props.lesson[0].period).start}</div>
-          <div className="hour-end">{hours(props.lesson[0].period).end}</div>          
+          <div className="hour-start">{props.period!.starttime}</div>
+          <div className="hour-end">{props.period!.endtime}</div>          
         </div>
     )}
     else return null

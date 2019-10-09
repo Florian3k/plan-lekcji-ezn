@@ -7,8 +7,10 @@ import { useMediaQuery } from 'react-responsive';
 import { Period, Lesson } from '../types';
 
 interface ScheduleProps {
-  periods: any,
-  clazz: any
+  periods: Period[],
+  clazz: {
+    [index: string]: Lesson[] | any[]
+  }
 }
 export const Schedule: React.FC <ScheduleProps> = props => {
   const isMobile = useMediaQuery({
@@ -16,14 +18,14 @@ export const Schedule: React.FC <ScheduleProps> = props => {
   })
   return (
     <div className={`${isMobile? "mobile-" : ""}main`}>
-      {!isMobile? (
+      {!isMobile ? (
         <>
           <div className="covering-area"></div>
           <Hours periods={props.periods}/>
           <DayNames />
         </>
       ) : null}
-      <ScheduleWireframe class={props.clazz} />
+      <ScheduleWireframe class={props.clazz} periods={props.periods}/>
     </div>
   )
 }

@@ -13,7 +13,7 @@ export const useTimetable: () => Timetable | null = () => {
           return;
         }
         setData(data)
-        console.log(data)
+        // console.log(data)
       })
   }, []);
 

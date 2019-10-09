@@ -35,7 +35,6 @@ export const App: React.FC = () => {
       "twoja stara"
     </div>
   }
-  console.log(timetable.periods)
   return (
     <div className={`${isDesktopOrLaptop ? "App": isMobile? "App-mobile" : "App-medium"}`}>
       <SettingsPanel classes = {timetable.classes} teachers = {timetable.teachers} changeClass={changeClass}/>
