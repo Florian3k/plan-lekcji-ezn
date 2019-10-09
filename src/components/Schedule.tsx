@@ -4,9 +4,13 @@ import { Hours } from './Hours';
 import { DayNames } from './DayNames';
 import { ScheduleWireframe } from './ScheduleWireframe';
 import { useMediaQuery } from 'react-responsive';
+import { Period, Lesson } from '../types';
 
-
-export const Schedule: React.FC <{class: object}> = props => {
+interface ScheduleProps {
+  periods: any,
+  clazz: any
+}
+export const Schedule: React.FC <ScheduleProps> = props => {
   const isMobile = useMediaQuery({
     query: '(max-width: 900px)'
   })
@@ -15,11 +19,11 @@ export const Schedule: React.FC <{class: object}> = props => {
       {!isMobile? (
         <>
           <div className="covering-area"></div>
-          <Hours />
+          <Hours periods={props.periods}/>
           <DayNames />
         </>
       ) : null}
-      <ScheduleWireframe class={props.class} />
+      <ScheduleWireframe class={props.clazz} />
     </div>
   )
 }

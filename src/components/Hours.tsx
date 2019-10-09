@@ -1,32 +1,26 @@
 import React from 'react';
 import "../styles/Hours.scss";
+import { Period } from '../types';
 
-export const Hours: React.FC = () => {
-  const hoursArr: { starts: string; ends: string } [] = [];
-  for(let i=0; i<14; i++) {
-    hoursArr.push(
-      {
-        starts: `${i+7}:15`,
-        ends: `${i+8}:15`
-      }
-    );
-  }
-  const listItems = hoursArr.map((item, index) => (
-    <li className={`hours-field-item hours-field-item--${index}`}>
-      <div className="lesson-number">{index}</div>
+
+export const Hours: React.FC<{periods: Period[]}> = (props) => {
+  
+  const listHoursData = props.periods.map((period) => (
+    <li className={`hours-field-item hours-field-item--${period.period}`}>
+      <div className="lesson-number">{period.period}</div>
       <div className="lesson-length">
           <div className="lesson-starts">
-            {item.starts}
+            {period.starttime}
           </div>
           <div className="lesson-ends">
-            {item.ends}
+            {period.endtime}
           </div>
       </div>
     </li>
   ))
   return (
     <ul className="hours-field">
-      {listItems}
+      { listHoursData }
     </ul>
   )
 }
