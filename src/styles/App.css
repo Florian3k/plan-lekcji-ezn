@@ -18,7 +18,7 @@
   width: 100vw;
   display: grid;
 
-  grid-template-rows: 30vh auto;
+  /* grid-template-rows: 30vh auto; */
 }
 @media (max-width: 1280px) {
   .App {

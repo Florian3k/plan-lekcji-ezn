@@ -9,9 +9,10 @@ interface SettingsProps {
 }
 
 export const SettingsPanel: React.FC<SettingsProps> = (props) => {
-  const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 1224px)'
-  })
+  const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1224px)' })
+  const isMobile = useMediaQuery({ query: '(max-width: 900px)' })
+
+
   const [isDisplayingWindow, setIsDisplayingWindow] = useState({
     classes: false,
     teachers: false,
@@ -81,13 +82,13 @@ export const SettingsPanel: React.FC<SettingsProps> = (props) => {
         <div className="btn-wrapper">
           <button className="classes-search search" onClick={() => toggleWindow('classes')}>Oddziały (klasy)</button>
           {isDisplayingWindow.classes ?
-            <div className="classes-window choose-filter-window">{window('classes')}</div> 
+            <div className={`classes-window choose-filter-window ${isMobile? 'mobile-window': ''}`}>{window('classes')}</div> 
             : null}
         </div>
         <div className="btn-wrapper">
           <button className="teachers-search search" onClick={() => toggleWindow('teachers')}>Nauczyciele</button>
           {isDisplayingWindow.teachers ?
-            <div className="teachers-window choose-filter-window">{window('teachers')}</div>
+            <div className={`teachers-window choose-filter-window ${isMobile ? 'mobile-window' : ''}`}>{window('teachers')}</div>
             : null}
         </div>
         <div className="btn-wrapper">
