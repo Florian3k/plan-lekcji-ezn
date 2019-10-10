@@ -60,9 +60,12 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
   }  
   if(isMobile) {
     return (
-      <SwipeableViews>
-          {lessonsByDay.map(column => <div> {column} </div>)}
-      </SwipeableViews>
+      <div>
+      
+        <SwipeableViews >
+            {lessonsByDay.map(column => <div> {column} </div>)}
+        </SwipeableViews>
+      </div>
     )
   }
   else {

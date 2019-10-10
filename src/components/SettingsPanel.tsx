@@ -5,6 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 interface SettingsProps {
   teachers: {short: string, name: string}[],
   classes: {short: string, name: string}[],
+  targetSchedule: string,
   changeClass: (name: string, type: 'class' | 'teacher' | 'classroom') => void,
 }
 
@@ -73,12 +74,13 @@ export const SettingsPanel: React.FC<SettingsProps> = (props) => {
     }
   }
   
-
   return (
     <div className={`${isDesktopOrLaptop ? "settings-panel" : "settings-panel-medium"}`}>
       <label className="label-for-main-search" htmlFor="searchingObject">plan</label>
       <div className="search-filters">
-        <h1 className="main-search"> 4H</h1>
+        <h1 className="main-search">
+          {props.targetSchedule}
+        </h1>
         <div className="btn-wrapper">
           <button className="classes-search search" onClick={() => toggleWindow('classes')}>Oddziały (klasy)</button>
           {isDisplayingWindow.classes ?

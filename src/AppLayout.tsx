@@ -35,9 +35,10 @@ export const App: React.FC = () => {
       "twoja stara"
     </div>
   }
+  console.log(cards)
   return (
     <div className={`${isDesktopOrLaptop ? "App": isMobile? "App-mobile" : "App-medium"}`}>
-      <SettingsPanel classes = {timetable.classes} teachers = {timetable.teachers} changeClass={changeClass}/>
+      <SettingsPanel targetSchedule={selected} classes = {timetable.classes} teachers = {timetable.teachers} changeClass={changeClass}/>
       <Schedule periods={timetable.periods} clazz={R.groupBy((l) => l.days, cards!)} />
     </div>
   )   
