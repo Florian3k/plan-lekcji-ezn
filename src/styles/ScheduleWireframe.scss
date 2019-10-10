@@ -13,3 +13,30 @@
   grid-auto-flow: column;
   background-color: #E9E9E9;
 }
+@for $i from 0 through 4 {
+  .target-#{$i} {
+    .day-#{$i} {
+      background: rgba(255, 255, 255, .14);
+    }
+  }
+}
+.days-mobile {
+  transform: translateY(-1px);  //get rid of annynoing gap between this and settings panel
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+
+  background: #343434;
+  color: #E9E9E9;
+  .day-mobile {
+    display: inline-block;
+    width: 12vw;
+    height: 12vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    margin: 4px;
+    font-size: 14px; 
+  }
+}

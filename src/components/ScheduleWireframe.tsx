@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/ScheduleWireframe.scss';
 import { Lesson } from './Lesson';
 import { useMediaQuery } from 'react-responsive';
@@ -14,14 +14,18 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
   let lessonsByDay: JSX.Element[][] = [];
   let lessonsInfo: any[] = [];
   const isMobile = useMediaQuery({query: '(max-width: 900px)'})
-  
-  
+  const [chosenDay, setchosenDay] = useState(0)
+  const changeChosenDay = (index: number) => {
+    setchosenDay(index)
+  }
   // return [days[lessons[lessonbyperiod]]] 
   const getLessonsByDays = (unit: any) => {
     const daysId = Object.keys(unit).sort((a: any, b: any) => a - b);
     const lessonsByDaysArray: any = []
     // eslint-disable-next-line
-    
+    const onChangeDay = (index: number) => {
+
+    }  
     daysId.map(dayId => {
       return lessonsByDaysArray.push(
         unit[dayId].reduce((p: any[], c: { period: number }, i: number) => {
@@ -61,9 +65,15 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
   if(isMobile) {
     return (
       <div>
-      
-        <SwipeableViews >
-            {lessonsByDay.map(column => <div> {column} </div>)}
+        <div className={`days-mobile target-${chosenDay}`}>
+          <div className="day-mobile day-0">PON</div>
+          <div className="day-mobile day-1">WT</div>
+          <div className="day-mobile day-2">ŚR</div>
+          <div className="day-mobile day-3">CZW</div>
+          <div className="day-mobile day-4">PT</div>
+        </div>
+        <SwipeableViews onChangeIndex = {(index) => changeChosenDay(index)}>
+          {lessonsByDay.map(column => <div> {column} </div>)}
         </SwipeableViews>
       </div>
     )
