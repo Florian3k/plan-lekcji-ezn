@@ -16,7 +16,9 @@
 }
 .App-mobile {
   width: 100vw;
-  display: grid;
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
 
   /* grid-template-rows: 30vh auto; */
 }

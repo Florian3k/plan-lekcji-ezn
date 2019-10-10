@@ -19,4 +19,5 @@
 .mobile-main {
   background-color: #ccc;
   width: 100%;
+  height: calc(100vh - var(--menu-height));
 }

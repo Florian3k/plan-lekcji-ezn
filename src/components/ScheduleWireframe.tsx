@@ -23,9 +23,6 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
     const daysId = Object.keys(unit).sort((a: any, b: any) => a - b);
     const lessonsByDaysArray: any = []
     // eslint-disable-next-line
-    const onChangeDay = (index: number) => {
-
-    }  
     daysId.map(dayId => {
       return lessonsByDaysArray.push(
         unit[dayId].reduce((p: any[], c: { period: number }, i: number) => {
@@ -66,13 +63,13 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
     return (
       <div>
         <div className={`days-mobile target-${chosenDay}`}>
-          <div className="day-mobile day-0">PON</div>
-          <div className="day-mobile day-1">WT</div>
-          <div className="day-mobile day-2">ŚR</div>
-          <div className="day-mobile day-3">CZW</div>
-          <div className="day-mobile day-4">PT</div>
+          <div className="day-mobile day-0" onClick={() => setchosenDay(0)}>PON</div>
+          <div className="day-mobile day-1" onClick={() => setchosenDay(1)}>WT</div>
+          <div className="day-mobile day-2" onClick={() => setchosenDay(2)}>ŚR</div>
+          <div className="day-mobile day-3" onClick={() => setchosenDay(3)}>CZW</div>
+          <div className="day-mobile day-4" onClick={() => setchosenDay(4)}>PT</div>
         </div>
-        <SwipeableViews onChangeIndex = {(index) => changeChosenDay(index)}>
+        <SwipeableViews onChangeIndex = {(index) => changeChosenDay(index)} index={chosenDay}>
           {lessonsByDay.map(column => <div> {column} </div>)}
         </SwipeableViews>
       </div>

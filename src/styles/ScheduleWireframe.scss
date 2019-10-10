@@ -17,6 +17,8 @@
   .target-#{$i} {
     .day-#{$i} {
       background: rgba(255, 255, 255, .14);
+      color: lightblue;
+      transition: background 1.4s;
     }
   }
 }
@@ -30,13 +32,14 @@
   color: #E9E9E9;
   .day-mobile {
     display: inline-block;
-    width: 12vw;
-    height: 12vw;
+    width: 10vw;
+    height: 10vw;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 100%;
     margin: 4px;
-    font-size: 14px; 
+    font-size: 12px;
+    line-height: 12px; 
   }
 }
