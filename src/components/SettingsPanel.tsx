@@ -53,15 +53,13 @@ export const SettingsPanel: React.FC<SettingsProps> = (props) => {
   const window = (target: string) => {
     switch(target) {
       case 'classes':
-        return classesByGrade.map((grade: []) => (
-          <div className="grade">
-            {grade.map((classData: { name: string }) => (
-              <div className="class" onClick={() => handleTargetClick(classData.name, 'class')}>
+        return classesByGrade.map((grade: [], index: number) => {
+            return grade.map((classData: { name: string }) => (
+              <div className={`class col-${index}`} onClick={() => handleTargetClick(classData.name, 'class')}>
                 {classData.name}
               </div>)
-            )}
-          </div>
-        ))
+            )
+          })
       case 'teachers':
         return props.teachers.map((teacher: {short: string, name: string}) => (
           <div className="teacher" onClick={() => handleTargetClick(teacher.name, 'teacher')}>
@@ -79,7 +77,7 @@ export const SettingsPanel: React.FC<SettingsProps> = (props) => {
       <label className="label-for-main-search" htmlFor="searchingObject">plan</label>
       <div className="search-filters">
         <h1 className="main-search">
-          {props.targetSchedule}
+          { props.targetSchedule}
         </h1>
         <div className="btn-wrapper">
           <button className="classes-search search" onClick={() => toggleWindow('classes')}>Oddziały (klasy)</button>

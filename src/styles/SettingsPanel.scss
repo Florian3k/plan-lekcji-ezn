@@ -1,4 +1,3 @@
-
 .choose-filter-window {
   border-radius: 4px;
   padding: 8px;
@@ -28,14 +27,21 @@
   bottom: 0;
   transform: translateY(100%);  
   
-  display: flex;
-  flex-flow: row nowrap;
+  // display: flex;
+  // flex-flow: row nowrap;
+  // justify-content: space-around;
+  display: grid;
+  grid-auto-flow: column;
+  // width: minmax(max-content, 100%);
   
-  .grade {
-    display: flex;
-    flex-flow: column nowrap;
-    
-    margin: 0 0.75em;
+  width: max-content;
+  grid-gap: 8px 14px;
+  @for $i from 0 through 4 {
+    .col-#{$i} { 
+      grid-column-start: #{$i + 1};
+      grid-column-end: span 1;
+      grid-row: auto / span 1;
+    }
   }
   .class {
     display: flex;
