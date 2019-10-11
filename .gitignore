@@ -23,3 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 /public/data.json
+planEZN.xml
+xml_2012.xml
