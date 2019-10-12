@@ -1,0 +1,27 @@
+.picker-menu {
+  padding: 8px;
+  width: fit-content;
+  
+  position: absolute;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  background: #343434;
+  z-index: 200;
+
+  .class-list {
+    display: grid;
+    grid-auto-flow: column;
+
+    .class {
+      cursor: pointer;
+      padding: 0.25em 0.5em;
+    }
+    @for $i from 0 through 4 {
+      .col-#{$i} {
+        grid-column: calc(#{$i} + 1);
+      }
+    }
+  }
+}
