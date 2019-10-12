@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/SettingsPanel.scss';
 import { useMediaQuery } from 'react-responsive';
+import { PickerMenu } from './PickerMenu';
 
 interface SettingsProps {
   teachers: {short: string, name: string}[],
@@ -42,35 +43,6 @@ export const SettingsPanel: React.FC<SettingsProps> = (props) => {
     });
 
   }
-  let classesByGrade: any = [[],[],[],[],[]];
-  // add all 5 grades
-  props.classes.map((classData: {short: string}) => {
-    classesByGrade[+classData.short[0] - 1].push(classData)
-  })
-  // delete empty grades
-  classesByGrade = classesByGrade.filter((e: []) => e.length);
-  // windows (teacher choose window, class choose, etc) 
-  const window = (target: string) => {
-    switch(target) {
-      case 'classes':
-        return classesByGrade.map((grade: [], index: number) => {
-            return grade.map((classData: { name: string }) => (
-              <div className={`class col-${index}`} onClick={() => handleTargetClick(classData.name, 'class')}>
-                {classData.name}
-              </div>)
-            )
-          })
-      case 'teachers':
-        return props.teachers.map((teacher: {short: string, name: string}) => (
-          <div className="teacher" onClick={() => handleTargetClick(teacher.name, 'teacher')}>
-            {teacher.short}
-          </div>
-        ))
-      case 'classrooms':
-        return ''
-      default: return (<div></div>)
-    }
-  }
   
   return (
     <div className={`${isDesktopOrLaptop ? "settings-panel" : "settings-panel-medium"}`}>
@@ -82,13 +54,13 @@ export const SettingsPanel: React.FC<SettingsProps> = (props) => {
         <div className="btn-wrapper">
           <button className="classes-search search" onClick={() => toggleWindow('classes')}>Oddziały (klasy)</button>
           {isDisplayingWindow.classes ?
-            <div className={`classes-window choose-filter-window ${isMobile? 'mobile-window': ''}`}>{window('classes')}</div> 
+            <PickerMenu type="classes" classes={props.classes}/>
             : null}
         </div>
         <div className="btn-wrapper">
           <button className="teachers-search search" onClick={() => toggleWindow('teachers')}>Nauczyciele</button>
           {isDisplayingWindow.teachers ?
-            <div className={`teachers-window choose-filter-window ${isMobile ? 'mobile-window' : ''}`}>{window('teachers')}</div>
+            <PickerMenu type="teachers" teachers={props.teachers}/>
             : null}
         </div>
         <div className="btn-wrapper">
