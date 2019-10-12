@@ -18,16 +18,21 @@ export const PickerMenu: React.FC< any > = (props) => {
         return (
           <div className="teacher-list">
             {
-              props.teachers.map((teacher: {short: string}) => (
+              props.data.map((teacher: {short: string, name: string}) => (
                 <div className="teacher">
-                  { teacher.short }
+                  <span className="teacher-short">
+                    { teacher.short }
+                  </span>
+                  <span className="teacher-name">
+                    { teacher.name }
+                  </span>
                 </div>
               ))
             }
           </div>
         );
       case 'classes':
-        const classes = props.classes.map((classData: { short: string, name: string }) => {
+        const classes = props.data.map((classData: { short: string, name: string }) => {
           const index: number = +classData.short[0] - 1;          
           return (
             <div className = {`class col-${index}`}>

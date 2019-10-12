@@ -1,19 +1,25 @@
 .picker-menu {
   padding: 8px;
-  width: fit-content;
-  
+  // width: fit-content;
+  width: 280px;
+
+  // max-width: 100%;
   position: absolute;
   left: 50%;
 
   transform: translateX(-50%);
 
-  background: #343434;
+  background: #dadada;
+  color: #343434;
   z-index: 200;
 
+  // @media screen and (min-width: 1224px) {
+  //   transform: translateX(-40%);
+  // }
   .class-list {
     display: grid;
     grid-auto-flow: column;
-
+    grid-auto-columns: 1fr;
     .class {
       cursor: pointer;
       padding: 0.25em 0.5em;
@@ -21,6 +27,31 @@
     @for $i from 0 through 4 {
       .col-#{$i} {
         grid-column: calc(#{$i} + 1);
+      }
+    }
+  }
+  .teacher-list {
+    max-height: 40vh;
+    overflow-y: auto;
+
+    .teacher {
+      padding: 2px 6px;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      &+.teacher {
+        border-top: 1px solid darkgrey;
+      }
+      &:hover {
+        background: rgba(255, 255, 255, .5);
+      }
+      .teacher-short {
+        font-size: 18px;
+        margin-right: 0.5em;
+      }
+      .teacher-name {
+        font-size: 15px;
+        text-align: right;
       }
     }
   }
