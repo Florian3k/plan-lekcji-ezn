@@ -44,7 +44,7 @@ export const SettingsPanel: React.FC<SettingsProps> = (props) => {
 
   }
   
-  const classesByGrade: any = R.pipe(
+  const classesByGrade: any[][] = R.pipe(
     R.groupBy(({ name }) => {
       if (name.length === 3) return name[0]
       return name[0]+name[3]
@@ -65,7 +65,7 @@ export const SettingsPanel: React.FC<SettingsProps> = (props) => {
   const window = (target: string) => {
     switch(target) {
       case 'classes':
-        return classesByGrade.map((grade: []) => (
+        return classesByGrade.map((grade: any[]) => (
           <div className="grade">
             {grade.map((classData: { name: string }) => (
               <div className="class" onClick={() => handleTargetClick(classData.name, 'class')}>
