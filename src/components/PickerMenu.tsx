@@ -4,11 +4,11 @@ import "../styles/PickerMenu.scss";
 interface PickerMenuProps {
   type: 'teacher' | 'class' | 'classroom',
   handleTargetClick: Function,
-  classes?: {
+  class?: {
     short: string,
     name: string
   }[],
-  teachers?: {
+  teacher?: {
     short: string,
   }[]
 }

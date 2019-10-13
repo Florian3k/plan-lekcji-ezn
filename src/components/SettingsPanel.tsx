@@ -42,7 +42,7 @@ export const SettingsPanel: React.FC<any> = (props) => {
   }
 
 
-  
+
   return (
     <div className={`${isDesktopOrLaptop ? "settings-panel" : "settings-panel-medium"}`}>
       {displayingMobileWindow && isMobile?
@@ -58,6 +58,9 @@ export const SettingsPanel: React.FC<any> = (props) => {
               <div className="choose" onClick={() => setDisplayingMobileWindow('classroom')}>
                 Sale
               </div>
+            </div>
+            <div className="close">
+              <button onClick={() => setDisplayingMobileWindow('')}>Wróć</button>
             </div>
             <PickerMenu
               type={displayingMobileWindow}
