@@ -45,11 +45,11 @@ export const Lesson: React.FC<LessonProps> = (props) => {
                 partLesson.subject.split(' ').reduce((p: any, c: any) => p+c[0], '') 
                 :partLesson.subject}
             </h3>
-            <div className="room">Sala {partLesson.classroom}</div>
+            {partLesson.classroom ? <div className="room">Sala {partLesson.classroom}</div> : null}
           </div>
           <div className="bottom-side">
             <div className={`teacher ${partLesson.teacher === "Gabor Michał" && isWindowsOS ? "comic": ""}`}>{partLesson.teacher}</div>
-            {partLesson.group? (<div className="group"> {partLesson.group} </div>): null}
+            {partLesson.group && partLesson.group !== 'Cała klasa' ? (<div className="group"> {partLesson.group} </div>): null}
           </div>
         </div>
       ))
@@ -61,7 +61,6 @@ export const Lesson: React.FC<LessonProps> = (props) => {
       )
     }
     else {
-      console.log(props.lesson[0])
       // At this period of time lasts 1 lesson
       return (
         <div className={`lesson${isMobile? "-mobile" : ""} lesson-${period}-${day}`}>
@@ -71,11 +70,12 @@ export const Lesson: React.FC<LessonProps> = (props) => {
               props.lesson[0].subject.length > 17 ?
                 props.lesson[0].subject.split(' ').reduce((p: any, c: any) => p + c[0], '')
                 : props.lesson[0].subject}
-            </h3>            <div className="room">Sala {props.lesson[0].classroom}</div>
+            </h3>
+            {props.lesson[0].classroom ? <div className="room">Sala {props.lesson[0].classroom}</div> : null}
           </div>
           <div className="bottom-side">
             <div className={`teacher ${props.lesson[0].teacher === "Gabor Michał" && isWindowsOS ? "comic" : ""}`}> {props.lesson[0].teacher} </div>
-            {props.lesson[0].group ? (<div className="group"> {props.lesson[0].group} </div>) : null}
+            {props.lesson[0].group && props.lesson[0].group !== 'Cała klasa' ? (<div className="group"> {props.lesson[0].group} </div>) : null}
 
           </div>
         </div> 

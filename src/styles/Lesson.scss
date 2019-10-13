@@ -32,9 +32,6 @@
       display: grid;
       grid-auto-rows: 1fr;
       padding: 0.2em !important;
-      .lesson-divided-part {
-
-      }
     }
   }
   .teacher {
@@ -42,6 +39,7 @@
     justify-content: center;
     align-items: center;
     display: inline-block;
+    font-size: 0.95em;
   }
   .group {
     display: inline-block;
