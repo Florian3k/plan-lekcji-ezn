@@ -26,6 +26,7 @@ fi
 
 CONVERTED_FILE="planEZN.xml"
 
+echo "Converting file to utf8..."
 iconv -f WINDOWS-1250 -t UTF-8 $SOURCE_FILE -o $CONVERTED_FILE
 
 if [ ! -f $CONVERTED_FILE ]; then
@@ -33,6 +34,7 @@ if [ ! -f $CONVERTED_FILE ]; then
   exit 1
 fi
 
+echo "Generating JSON..."
 node generateJson.js
 
 npm run build
