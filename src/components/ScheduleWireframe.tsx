@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import SwipeableViews from 'react-swipeable-views';
+import * as R from 'ramda';
 import { Lesson } from './Lesson';
 import '../styles/ScheduleWireframe.scss';
 
@@ -18,24 +19,13 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
   const changeChosenDay = (index: number) => {
     setchosenDay(index)
   }
+
   // return [days[lessons[lessonbyperiod]]] 
   const getLessonsByDays = (unit: any) => {
-    const daysId = Object.keys(unit).sort((a: any, b: any) => a - b);
-    const lessonsByDaysArray: any = []
-    // eslint-disable-next-line
-    daysId.map(dayId => {
-      return lessonsByDaysArray.push(
-        unit[dayId].reduce((p: any[], c: { period: number }, i: number) => {
-          if (p && p[p.length - 1] && c.period === p[p.length - 1][0].period) {
-            p[p.length - 1].push(c);
-            return p
-          }
-          else {
-            return p ? [...p, [{ ...c, day: dayId }]].sort((a, b) => a[0].period - b[0].period) : [[c]];
-          }
-        }, []));
-    })
-    return lessonsByDaysArray;
+    return Object.entries(unit)
+      .sort(([a], [b]) => (b as any) - (a as any))
+      .map(([k, v]: any) => R.groupBy((x: any) => x.period, v))
+      .map(Object.values)
   }
   
   if(props.class) {
