@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { SettingsPanel } from './components/SettingsPanel';
-import { getClassTimetable, getTeacherTimetable } from './utils';
-import { useTimetable } from './hooks/useTimetable';
 import * as R from 'ramda';
-import { Schedule } from './components/Schedule';
 import { useMediaQuery } from 'react-responsive';
+import { SettingsPanel } from './components/SettingsPanel';
+import { Schedule } from './components/Schedule';
+import { useTimetable } from './hooks/useTimetable';
+import { getClassTimetable, getTeacherTimetable } from './utils';
 import './styles/App.css';
 
 export const App: React.FC = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import '../styles/Lesson.scss';
 import { useMediaQuery } from 'react-responsive';
+import '../styles/Lesson.scss';
 
 interface LessonProps {
   lesson: any,

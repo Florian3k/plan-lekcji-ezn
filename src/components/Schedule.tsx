@@ -1,10 +1,10 @@
 import React from 'react';
-import '../styles/Schedule.scss';
+import { useMediaQuery } from 'react-responsive';
 import { Hours } from './Hours';
 import { DayNames } from './DayNames';
 import { ScheduleWireframe } from './ScheduleWireframe';
-import { useMediaQuery } from 'react-responsive';
 import { Period, Lesson } from '../types';
+import '../styles/Schedule.scss';
 
 interface ScheduleProps {
   periods: Period[],
