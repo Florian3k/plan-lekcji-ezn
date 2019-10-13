@@ -7,10 +7,12 @@ interface SettingsProps {
   'teacher': any[],
   'class': any[],
   'classroom': any,
+  'group': any,
   ''?: null,
-
+  isFocusOnClass: boolean,
   targetSchedule: string,
   changeClass: Function,
+   
 }
 
 export const SettingsPanel: React.FC <SettingsProps> = (props) => {
@@ -18,9 +20,9 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
   const isMobile = useMediaQuery({ query: '(max-width: 900px)' })
   
   // States: displaying menu for windows and mobile
-  const [displayingWindow, setDisplayingWindow] = useState<'class' | 'teacher' | 'classroom' | ''>('')
+  const [displayingWindow, setDisplayingWindow] = useState<'class' | 'teacher' | 'classroom' | 'group' | ''>('')
   
-  const toggleWindow = (target: 'class' | 'teacher' | 'classroom') => {
+  const toggleWindow = (target: 'class' | 'teacher' | 'classroom' | 'group') => {
     if (displayingWindow === target) setDisplayingWindow('');
     else setDisplayingWindow(target);
   }
@@ -41,22 +43,11 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
         handleTargetClick={(name: string) => handleTargetClick(name, displayingWindow)}
       /> : null
   }
-  const outerInvisibleLayer = () => {
-    return displayingWindow && !isMobile? (
-      <div 
-        className="outer-invisible-layer"
-        onClick={() => setDisplayingWindow('')}  
-      >
 
-      </div>
-    ): null
-  
-  }
 
 
   return (
     <div className={`${isDesktopOrLaptop ? "settings-panel" : "settings-panel-medium"}`}>
-      { outerInvisibleLayer() }
       {isMobile && displayingWindow?
         (
           <div className = "mobile-menu-wrapper">
@@ -101,6 +92,15 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
               <div className="btn-wrapper">
                 <button className="room-search search" onClick={() => toggleWindow('classroom')}>Sale szkolne</button>
               </div>
+              {
+                props.isFocusOnClass ? 
+                  <div className="btn-wrapper">
+                    <button className="group-search search" onClick={() => toggleWindow('group')}>Grupy</button>
+                    {DesktopPicker('group')}
+                  </div>
+                :
+                null
+              }
             </>    
           ): (
             <div className="btn-wrapper">

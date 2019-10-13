@@ -3,7 +3,7 @@ import "../styles/PickerMenu.scss";
 import * as R from 'ramda';
 
 interface PickerMenuProps {
-  type: 'teacher' | 'class' | 'classroom' | '',
+  type: 'teacher' | 'class' | 'classroom' | 'group' | '',
   handleTargetClick: Function,
   data: {
     short: string,
@@ -12,6 +12,7 @@ interface PickerMenuProps {
 }
 export const PickerMenu: React.FC<PickerMenuProps> = (props) => {
   const Menu = () => {
+
     switch(props.type) {
       case 'teacher':
         return (
@@ -66,6 +67,17 @@ export const PickerMenu: React.FC<PickerMenuProps> = (props) => {
 
           </div>
         );
+      case 'group':
+        console.log(props.data)
+        return (
+          <div className="group-list">
+            {Object.keys(props.data).map((group: any) => (
+              <div className="group">
+                {group}
+              </div>
+            ))}
+          </div>
+        )
       case '':
         return (
           null

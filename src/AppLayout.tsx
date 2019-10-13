@@ -12,8 +12,9 @@ export const App: React.FC = () => {
   const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1224px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 900px)' })
 
-  const [selectedType, setSelectedType] = useState<'class' | 'teacher' | 'classroom'>('teacher')
-  const [selected, setSelected] = useState('Gabor Michał')
+  const [selectedType, setSelectedType] = useState<'class' | 'teacher' | 'classroom'>('class')
+  const [selected, setSelected] = useState('4 H')
+  const [selectedGroups, setSelectedGroups] = useState<any>({})
 
   const changeClass = (name: string, type: typeof selectedType) => {
     setSelectedType(type)
@@ -23,28 +24,46 @@ export const App: React.FC = () => {
   if (!timetable) {
     return <div>Loading...</div>
   }
-
+  // const handleGroupChange = (group: string) => {
+  //   if(selectedGroups.indexOf(group) === -1) {
+      
+  //     setSelectedGroups([...selectedGroups, ])
+  //   }
+  // }
   const cards = {
     class: getClassTimetable,
     teacher: getTeacherTimetable,
     classroom: getClassroomTimetable,
   }[selectedType](timetable, selected)
 
+  
   if (!cards) {
     return <div>
       "Error - not data found"
     </div>
   }
-  console.log(cards)
+
+
+  if(selectedType === 'class') {
+    cards.map( (card: any) => {
+      if( !selectedGroups[card.group] ) {
+        setSelectedGroups({...selectedGroups, [card.group]: true})
+      }
+    })
+  }
+  console.log(selectedGroups)
 
   return (
     <div className={isDesktopOrLaptop ? 'App': isMobile ? 'App-mobile' : 'App-medium'}>
-      <SettingsPanel 
+      <SettingsPanel
         targetSchedule={selected}
         classroom = {null}
         class = {timetable.classes}
         teacher = {timetable.teachers}
-        changeClass={changeClass}/>
+        group = {selectedGroups}  
+        changeClass={changeClass}
+        isFocusOnClass={selectedType === 'class'}
+      />
       <Schedule
         periods={timetable.periods}
         clazz={R.groupBy((l) => l.days, cards)}
