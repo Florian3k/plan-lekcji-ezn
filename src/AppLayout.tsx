@@ -38,16 +38,16 @@ export const App: React.FC = () => {
   console.log(cards)
 
   return (
-    <div className={isDesktopOrLaptop ? 'App' : isMobile ? 'App-mobile' : 'App-medium'}>
-      <SettingsPanel
+    <div className={isDesktopOrLaptop ? 'App': isMobile ? 'App-mobile' : 'App-medium'}>
+      <SettingsPanel 
         targetSchedule={selected}
-        classes={timetable.classes}
-        teachers={timetable.teachers}
-        changeClass={changeClass}
-      />
+        classroom = {null}
+        class = {timetable.classes}
+        teacher = {timetable.teachers}
+        changeClass={changeClass}/>
       <Schedule
         periods={timetable.periods}
-        clazz={R.groupBy(l => l.days, cards)}
+        clazz={R.groupBy((l) => l.days, cards)}
       />
     </div>
   )

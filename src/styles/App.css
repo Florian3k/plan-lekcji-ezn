@@ -6,7 +6,7 @@
   min-height: 100vh;
   
   display: grid;
-  grid-template-columns: 20% auto;
+  grid-template-columns: 324px auto;
 }
 .App-medium {
   width: 100vw;
@@ -22,8 +22,8 @@
 
   /* grid-template-rows: 30vh auto; */
 }
-@media (max-width: 1280px) {
+/* @media (max-width: 1280px) {
   .App {
     grid-template-columns: 24% auto;
   }
-}
+} */

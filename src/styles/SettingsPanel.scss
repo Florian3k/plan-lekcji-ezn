@@ -1,51 +1,8 @@
 
-.choose-filter-window {
-  border-radius: 4px;
-  padding: 8px;
-  background: #343434;
-  z-index: 200;
-}
-.teachers-window {
-  display: grid;
-  // grid-template-rows: ;
-  grid-template-rows: repeat(auto-fill, minmax(30px, 1fr));
-  grid-auto-flow: column dense;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  transform: translateY(100%);
-  .teacher {
-    padding: 4px 12px;
-    cursor: pointer;
+.settings-panel-medium {
+  .btn-wrapper {
+    position: relative;
   }
-}
-.classes-window {
-  position: absolute;
-  left: 0;
-
-  
-  width: min-content;
-  bottom: 0;
-  transform: translateY(100%);  
-  
-  display: flex;
-  flex-flow: row nowrap;
-  
-  .grade {
-    display: flex;
-    flex-flow: column nowrap;
-    
-    margin: 0 0.75em;
-  }
-  .class {
-    display: flex;
-    margin: 2px 8px;
-    width: max-content;
-    cursor: pointer;
-  }
-}
-.btn-wrapper {
-  position: relative;
 }
 .settings-panel {
   background-color: rgba(13, 33, 73, .86);
@@ -62,6 +19,7 @@
   .btn-wrapper {
     position: relative;
     margin-bottom: 8vh;
+    width: 100%;
   }
 
   .search {
@@ -95,7 +53,7 @@
   .search-filters {
     display: flex;
     flex-flow: column wrap;
-    margin: 0 15%;
+    padding: 0 15%;
 
     font-size: 1em;
   }
@@ -145,7 +103,6 @@
     margin: 0 2em;
   }
 
-
   @media (max-width: 900px) {
     .search-filters {
       display: flex;
@@ -159,15 +116,6 @@
   }
 }
 
-.mobile-window {
-  width: 100vw;
-  height: calc(100vh - var(--menu-height));
-  position: absolute;
-  // transform: translateY(calc(100% + 8px));
-  transform: none;
-  left: 0;
-  top: var(--menu-height);
-}
 @media (max-width: 900px) {
   .btn-wrapper {
     position: initial;
@@ -184,5 +132,59 @@
   }
   .settings-panel-medium {
     height: var(--menu-height);
+  }
+}
+
+// .outside-checker {
+//   background:red;
+//   position: fixed;
+//   z-index: 500;
+//   left: 0;
+//   height: 0;
+//   width: 100vw;
+//   height: 100vh;
+// }
+.mobile-search {
+  font-size: 1em !important;
+}
+
+.mobile-menu-wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  color: #343434;
+  background-color: #2F4062;
+  color: #dadada;
+  z-index: 400;
+  .mobile-menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    // grid-auto-columns: 1fr;
+
+    font-weight: bold;
+  }
+  .choose {
+    $border-color: rgba(255, 255, 255, .5);
+    display: inline-block;
+    padding: 12px 8px;
+    font-size: 1.25em;
+    border-bottom: 1px solid $border-color;
+
+    &+.choose {
+      border-left: 1px solid $border-color;
+
+    }
+  }
+  .close {
+    text-align: right;
+    button {
+      font-size: 1.25em;
+      background: rgba(255,255,255,.5);
+      width: 100%;
+      border: none;
+
+    }
   }
 }
