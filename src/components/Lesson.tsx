@@ -19,14 +19,14 @@ export const Lesson: React.FC<LessonProps> = (props) => {
     query: '(max-width: 900px)'
   })
   const displayingHoursElement = (isDisplayed: boolean) => {
-    if(isDisplayed) {
+    if (isDisplayed) {
       return (
         <div className="hours">
           <div className="hour-start">{props.period!.starttime}</div>
           <div className="hour-end">{props.period!.endtime}</div>          
         </div>
     )}
-    else return null
+    return null
   }
   const isWindowsOS = (window.navigator.userAgent.indexOf("Windows") !== -1 || window.navigator.userAgent.indexOf("Windows") !== -1)  
   
