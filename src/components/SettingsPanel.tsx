@@ -41,11 +41,22 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
         handleTargetClick={(name: string) => handleTargetClick(name, displayingWindow)}
       /> : null
   }
+  const outerInvisibleLayer = () => {
+    return displayingWindow && !isMobile? (
+      <div 
+        className="outer-invisible-layer"
+        onClick={() => setDisplayingWindow('')}  
+      >
 
+      </div>
+    ): null
+  
+  }
 
 
   return (
     <div className={`${isDesktopOrLaptop ? "settings-panel" : "settings-panel-medium"}`}>
+      { outerInvisibleLayer() }
       {isMobile && displayingWindow?
         (
           <div className = "mobile-menu-wrapper">
