@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import * as R from 'ramda';
 import '../styles/SettingsPanel.scss';
 
 interface SettingsProps {
@@ -42,13 +43,24 @@ export const SettingsPanel: React.FC<SettingsProps> = (props) => {
     });
 
   }
-  let classesByGrade: any = [[],[],[],[],[]];
-  // add all 5 grades
-  props.classes.map((classData: {short: string}) => {
-    classesByGrade[+classData.short[0] - 1].push(classData)
-  })
-  // delete empty grades
-  classesByGrade = classesByGrade.filter((e: []) => e.length);
+  
+  const classesByGrade: any = R.pipe(
+    R.groupBy(({ name }) => {
+      if (name.length === 3) return name[0]
+      return name[0]+name[3]
+    }),
+    Object.entries,
+    R.sort( ([a], [b]) => {
+      if (a.length === 2 && b.length === 2 && a[0] === b[0]) {
+        return b[1].charCodeAt(0) - a[1].charCodeAt(0)
+      }
+      // @ts-ignore
+      return a[0] - b[0]
+    }),
+    R.map(x => x[1]),
+    R.map(R.sortBy(R.prop('name'))),
+  )(props.classes as any)
+  
   // windows (teacher choose window, class choose, etc) 
   const window = (target: string) => {
     switch(target) {
