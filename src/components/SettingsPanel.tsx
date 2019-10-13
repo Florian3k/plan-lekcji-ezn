@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import '../styles/SettingsPanel.scss';
 import { useMediaQuery } from 'react-responsive';
 import { PickerMenu } from './PickerMenu';
+import '../styles/SettingsPanel.scss';
 
 interface SettingsProps {
   teachers: {short: string, name: string}[],
