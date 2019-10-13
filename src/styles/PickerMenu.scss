@@ -10,7 +10,7 @@
 
   display: flex;
   justify-content: space-around;
-  background: #dadada;
+  background: #eee;
   color: #343434;
   z-index: 200;
 
@@ -25,26 +25,32 @@
     align-items: flex-start;
     padding: 1em 1em 6.5em 1em;
   }
-  
+  font-weight: bold;
   .grade {
     flex: 1 1 0px;
     &+.grade {
       margin-left: -6px; 
     }
     .class {
-      padding: 2px;
+      font-size: 1.1em;
+      text-align: center;
+      
       background: #eee;
-      border: 1px solid #343434;
+      border: 1px solid rgba(52,52,52, .25);
       border-radius: 2px;
+      
       margin: 6px;
+      padding: 4px 1px;
+      
+      cursor: pointer;
     }
   }
   
 
   .teacher-list {
-
+    width: 100%;
     .teacher {
-      padding: 2px 6px;
+      padding: 4px 2px;
       display: flex;
       justify-content: space-between;
       cursor: pointer;
@@ -59,8 +65,9 @@
         margin-right: 0.5em;
       }
       .teacher-name {
-        font-size: 15px;
+        font-size: 16px;
         text-align: right;
+        font-weight: normal;
       }
     }
   }
