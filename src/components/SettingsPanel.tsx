@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, {  useState } from 'react';
 import '../styles/SettingsPanel.scss';
 import { useMediaQuery } from 'react-responsive';
 import { PickerMenu } from './PickerMenu';
@@ -7,7 +7,7 @@ interface SettingsProps {
   teachers: {short: string, name: string}[],
   classes: {short: string, name: string}[],
   targetSchedule: string,
-  changeClass: (name: string, type: 'class' | 'teacher' | 'classroom') => void,
+  changeClass: (name: string, type: "class" | 'teacher' | 'classroom') => void,
 }
 
 export const SettingsPanel: React.FC<any> = (props) => {
@@ -18,12 +18,12 @@ export const SettingsPanel: React.FC<any> = (props) => {
   const [displayingWindow, setDisplayingWindow] = useState('')
   const [displayingMobileWindow, setDisplayingMobileWindow] = useState('')
   
-  const toggleWindow = (target: 'classes' | 'teachers' | 'classrooms') => {
+  const toggleWindow = (target: 'class' | 'teacher' | 'classroom') => {
     if (displayingWindow === target) setDisplayingWindow('');
     else setDisplayingWindow(target);
   }
   // happen when clicked on target for example: 3H
-  const handleTargetClick = (name: string, type: 'class' | 'teacher' | 'classroom') => {
+  const handleTargetClick = (name: string, type: any) => {  //temp 'class' | 'teacher' | 'classroom'
     for (let i = 0; i < 14; i++) {  // set rows to default size
       document.documentElement.style.setProperty(`--row-${i}-height`, "4em");
     }
@@ -31,27 +31,39 @@ export const SettingsPanel: React.FC<any> = (props) => {
     setDisplayingWindow('');
     setDisplayingMobileWindow('');
   }
-  // const DesktopPicker
+  // 
+  const DesktopPicker = (type: string) => {
+    return displayingWindow === type ?
+      <PickerMenu
+        type={displayingWindow}
+        data={props[displayingWindow]}
+        handleTargetClick={(name: string) => handleTargetClick(name, displayingWindow)}
+      /> : null
+  }
+
+
+  
   return (
     <div className={`${isDesktopOrLaptop ? "settings-panel" : "settings-panel-medium"}`}>
       {displayingMobileWindow && isMobile?
         (
           <div className = "mobile-menu-wrapper">
-            <div className="mobile-menu">
-              <div className="choose" onClick={()=> setDisplayingMobileWindow('classes')}>
+            <div className = "mobile-menu">
+              <div className="choose" onClick={()=> setDisplayingMobileWindow('class')}>
                 Klasy
               </div>
-              <div className="choose" onClick={() => setDisplayingMobileWindow('teachers')}>
+              <div className="choose" onClick={() => setDisplayingMobileWindow('teacher')}>
                 Nauczyciele
               </div>
-              <div className="choose" onClick={() => setDisplayingMobileWindow('classrooms')}>
+              <div className="choose" onClick={() => setDisplayingMobileWindow('classroom')}>
                 Sale
               </div>
             </div>
             <PickerMenu
               type={displayingMobileWindow}
               data={props[displayingMobileWindow]}
-              handleTargetClick={(name: string, type: 'class' | 'teacher' | 'classroom') => handleTargetClick(name, type)} />
+              handleTargetClick={(name: string, type: 'class' | 'teacher' | 'classroom') => handleTargetClick(name, type)}
+            />
           </div>
         )
         : null}
@@ -64,41 +76,20 @@ export const SettingsPanel: React.FC<any> = (props) => {
           !isMobile ? (
             <>
               <div className="btn-wrapper">
-                <button className="classes-search search" onClick={() => toggleWindow('classes')}>Oddziały (klasy)</button>
-                {displayingWindow === "classes" ?
-                  (
-                    <>
-                      <PickerMenu
-                        type="classes"
-                        data={props.classes} 
-                        handleTargetClick={
-                          (name: string) => handleTargetClick(name, 'class')} 
-                      />                        
-                      {/* <div className="outside-checker"></div> */}
-                    </>
-                  )
-                  : null}
+                <button className="classes-search search" onClick={() => toggleWindow('class')}>Oddziały (klasy)</button>
+                { DesktopPicker('class') }
               </div>
               <div className="btn-wrapper">
-                <button className="teachers-search search" onClick={() => toggleWindow('teachers')}>Nauczyciele</button>
-                {displayingWindow === "teachers" ?
-                  (
-                    <PickerMenu
-                      type="teachers"
-                      data={props.teachers} 
-                      handleTargetClick={
-                        (name: string) => handleTargetClick(name, 'teacher')}
-                    />
-                  )
-                  : null}
+                <button className="teachers-search search" onClick={() => toggleWindow('teacher')}>Nauczyciele</button>
+                { DesktopPicker('teacher') }
               </div>
               <div className="btn-wrapper">
-                <button className="room-search search" onClick={() => toggleWindow('classrooms')}>Sale szkolne</button>
+                <button className="room-search search" onClick={() => toggleWindow('classroom')}>Sale szkolne</button>
               </div>
             </>    
           ): (
             <div className="btn-wrapper">
-              <button className="mobile-search search" onClick={() => setDisplayingMobileWindow('classes')}>Zmień</button>
+              <button className="mobile-search search" onClick={() => setDisplayingMobileWindow('class')}>Zmień</button>
             </div>
           )
         }

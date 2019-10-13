@@ -2,7 +2,7 @@ import React from 'react';
 import "../styles/PickerMenu.scss";
 
 interface PickerMenuProps {
-  type: 'teachers' | 'classes' | 'classrooms',
+  type: 'teacher' | 'class' | 'classroom',
   handleTargetClick: Function,
   classes?: {
     short: string,
@@ -15,7 +15,7 @@ interface PickerMenuProps {
 export const PickerMenu: React.FC< any > = (props) => {
   const Menu = () => {
     switch(props.type) {
-      case 'teachers':
+      case 'teacher':
         return (
           <div className="teacher-list">
             {
@@ -34,7 +34,7 @@ export const PickerMenu: React.FC< any > = (props) => {
             }
           </div>
         );
-      case 'classes':
+      case 'class':
         const classes = props.data.map((classData: { short: string, name: string }) => {
           const index: number = +classData.short[0] - 1;          
           return (
@@ -52,7 +52,7 @@ export const PickerMenu: React.FC< any > = (props) => {
             { classes }
           </div>
         );
-      case 'classrooms':
+      case 'classroom':
         return (
           <div className="classroom-list">
 
