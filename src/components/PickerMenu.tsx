@@ -2,17 +2,14 @@ import React from 'react';
 import "../styles/PickerMenu.scss";
 
 interface PickerMenuProps {
-  type: 'teacher' | 'class' | 'classroom',
+  type: 'teacher' | 'class' | 'classroom' | '',
   handleTargetClick: Function,
-  class?: {
+  data: {
     short: string,
     name: string
-  }[],
-  teacher?: {
-    short: string,
   }[]
 }
-export const PickerMenu: React.FC< any > = (props) => {
+export const PickerMenu: React.FC<PickerMenuProps> = (props) => {
   const Menu = () => {
     switch(props.type) {
       case 'teacher':
@@ -46,7 +43,6 @@ export const PickerMenu: React.FC< any > = (props) => {
             </div>
           )
         })
-        // add all 5 grades
         return (
           <div className="class-list">
             { classes }
@@ -58,8 +54,12 @@ export const PickerMenu: React.FC< any > = (props) => {
 
           </div>
         );
+      case '':
+        return (
+          null
+        );
       default:
-        throw new Error("Unknown type =/= 'teacher' | 'class' | 'classroom'");
+        throw new Error("Unknown type =/= 'teacher' | 'class' | 'classroom' | ''");
     }
   }
   return (
