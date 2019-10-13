@@ -27,7 +27,7 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
   // happen when clicked on target for example: 3H
   const handleTargetClick = (name: string, type: any) => {  //temp 'class' | 'teacher' | 'classroom'
     for (let i = 0; i < 14; i++) {  // set rows to default size
-      document.documentElement.style.setProperty(`--row-${i}-height`, "4em");
+      document.documentElement.style.setProperty(`--row-${i}-height`, "4.5em");
     }
     props.changeClass(name, type); //change current target
     setDisplayingWindow('');

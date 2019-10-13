@@ -1,9 +1,9 @@
 :root {
-  --row-height: 4em;
+  --row-height: 4.5em;
   --menu-height: 120px;
   --hours-width: 120px;
   @for $i from 0 through 13 {
-    --row-#{$i}-height: 4em;
+    --row-#{$i}-height: 4.5em;
   }
 }
 body {
