@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import { SettingsPanel } from './components/SettingsPanel';
 import { Schedule } from './components/Schedule';
 import { useTimetable } from './hooks/useTimetable';
-import { getClassTimetable, getTeacherTimetable } from './utils';
+import { getClassTimetable, getTeacherTimetable, getClassroomTimetable } from './utils';
 import './styles/App.css';
 
 export const App: React.FC = () => {
@@ -27,7 +27,7 @@ export const App: React.FC = () => {
   const cards = {
     class: getClassTimetable,
     teacher: getTeacherTimetable,
-    classroom: getClassTimetable,
+    classroom: getClassroomTimetable,
   }[selectedType](timetable, selected)
 
   if (!cards) {
