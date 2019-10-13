@@ -10,7 +10,7 @@
 
   display: flex;
   justify-content: space-around;
-  background: #ccc;
+  background: #eee;
   color: #343434;
   z-index: 200;
 
@@ -25,7 +25,7 @@
     align-items: flex-start;
     padding: 1em 1em 6.5em 1em;
   }
-  
+  font-weight: bold;
   .grade {
     flex: 1 1 0px;
     &+.grade {
@@ -36,7 +36,7 @@
       text-align: center;
       
       background: #eee;
-      border: 1px solid #343434;
+      border: 1px solid rgba(52,52,52, .25);
       border-radius: 2px;
       
       margin: 6px;
@@ -67,6 +67,7 @@
       .teacher-name {
         font-size: 16px;
         text-align: right;
+        font-weight: normal;
       }
     }
   }
