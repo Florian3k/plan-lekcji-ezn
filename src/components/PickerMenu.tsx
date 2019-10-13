@@ -8,7 +8,8 @@ interface PickerMenuProps {
   data: {
     short: string,
     name: string
-  }[]
+  }[],
+  filterGroup?: Function
 }
 export const PickerMenu: React.FC<PickerMenuProps> = (props) => {
   const Menu = () => {
@@ -68,12 +69,14 @@ export const PickerMenu: React.FC<PickerMenuProps> = (props) => {
           </div>
         );
       case 'group':
-        console.log(props.data)
         return (
           <div className="group-list">
             {Object.keys(props.data).map((group: any) => (
-              <div className="group">
-                {group}
+              <div className={group === 'Cała klasa' ? 'main-group group-wrapper' : 'group-wrapper'}>
+                <div 
+                  className={`group  ${props.data[group] ? 'group-active' : 'group-inactive'}`}>
+                  {group}
+                </div>
               </div>
             ))}
           </div>

@@ -12,7 +12,6 @@ interface SettingsProps {
   isFocusOnClass: boolean,
   targetSchedule: string,
   changeClass: Function,
-   
 }
 
 export const SettingsPanel: React.FC <SettingsProps> = (props) => {
@@ -40,7 +39,7 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
       <PickerMenu
         type={displayingWindow}
         data={props[displayingWindow]}
-        handleTargetClick={(name: string) => handleTargetClick(name, displayingWindow)}
+        handleTargetClick={(name: string) => handleTargetClick(name, displayingWindow)}        
       /> : null
   }
 
@@ -95,7 +94,8 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
               {
                 props.isFocusOnClass ? 
                   <div className="btn-wrapper">
-                    <button className="group-search search" onClick={() => toggleWindow('group')}>Grupy</button>
+                    <button 
+                      className="group-search search" onClick={() => toggleWindow('group')}>Grupy</button>
                     {DesktopPicker('group')}
                   </div>
                 :
