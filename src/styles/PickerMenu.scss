@@ -1,26 +1,73 @@
 .picker-menu {
   padding: 8px;
-  width: fit-content;
-  
+  width: 280px;
+  display: flex;
+  justify-content: center;
   position: absolute;
   left: 50%;
 
   transform: translateX(-50%);
 
-  background: #343434;
+  display: flex;
+  justify-content: space-around;
+  background: #eee;
+  color: #343434;
   z-index: 200;
 
-  .class-list {
-    display: grid;
-    grid-auto-flow: column;
+  max-height: 45vh;
+  overflow-y: auto;
 
-    .class {
-      cursor: pointer;
-      padding: 0.25em 0.5em;
+  // MOBILE
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    min-height: 100%;
+    // max-height: 100% !important;
+    align-items: flex-start;
+    padding: 1em 1em 6.5em 1em;
+  }
+  font-weight: bold;
+  .grade {
+    flex: 1 1 0px;
+    &+.grade {
+      margin-left: -6px; 
     }
-    @for $i from 0 through 4 {
-      .col-#{$i} {
-        grid-column: calc(#{$i} + 1);
+    .class {
+      font-size: 1.1em;
+      text-align: center;
+      
+      background: #eee;
+      border: 1px solid rgba(52,52,52, .25);
+      border-radius: 2px;
+      
+      margin: 6px;
+      padding: 4px 1px;
+      
+      cursor: pointer;
+    }
+  }
+  
+
+  .teacher-list {
+    width: 100%;
+    .teacher {
+      padding: 4px 2px;
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      &+.teacher {
+        border-top: 1px solid darkgrey;
+      }
+      &:hover {
+        background: rgba(255, 255, 255, .5);
+      }
+      .teacher-short {
+        font-size: 18px;
+        margin-right: 0.5em;
+      }
+      .teacher-name {
+        font-size: 16px;
+        text-align: right;
+        font-weight: normal;
       }
     }
   }

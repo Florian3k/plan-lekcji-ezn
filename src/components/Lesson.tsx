@@ -32,7 +32,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
   
   if(props.lesson) {
     const period = props.lesson[0].period;
-    const day = props.lesson[0].day.split("").reverse().indexOf("1");
+    const day = props.lesson[0].days.split("").indexOf("1");
     
     if(props.lesson.length > 1) {
       // At this period of time last 2 or more lessons
