@@ -2,11 +2,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 6px;
 }
 .upper-side {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0 6px;
 }
 .lesson {
   position: relative;
@@ -25,12 +27,14 @@
       }
     }
   }
-  @for $lesson from 1 through 10 {
-    .part-#{$lesson}-of-lesson {
-      display: flex;
-      flex-flow: wrap;
-
+  @for $lesson from 1 through 20 {
+    &.part-#{$lesson}-of-lesson {
+      display: grid;
+      grid-auto-rows: 1fr;
       padding: 0.2em !important;
+      .lesson-divided-part {
+
+      }
     }
   }
   .teacher {

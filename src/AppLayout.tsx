@@ -12,8 +12,8 @@ export const App: React.FC = () => {
   const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1224px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 900px)' })
 
-  const [selectedType, setSelectedType] = useState<'class' | 'teacher' | 'classroom'>('teacher')
-  const [selected, setSelected] = useState('Gabor Michał')
+  const [selectedType, setSelectedType] = useState<'class' | 'teacher' | 'classroom'>('classroom')
+  const [selected, setSelected] = useState('102')
 
   const changeClass = (name: string, type: typeof selectedType) => {
     setSelectedType(type)

@@ -12,7 +12,7 @@ interface LessonProps {
 }
 export const Lesson: React.FC<LessonProps> = (props) => {
   const updateRowHeight = (row: number, n: number) => {
-    document.documentElement.style.setProperty(`--row-${row}-height`, `${(n-1)*2.4 + 4.5}em`);
+    document.documentElement.style.setProperty(`--row-${row}-height`, `${(n-1)*3 + 4.5}em`);
   }
 
   const isMobile = useMediaQuery({
@@ -61,6 +61,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
       )
     }
     else {
+      console.log(props.lesson[0])
       // At this period of time lasts 1 lesson
       return (
         <div className={`lesson${isMobile? "-mobile" : ""} lesson-${period}-${day}`}>
