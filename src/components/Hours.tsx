@@ -1,6 +1,6 @@
 import React from 'react';
-import "../styles/Hours.scss";
 import { Period } from '../types';
+import "../styles/Hours.scss";
 
 
 export const Hours: React.FC<{periods: Period[]}> = (props) => {

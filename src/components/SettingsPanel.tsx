@@ -1,7 +1,8 @@
-import React, {  useState } from 'react';
-import '../styles/SettingsPanel.scss';
+import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
+import * as R from 'ramda';
 import { PickerMenu } from './PickerMenu';
+import '../styles/SettingsPanel.scss';
 
 interface SettingsProps {
   'teacher': any[],

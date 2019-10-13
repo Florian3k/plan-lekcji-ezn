@@ -2,13 +2,14 @@
   padding: 8px;
   width: 280px;
   display: flex;
-  // align-items: center;
   justify-content: center;
   position: absolute;
   left: 50%;
 
   transform: translateX(-50%);
 
+  display: flex;
+  justify-content: space-around;
   background: #dadada;
   color: #343434;
   z-index: 200;
@@ -24,36 +25,22 @@
     align-items: flex-start;
     padding: 1em 1em 6.5em 1em;
   }
-  .class-list {
-    width: 100%;
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 1fr;
-    grid-gap: 2px;    
-    @media screen and (max-width: 900px) {
-      grid-gap: 6px;
-      width: 100%;
-      // height: auto;
-      grid-auto-columns: 1fr;
-      // grid-auto-rows: fit-content;
+  
+  .grade {
+    flex: 1 1 0px;
+    &+.grade {
+      margin-left: -6px; 
     }
     .class {
-      cursor: pointer;
-      padding: 0.25em 0.5em;
-      border: 1px solid rgba(0,0,0,.2);
+      padding: 2px;
+      background: #eee;
+      border: 1px solid #343434;
       border-radius: 2px;
-      background: #e7e7e7;
-      @media screen and (max-width: 900px) {
-        width: 100%;
-        height: 100%;
-      }
-    }
-    @for $i from 0 through 4 {
-      .col-#{$i} {
-        grid-column: calc(#{$i} + 1);
-      }
+      margin: 6px;
     }
   }
+  
+
   .teacher-list {
 
     .teacher {

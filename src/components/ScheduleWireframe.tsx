@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import '../styles/ScheduleWireframe.scss';
-import { Lesson } from './Lesson';
 import { useMediaQuery } from 'react-responsive';
 import SwipeableViews from 'react-swipeable-views';
+import { Lesson } from './Lesson';
+import '../styles/ScheduleWireframe.scss';
 
 interface ClassProps {
   class: any,
