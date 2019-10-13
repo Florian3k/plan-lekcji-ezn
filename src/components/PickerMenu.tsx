@@ -60,23 +60,6 @@ export const PickerMenu: React.FC<PickerMenuProps> = (props) => {
             )}
           </div>
         ))
-
-        const classes = props.data.map((classData: { short: string, name: string }) => {
-          const index: number = +classData.short[0] - 1;          
-          return (
-            <div 
-              className = {`class col-${index}`}
-              onClick={() => props.handleTargetClick(classData.name, 'class')}
-            >              
-              { classData.name }
-            </div>
-          )
-        })
-        return (
-          <div className="class-list">
-            { classes }
-          </div>
-        );
       case 'classroom':
         return (
           <div className="classroom-list">
