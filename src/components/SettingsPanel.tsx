@@ -59,7 +59,12 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
       { outerInvisibleLayer() }
       {isMobile && displayingWindow?
         (
+          
           <div className = "mobile-menu-wrapper">
+            <div className="close">
+              <button onClick={() => setDisplayingWindow('')}>&#8592;</button>
+            </div>
+            
             <div className = "mobile-menu">
               <div className="choose" onClick={()=> setDisplayingWindow('class')}>
                 Klasy
@@ -70,9 +75,6 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
               <div className="choose" onClick={() => setDisplayingWindow('classroom')}>
                 Sale
               </div>
-            </div>
-            <div className="close">
-              <button onClick={() => setDisplayingWindow('')}>Wróć</button>
             </div>
             <PickerMenu
               type={displayingWindow}

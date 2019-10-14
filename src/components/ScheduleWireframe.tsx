@@ -52,7 +52,7 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
   }  
   if(isMobile) {
     return (
-      <div>
+      <div className="xd">
         <div className={`days-mobile target-${chosenDay}`}>
           <div className="day-mobile day-0" onClick={() => setchosenDay(0)}>PON</div>
           <div className="day-mobile day-1" onClick={() => setchosenDay(1)}>WT</div>
@@ -60,11 +60,9 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
           <div className="day-mobile day-3" onClick={() => setchosenDay(3)}>CZW</div>
           <div className="day-mobile day-4" onClick={() => setchosenDay(4)}>PT</div>
         </div>
-        <div className="xd">
-          <SwipeableViews onChangeIndex = {(index) => changeChosenDay(index)} index={chosenDay}>
-            {lessonsByDay.map(column => <div> {column} </div>)}
-          </SwipeableViews>
-        </div>
+        <SwipeableViews onChangeIndex = {(index) => changeChosenDay(index)} index={chosenDay}>
+          {lessonsByDay.map(column => <div> {column} </div>)}
+        </SwipeableViews>
       </div>
     )
   }
