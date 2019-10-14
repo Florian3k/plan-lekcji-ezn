@@ -61,7 +61,7 @@ export function getTeacherTimetable(timetable: Timetable, selectedTeacher: strin
       lesson: lessons.find(l => l.id === c.lessonid),
     })).map(c => ({
       ...R.pick(['period', 'weeks', 'days', 'classroom'], c),
-      ...R.pick(['teacher', 'subject', 'group'], c.lesson),
+      ...R.pick(['teacher', 'subject', 'group', 'clazz'], c.lesson),
     })).sort((a, b) => (a.period as any) - (b.period as any))
 
 }
