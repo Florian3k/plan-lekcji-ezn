@@ -12,8 +12,8 @@ export const App: React.FC = () => {
   const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1224px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 900px)' })
 
-  const [selectedType, setSelectedType] = useState<'class' | 'teacher' | 'classroom'>('teacher')
-  const [selected, setSelected] = useState('Gabor Michał')
+  const [selectedType, setSelectedType] = useState<'class' | 'teacher' | 'classroom'>('class')
+  const [selected, setSelected] = useState('4 H')
 
   const changeClass = (name: string, type: typeof selectedType) => {
     setSelectedType(type)
@@ -46,6 +46,7 @@ export const App: React.FC = () => {
         teacher = {timetable.teachers}
         changeClass={changeClass}/>
       <Schedule
+        selectedType={selectedType}
         periods={timetable.periods}
         clazz={R.groupBy((l) => l.days, cards)}
       />

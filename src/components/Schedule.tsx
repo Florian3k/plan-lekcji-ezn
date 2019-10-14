@@ -8,6 +8,7 @@ import '../styles/Schedule.scss';
 
 interface ScheduleProps {
   periods: Period[],
+  selectedType: 'class' | 'classroom' | 'teacher',
   clazz: {
     [index: string]: Lesson[] | any[]
   }
@@ -25,7 +26,11 @@ export const Schedule: React.FC <ScheduleProps> = props => {
           <DayNames />
         </>
       ) : null}
-      <ScheduleWireframe class={props.clazz} periods={props.periods}/>
+      <ScheduleWireframe 
+        class={props.clazz}
+        periods={props.periods}
+        selectedType={props.selectedType}
+        />
     </div>
   )
 }

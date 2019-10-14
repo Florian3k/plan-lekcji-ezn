@@ -7,7 +7,8 @@ import '../styles/ScheduleWireframe.scss';
 
 interface ClassProps {
   class: any,
-  periods: any[]
+  periods: any[],
+  selectedType: 'class' | 'classroom' | 'teacher'
 }
 
 export const ScheduleWireframe: React.FC<ClassProps> = props => {
@@ -33,7 +34,7 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
     
     lessons = lessonsInfo.map( day => {
       return day.map((lesson: any) => {
-        return <Lesson lesson={lesson} />
+        return <Lesson lesson={lesson} selectedType={props.selectedType} />
       })
     })
 
@@ -45,13 +46,13 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
     
     // lessons mobile style: daysArray of Lessons compontents
     lessonsByDay = lessonsInfo.map(day => 
-      day.map((lesson: any) => <Lesson lesson={lesson} period={props.periods[lesson[0].period]}/>)
+      day.map((lesson: any) => <Lesson lesson={lesson} period={props.periods[lesson[0].period]} selectedType={props.selectedType}/>)
     );
 
   }  
   if(isMobile) {
     return (
-      <div>
+      <div className="xd">
         <div className={`days-mobile target-${chosenDay}`}>
           <div className="day-mobile day-0" onClick={() => setchosenDay(0)}>PON</div>
           <div className="day-mobile day-1" onClick={() => setchosenDay(1)}>WT</div>

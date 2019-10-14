@@ -27,7 +27,7 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
   // happen when clicked on target for example: 3H
   const handleTargetClick = (name: string, type: any) => {  //temp 'class' | 'teacher' | 'classroom'
     for (let i = 0; i < 14; i++) {  // set rows to default size
-      document.documentElement.style.setProperty(`--row-${i}-height`, "4em");
+      document.documentElement.style.setProperty(`--row-${i}-height`, "4.5em");
     }
     props.changeClass(name, type); //change current target
     setDisplayingWindow('');
@@ -59,7 +59,12 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
       { outerInvisibleLayer() }
       {isMobile && displayingWindow?
         (
+          
           <div className = "mobile-menu-wrapper">
+            <div className="close">
+              <button onClick={() => setDisplayingWindow('')}>&#8592;</button>
+            </div>
+
             <div className = "mobile-menu">
               <div className="choose" onClick={()=> setDisplayingWindow('class')}>
                 Klasy
@@ -70,9 +75,6 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
               <div className="choose" onClick={() => setDisplayingWindow('classroom')}>
                 Sale
               </div>
-            </div>
-            <div className="close">
-              <button onClick={() => setDisplayingWindow('')}>Wróć</button>
             </div>
             <PickerMenu
               type={displayingWindow}
@@ -104,7 +106,9 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
             </>    
           ): (
             <div className="btn-wrapper">
-              <button className="mobile-search search" onClick={() => setDisplayingWindow('class')}>Zmień</button>
+              <button className="mobile-search search" onClick={() => setDisplayingWindow('class')}>
+                <img src={process.env.PUBLIC_URL + 'menu.svg'} alt=""/>
+              </button>
             </div>
           )
         }
