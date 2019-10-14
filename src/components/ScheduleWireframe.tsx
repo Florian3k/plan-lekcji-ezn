@@ -59,9 +59,11 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
           <div className="day-mobile day-3" onClick={() => setchosenDay(3)}>CZW</div>
           <div className="day-mobile day-4" onClick={() => setchosenDay(4)}>PT</div>
         </div>
-        <SwipeableViews onChangeIndex = {(index) => changeChosenDay(index)} index={chosenDay}>
-          {lessonsByDay.map(column => <div> {column} </div>)}
-        </SwipeableViews>
+        <div className="xd">
+          <SwipeableViews onChangeIndex = {(index) => changeChosenDay(index)} index={chosenDay}>
+            {lessonsByDay.map(column => <div> {column} </div>)}
+          </SwipeableViews>
+        </div>
       </div>
     )
   }
