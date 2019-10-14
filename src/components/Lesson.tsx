@@ -32,7 +32,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
   const isWindowsOS = (window.navigator.userAgent.indexOf("Windows") !== -1 || window.navigator.userAgent.indexOf("Windows") !== -1)  
   
   if(props.lesson && props.selectedType) {
-
+    const maxLenghtOfLesson = isMobile ? 20 : 15;
     const period = props.lesson[0].period;
     const day = props.lesson[0].days.split("").indexOf("1");
     
@@ -40,7 +40,6 @@ export const Lesson: React.FC<LessonProps> = (props) => {
       // At this period of time last 2 or more lessons
       updateRowHeight(props.lesson[0].period, props.lesson.length)
       const content = props.lesson.map((partLesson: any, i: number) => {
-        console.log(partLesson)        
         const lessonWith = props.selectedType === 'teacher' ?
           partLesson.clazz ?
             partLesson.clazz.name
@@ -51,7 +50,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
           <div className="upper-side">
             <h3>
               {
-                partLesson.subject.length > 17 ?
+                partLesson.subject.length > maxLenghtOfLesson ?
                   partLesson.subject_short
                   : partLesson.subject
               }
@@ -84,7 +83,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
             <div className="upper-side">
               <h3>
                 {
-                  props.lesson[0].subject.length > 17 ?
+                  props.lesson[0].subject.length > maxLenghtOfLesson ?
                     props.lesson[0].subject_short
                     : props.lesson[0].subject
                 }

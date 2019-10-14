@@ -13,13 +13,13 @@ export function getClassTimetable(timetable: Timetable, selectedClass: string) {
     .map(l => ({
       ...l,
       subject: maybeGetProp(timetable.subjects.find(byId(l.subjectid)), 'name'),
+      subject_short: maybeGetProp(timetable.subjects.find(byId(l.subjectid)), 'short'),
       week: timetable.weeksdefs.find(byId(l.weeksdefid)),
       day: timetable.daysdefs.find(byId(l.daysdefid)),
       teacher: maybeGetProp(timetable.teachers.find(byId(l.teacherids)), 'name'),
       group: maybeGetProp(timetable.groups.find(byId(l.groupids)), 'name'),
       // period: timetable.periods.find(byId())
     }))
-
   const lessonsIds = clazz && new Set(lessons!.map(x => x.id))
 
   return lessons && timetable.cards
@@ -30,7 +30,7 @@ export function getClassTimetable(timetable: Timetable, selectedClass: string) {
       lesson: lessons.find(l => l.id === c.lessonid),
     })).map(c => ({
       ...R.pick(['period', 'weeks', 'days', 'classroom'], c),
-      ...R.pick(['teacher', 'subject', 'group'], c.lesson),
+      ...R.pick(['teacher', 'subject','subject_short', 'group'], c.lesson),
     })).sort((a, b) => (a.period as any) - (b.period as any))
 
 }
