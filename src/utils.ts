@@ -40,16 +40,20 @@ export function getTeacherTimetable(timetable: Timetable, selectedTeacher: strin
 
   const lessons = teacher && timetable.lessons
     .filter(l => l.teacherids === teacher.id)
-    .map(l => ({
-      ...l,
-      clazz: timetable.classes.find(byId(l.classids)),
-      subject: maybeGetProp(timetable.subjects.find(byId(l.subjectid)), 'name'),
-      week: timetable.weeksdefs.find(byId(l.weeksdefid)),
-      day: timetable.daysdefs.find(byId(l.daysdefid)),
-      teacher: maybeGetProp(timetable.teachers.find(byId(l.teacherids)), 'name'),
-      group: maybeGetProp(timetable.groups.find(byId(l.groupids)), 'name'),
-      // period: timetable.periods.find(byId())
-    }))
+    .map(l => {
+      const subject = timetable.subjects.find(byId(l.subjectid));
+      return ({
+        ...l,
+        clazz: timetable.classes.find(byId(l.classids)),
+        subject: subject && subject.name,
+        subject_short: subject && subject.short,
+        week: timetable.weeksdefs.find(byId(l.weeksdefid)),
+        day: timetable.daysdefs.find(byId(l.daysdefid)),
+        teacher: maybeGetProp(timetable.teachers.find(byId(l.teacherids)), 'name'),
+        group: maybeGetProp(timetable.groups.find(byId(l.groupids)), 'name'),
+        // period: timetable.periods.find(byId())
+      })
+    })
 
   const lessonsIds = teacher && new Set(lessons!.map(x => x.id))
 
