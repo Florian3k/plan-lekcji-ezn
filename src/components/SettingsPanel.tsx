@@ -64,7 +64,7 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
             <div className="close">
               <button onClick={() => setDisplayingWindow('')}>&#8592;</button>
             </div>
-            
+
             <div className = "mobile-menu">
               <div className="choose" onClick={()=> setDisplayingWindow('class')}>
                 Klasy
@@ -106,7 +106,9 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
             </>    
           ): (
             <div className="btn-wrapper">
-              <button className="mobile-search search" onClick={() => setDisplayingWindow('class')}>Zmień</button>
+              <button className="mobile-search search" onClick={() => setDisplayingWindow('class')}>
+                <img src={process.env.PUBLIC_URL + 'menu.svg'} alt=""/>
+              </button>
             </div>
           )
         }
