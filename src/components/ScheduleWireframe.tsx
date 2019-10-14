@@ -7,7 +7,8 @@ import '../styles/ScheduleWireframe.scss';
 
 interface ClassProps {
   class: any,
-  periods: any[]
+  periods: any[],
+  selectedType: 'class' | 'classroom' | 'teacher'
 }
 
 export const ScheduleWireframe: React.FC<ClassProps> = props => {
@@ -33,7 +34,7 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
     
     lessons = lessonsInfo.map( day => {
       return day.map((lesson: any) => {
-        return <Lesson lesson={lesson} />
+        return <Lesson lesson={lesson} selectedType={props.selectedType} />
       })
     })
 

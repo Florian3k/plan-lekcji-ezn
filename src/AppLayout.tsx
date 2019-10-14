@@ -46,6 +46,7 @@ export const App: React.FC = () => {
         teacher = {timetable.teachers}
         changeClass={changeClass}/>
       <Schedule
+        selectedType={selectedType}
         periods={timetable.periods}
         clazz={R.groupBy((l) => l.days, cards)}
       />
