@@ -40,6 +40,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
       // At this period of time last 2 or more lessons
       updateRowHeight(props.lesson[0].period, props.lesson.length)
       const content = props.lesson.map((partLesson: any, i: number) => {
+        console.log(partLesson)        
         const lessonWith = props.selectedType === 'teacher' ?
           partLesson.clazz ?
             partLesson.clazz.name
@@ -48,10 +49,12 @@ export const Lesson: React.FC<LessonProps> = (props) => {
         return (
         <div className={`lesson-divided-part`}>
           <div className="upper-side">
-            <h3>{
-              partLesson.subject.length > 17 ?
-                partLesson.subject.split(' ').reduce((p: any, c: any) => p+c[0], '') 
-                :partLesson.subject}
+            <h3>
+              {
+                partLesson.subject.length > 17 ?
+                  partLesson.subject_short
+                  : partLesson.subject
+              }
             </h3>
             {partLesson.classroom ? <div className="room">Sala {partLesson.classroom}</div> : null}
           </div>
@@ -79,10 +82,12 @@ export const Lesson: React.FC<LessonProps> = (props) => {
         <div className={`lesson${isMobile? "-mobile" : ""} lesson-${period}-${day}`}>
             {displayingHoursElement(isMobile)}          
             <div className="upper-side">
-              <h3>{
-                props.lesson[0].subject.length > 17 ?
-                  props.lesson[0].subject.split(' ').reduce((p: any, c: any) => p + c[0], '')
-                  : props.lesson[0].subject}
+              <h3>
+                {
+                  props.lesson[0].subject.length > 17 ?
+                    props.lesson[0].subject_short
+                    : props.lesson[0].subject
+                }
               </h3>
               {props.lesson[0].classroom ? <div className="room">Sala {props.lesson[0].classroom}</div> : null}
             </div>
