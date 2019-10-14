@@ -46,7 +46,7 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
     
     // lessons mobile style: daysArray of Lessons compontents
     lessonsByDay = lessonsInfo.map(day => 
-      day.map((lesson: any) => <Lesson lesson={lesson} period={props.periods[lesson[0].period]}/>)
+      day.map((lesson: any) => <Lesson lesson={lesson} period={props.periods[lesson[0].period]} selectedType={props.selectedType}/>)
     );
 
   }  
