@@ -40,7 +40,7 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
 
     // fill lessons with empty Lesson components
     const lessonsAmount = lessonsInfo.reduce((p: any, c: any) => c.length + p, 0);
-    for (let i = 0;  i < 14*5 - lessonsAmount; i++) {
+    for (let i = 0;  i < 12*5 - lessonsAmount; i++) {
       lessons.push(<Lesson lesson={null} />)
     }
     
