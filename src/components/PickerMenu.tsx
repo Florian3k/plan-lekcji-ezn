@@ -4,6 +4,7 @@ import * as R from 'ramda';
 
 interface PickerMenuProps {
   type: 'teacher' | 'class' | 'classroom' | '',
+  // handleTargetClick: (name: string, type: 'teacher' | 'class' | 'classroom' | '') => void,
   handleTargetClick: Function,
   data: {
     short: string,
