@@ -1,6 +1,7 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import '../styles/Lesson.scss';
+import { Class } from '../types';
 
 interface LessonProps {
   lesson: any,
@@ -35,11 +36,16 @@ export const Lesson: React.FC<LessonProps> = (props) => {
     const maxLenghtOfLesson = isMobile ? 20 : 15;
     const period = props.lesson[0].period;
     const day = props.lesson[0].days.split("").indexOf("1");
-    
+
     if(props.lesson.length > 1) {
       // At this period of time last 2 or more lessons
       updateRowHeight(props.lesson[0].period, props.lesson.length)
       const content = props.lesson.map((partLesson: any, i: number) => {
+        const week = partLesson.weeks === '10' ?
+          'Parzysty'
+          : partLesson.weeks === '01' ?
+            'Nieparzysty' : '';
+
         const lessonWith = props.selectedType === 'teacher' ?
           partLesson.clazz ?
             partLesson.clazz.name
@@ -55,11 +61,18 @@ export const Lesson: React.FC<LessonProps> = (props) => {
                   : partLesson.subject
               }
             </h3>
-            {partLesson.classroom ? <div className="room">Sala {partLesson.classroom}</div> : null}
+            {
+              props.selectedType === 'classroom' ?
+                props.lesson.clazz.map((x: Class) => x.name).join(' / ')
+                  : partLesson.classroom ?
+                  <div className="room">Sala {partLesson.classroom}</div>
+                  : null
+            }
           </div>
           <div className="bottom-side">
             <div className={`teacher ${partLesson.teacher === "Gabor Michał" && isWindowsOS ? "comic": ""}`}>{lessonWith}</div>
-            {partLesson.group && partLesson.group !== 'Cała klasa' ? (<div className="group"> {partLesson.group} </div>): null}
+            {
+                partLesson.group && partLesson.group !== 'Cała klasa' ? (<div className="group"> {week+ ' ' + partLesson.group} </div>): null}
           </div>
         </div>
       )})
@@ -88,7 +101,12 @@ export const Lesson: React.FC<LessonProps> = (props) => {
                     : props.lesson[0].subject
                 }
               </h3>
-              {props.lesson[0].classroom ? <div className="room">Sala {props.lesson[0].classroom}</div> : null}
+              { props.selectedType === 'classroom' ? 
+                <div className="room"> {props.lesson[0].clazz.map((x: Class) => x.name).join(' / ')} </div>
+                : props.lesson[0].classroom ?
+                  <div className="room">Sala {props.lesson[0].classroom}</div>
+                  : null
+              }
             </div>
             <div className="bottom-side">
               <div className={`teacher ${props.lesson[0].teacher === "Gabor Michał" && isWindowsOS ? "comic" : ""}`}> {lessonWith} </div>

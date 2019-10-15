@@ -35,13 +35,11 @@ export const App: React.FC = () => {
       "Error - not data found"
     </div>
   }
-  console.log(cards)
-
   return (
     <div className={isDesktopOrLaptop ? 'App': isMobile ? 'App-mobile' : 'App-medium'}>
       <SettingsPanel 
         targetSchedule={selected}
-        classroom = {null}
+        classroom = {timetable.classrooms}
         class = {timetable.classes}
         teacher = {timetable.teachers}
         changeClass={changeClass}/>

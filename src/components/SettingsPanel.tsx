@@ -16,7 +16,6 @@ interface SettingsProps {
 export const SettingsPanel: React.FC <SettingsProps> = (props) => {
   const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1224px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 900px)' })
-  
   // States: displaying menu for windows and mobile
   const [displayingWindow, setDisplayingWindow] = useState<'class' | 'teacher' | 'classroom' | ''>('')
   
@@ -106,6 +105,7 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
               </div>
               <div className="btn-wrapper">
                 <button className="room-search search" onClick={() => toggleWindow('classroom')}>Sale szkolne</button>
+                { DesktopPicker('classroom') }
               </div>
             </>    
           ): (

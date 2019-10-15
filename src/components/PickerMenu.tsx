@@ -13,6 +13,7 @@ interface PickerMenuProps {
 }
 export const PickerMenu: React.FC<PickerMenuProps> = (props) => {
   const Menu = () => {
+    console.log(props)
     switch(props.type) {
       case 'teacher':
         return (
@@ -64,7 +65,11 @@ export const PickerMenu: React.FC<PickerMenuProps> = (props) => {
       case 'classroom':
         return (
           <div className="classroom-list">
-
+            { props.data.map((a: any) => (
+              <div className="classroom" onClick={() => props.handleTargetClick(a.name, 'classroom')}>
+                {a.name}
+              </div>
+            ))}
           </div>
         );
       case '':

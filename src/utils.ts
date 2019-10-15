@@ -20,7 +20,7 @@ export function getClassTimetable(timetable: Timetable, selectedClass: string) {
         week: timetable.weeksdefs.find(byId(l.weeksdefid)),
         day: timetable.daysdefs.find(byId(l.daysdefid)),
         teacher: maybeGetProp(timetable.teachers.find(byId(l.teacherids)), 'name'),
-        group: maybeGetProp(timetable.groups.find(byId(l.groupids)), 'name'),
+        group: maybeGetProp(timetable.groups.find(grp => l.groupids.split(',').includes(grp.id) && grp.classid === clazz.id), 'name'),
         // period: timetable.periods.find(byId())
       })
     })
@@ -34,7 +34,7 @@ export function getClassTimetable(timetable: Timetable, selectedClass: string) {
       lesson: lessons.find(l => l.id === c.lessonid),
     })).map(c => ({
       ...R.pick(['period', 'weeks', 'days', 'classroom'], c),
-      ...R.pick(['teacher', 'subject','subject_short', 'group'], c.lesson),
+      ...R.pick(['teacher', 'subject', 'subject_short', 'group', 'groupids'], c.lesson),
     })).sort((a, b) => (a.period as any) - (b.period as any))
 
 }
@@ -81,17 +81,19 @@ export function getClassroomTimetable(timetable: Timetable, selectedClassroom: s
     .filter(c => c.classroomids === classroom.id)
     .map(c => {
       const lesson = timetable.lessons.find(l => l.id === c.lessonid)!
+      const subject = timetable.subjects.find(byId(lesson.subjectid));
       return ({
         ...c,
-        subject: maybeGetProp(timetable.subjects.find(byId(lesson.subjectid)), 'name'),
+        classids: lesson.classids,
+        subject: subject && subject.name,
+        subject_short: subject && subject.short,
         teacher: maybeGetProp(timetable.teachers.find(byId(lesson.teacherids)), 'name'),
         group: maybeGetProp(timetable.groups.find(byId(lesson.groupids)), 'name'),
       })
     }).map(c => {
-        console.log(c.subject)
         return ({
-        ...R.pick(['period', 'weeks', 'days', 'teacher', 'subject', 'group'], c),
-        clazz: timetable.classes.filter(byId(c.classroomids)),
+          ...R.pick(['period', 'weeks', 'days', 'teacher', 'subject', 'subject_short', 'group'], c),
+        clazz: timetable.classes.filter(clazz => c.classids.split(',').includes(clazz.id)),
         classroom: selectedClassroom,
       })
     }).sort((a, b) => (a.period as any) - (b.period as any))
