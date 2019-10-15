@@ -47,15 +47,14 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
     // lessons mobile style: daysArray of Lessons compontents
     lessonsByDay = lessonsInfo.map(day =>{
       let previousPeriod: string;
-      console.log("aaaa")
-      return day.map((lesson: any) => {
+      return day.map((lesson: any, i: number) => {
         // lesson starts more than 1 lesson's hour after previous
         if (previousPeriod && (+previousPeriod) + 1 !== +lesson[0].period) {
           previousPeriod = lesson[0].period;
           return (
               <>
                 <div className="free-period">
-                  Okienko
+                  { +day[i-1][0].period + 2 < +lesson[0].period ? 'Okienka' : 'Okienko'}
                 </div>
                 <Lesson
                   lesson={lesson}
@@ -67,7 +66,6 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
             
         }
         previousPeriod = lesson[0].period;
-        console.log(previousPeriod)
         return (
         <Lesson 
           lesson={lesson}
@@ -92,7 +90,7 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
         <SwipeableViews onChangeIndex = {(index) => changeChosenDay(index)} index={chosenDay}>
           {
             lessonsByDay.map(column => <div> {column} </div>)
-            }
+          }
         </SwipeableViews>
       </div>
     )
