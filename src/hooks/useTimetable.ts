@@ -9,7 +9,7 @@ export const useTimetable: () => Timetable | null = () => {
       .then(res => res.json())
       .then(({ termsdefs, ...data }) => {
         if (!data) {
-          console.log('zesrało się')
+          console.log('error when fetching data.json')
           return;
         }
         setData(data)
