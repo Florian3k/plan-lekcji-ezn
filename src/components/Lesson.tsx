@@ -4,7 +4,7 @@ import '../styles/Lesson.scss';
 import { Class } from '../types';
 
 interface LessonProps {
-  lesson: any,
+  lessonsAtSameTime: any,
   selectedType?: 'class' | 'classroom' | 'teacher',
   period?: {
     period: string,
@@ -31,15 +31,15 @@ export const Lesson: React.FC<LessonProps> = (props) => {
     return null
   }
   
-  if(props.lesson && props.selectedType) {
+  if(props.lessonsAtSameTime && props.selectedType) {
     const maxLenghtOfLesson = isMobile ? 20 : 15;
-    const period = props.lesson[0].period;
-    const day = props.lesson[0].days.split("").indexOf("1");
+    const period = props.lessonsAtSameTime[0].period;
+    const day = props.lessonsAtSameTime[0].days.split("").indexOf("1");
 
-    if(props.lesson.length > 1) {
+    if(props.lessonsAtSameTime.length > 1) {
       // At this period of time last 2 or more lessons
-      updateRowHeight(props.lesson[0].period, props.lesson.length)
-      const content = props.lesson.map((partLesson: any, i: number) => {
+      updateRowHeight(props.lessonsAtSameTime[0].period, props.lessonsAtSameTime.length)
+      const content = props.lessonsAtSameTime.map((partLesson: any, i: number) => {
         const week = partLesson.weeks === '10' ?
           'Parzysty'
           : partLesson.weeks === '01' ?
@@ -62,7 +62,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
             </h3>
             {
               props.selectedType === 'classroom' ?
-                props.lesson.clazz.map((x: Class) => x.name).join(' / ')
+                props.lessonsAtSameTime.clazz.map((x: Class) => x.name).join(' / ')
                   : partLesson.classroom ?
                   <div className="room">Sala {partLesson.classroom}</div>
                   : null
@@ -76,7 +76,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
         </div>
       )})
       return (
-        <div className={`lesson${isMobile ? "-mobile" : ""} part-${props.lesson.length}-of-lesson lesson-${period}-${day}`}>
+        <div className={`lesson${isMobile ? "-mobile" : ""} part-${props.lessonsAtSameTime.length}-of-lesson lesson-${period}-${day}`}>
           {displayingHoursElement(isMobile)}
           { content }
         </div>
@@ -85,31 +85,31 @@ export const Lesson: React.FC<LessonProps> = (props) => {
     else {
       // At this period of time lasts 1 lesson
       const lessonWith = props.selectedType === 'teacher' ? 
-        props.lesson[0].clazz?
-          props.lesson[0].clazz.name
+        props.lessonsAtSameTime[0].clazz?
+          props.lessonsAtSameTime[0].clazz.name
           : ''
-        : props.lesson[0].teacher;
+        : props.lessonsAtSameTime[0].teacher;
       return (
         <div className={`lesson${isMobile? "-mobile" : ""} lesson-${period}-${day}`}>
             {displayingHoursElement(isMobile)}          
             <div className="upper-side">
               <h3>
                 {
-                  props.lesson[0].subject.length > maxLenghtOfLesson ?
-                    props.lesson[0].subject_short
-                    : props.lesson[0].subject
+                  props.lessonsAtSameTime[0].subject.length > maxLenghtOfLesson ?
+                    props.lessonsAtSameTime[0].subject_short
+                    : props.lessonsAtSameTime[0].subject
                 }
               </h3>
               { props.selectedType === 'classroom' ? 
-                <div className="room"> {props.lesson[0].clazz.map((x: Class) => x.name).join(' / ')} </div>
-                : props.lesson[0].classroom ?
-                  <div className="room">Sala {props.lesson[0].classroom}</div>
+                <div className="room"> {props.lessonsAtSameTime[0].clazz.map((x: Class) => x.name).join(' / ')} </div>
+                : props.lessonsAtSameTime[0].classroom ?
+                  <div className="room">Sala {props.lessonsAtSameTime[0].classroom}</div>
                   : null
               }
             </div>
             <div className="bottom-side">
               <div className='teacher'> {lessonWith} </div>
-              {props.lesson[0].group && props.lesson[0].group !== 'Cała klasa' ? (<div className="group"> {props.lesson[0].group} </div>) : null}
+              {props.lessonsAtSameTime[0].group && props.lessonsAtSameTime[0].group !== 'Cała klasa' ? (<div className="group"> {props.lessonsAtSameTime[0].group} </div>) : null}
             </div>
         </div> 
       )
