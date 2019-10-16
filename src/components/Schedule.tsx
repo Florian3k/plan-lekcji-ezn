@@ -13,24 +13,25 @@ interface ScheduleProps {
     [index: string]: Lesson[] | any[]
   }
 }
-export const Schedule: React.FC <ScheduleProps> = props => {
-  const isMobile = useMediaQuery({
-    query: '(max-width: 900px)'
-  })
+
+export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
+  const isMobile = useMediaQuery({query: '(max-width: 900px)'})
+
   return (
-    <div className={`${isMobile? "mobile-" : ""}main`}>
-      {!isMobile ? (
+    <div className={isMobile? 'mobile-main' : 'main'}>
+      {
+        !isMobile ?
         <>
           <div className="covering-area"></div>
-          <Hours periods={props.periods}/>
+          <Hours periods={ScheduleProps.periods}/>
           <DayNames />
         </>
-      ) : null}
+        : null
+        }
       <ScheduleWireframe 
-        class={props.clazz}
-        periods={props.periods}
-        selectedType={props.selectedType}
-        />
+        class       = {ScheduleProps.clazz}
+        periods     = {ScheduleProps.periods}
+        selectedType= {ScheduleProps.selectedType}/>
     </div>
   )
 }
