@@ -30,7 +30,7 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
       return ;
     }
     for (let i = 0; i < 14; i++) {  // set rows to default size
-      document.documentElement.style.setProperty(`--row-${i}-height`, "4.5em");
+      document.documentElement.style.setProperty(`--row-${i}-height`, "5em");
     }
     props.changeClass(name, type); //change current target
     setDisplayingWindow('');

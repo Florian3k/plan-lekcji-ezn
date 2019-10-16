@@ -13,7 +13,6 @@ interface PickerMenuProps {
 }
 export const PickerMenu: React.FC<PickerMenuProps> = (props) => {
   const Menu = () => {
-    console.log(props)
     switch(props.type) {
       case 'teacher':
         return (

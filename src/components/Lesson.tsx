@@ -14,7 +14,7 @@ interface LessonProps {
 }
 export const Lesson: React.FC<LessonProps> = (props) => {
   const updateRowHeight = (row: number, n: number) => {
-    document.documentElement.style.setProperty(`--row-${row}-height`, `${(n-1)*3 + 4.5}em`);
+    document.documentElement.style.setProperty(`--row-${row}-height`, `${(n-1)*3.25 + 5}em`);
   }
 
   const isMobile = useMediaQuery({
