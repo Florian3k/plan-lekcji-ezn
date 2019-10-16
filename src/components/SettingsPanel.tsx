@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { PickerMenu } from './PickerMenu';
 import '../styles/SettingsPanel.scss';
+import { MobileMenu } from './MobileMenu';
 
 interface SettingsProps {
   'teacher': any[],
@@ -13,42 +14,42 @@ interface SettingsProps {
   changeClass: Function,
 }
 
-export const SettingsPanel: React.FC <SettingsProps> = (props) => {
+export const SettingsPanel: React.FC <SettingsProps> = (SettingsProps) => {
   const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1224px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 900px)' })
   // States: displaying menu for windows and mobile
-  const [displayingWindow, setDisplayingWindow] = useState<'class' | 'teacher' | 'classroom' | ''>('')
+  const [visibleMenu, setVisibleMenu] = useState<'class' | 'teacher' | 'classroom' | ''>('')
   
   const toggleWindow = (target: 'class' | 'teacher' | 'classroom') => {
-    if (displayingWindow === target) setDisplayingWindow('');
-    else setDisplayingWindow(target);
+    if (visibleMenu === target) setVisibleMenu('');
+    else setVisibleMenu(target);
   }
   // happen when clicked on target for example: 3H
   const handleTargetClick = (name: string, type: any) => {  //temp 'class' | 'teacher' | 'classroom'
-    if(name === props.targetSchedule) {
-      setDisplayingWindow('');      
+    if(name === SettingsProps.targetSchedule) {
+      setVisibleMenu('');      
       return ;
     }
     for (let i = 0; i < 14; i++) {  // set rows to default size
       document.documentElement.style.setProperty(`--row-${i}-height`, "5em");
     }
-    props.changeClass(name, type); //change current target
-    setDisplayingWindow('');
+    SettingsProps.changeClass(name, type); //change current target
+    setVisibleMenu('');
   }
 
   const DesktopPicker = (type: string) => {
-    return displayingWindow === type ?
+    return visibleMenu === type ?
       <PickerMenu
-        type={displayingWindow}
-        data={props[displayingWindow]}
-        handleTargetClick={(name: string) => handleTargetClick(name, displayingWindow)}
+        type={visibleMenu}
+        data={SettingsProps[visibleMenu]}
+        handleTargetClick={(name: string) => handleTargetClick(name, visibleMenu)}
       /> : null
   }
   const outerInvisibleLayer = () => {
-    return displayingWindow && !isMobile? (
+    return visibleMenu && !isMobile? (
       <div 
         className="outer-invisible-layer"
-        onClick={() => setDisplayingWindow('')}  
+        onClick={() => setVisibleMenu('')}  
       >
 
       </div>
@@ -60,37 +61,22 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
   return (
     <div className={`${isDesktopOrLaptop ? "settings-panel" : "settings-panel-medium"}`}>
       { outerInvisibleLayer() }
-      {isMobile && displayingWindow?
+      {isMobile && visibleMenu ?
         (
-          
-          <div className = "mobile-menu-wrapper">
-            <div className="close">
-              <button onClick={() => setDisplayingWindow('')}>&#8592;</button>
-            </div>
-
-            <div className = "mobile-menu">
-              <div className="choose" onClick={()=> setDisplayingWindow('class')}>
-                Klasy
-              </div>
-              <div className="choose" onClick={() => setDisplayingWindow('teacher')}>
-                Nauczyciele
-              </div>
-              <div className="choose" onClick={() => setDisplayingWindow('classroom')}>
-                Sale
-              </div>
-            </div>
-            <PickerMenu
-              type={displayingWindow}
-              data={props[displayingWindow]}
-              handleTargetClick={(name: string, type: 'class' | 'teacher' | 'classroom') => handleTargetClick(name, type)}
-            />
-          </div>
+          <MobileMenu 
+            visibleMenu={visibleMenu}
+            teacher={SettingsProps.teacher}
+            class={SettingsProps.class}
+            classroom={SettingsProps.classroom}
+            handleTargetClick={handleTargetClick}
+            setVisibleMenu={setVisibleMenu}
+          />
         )
         : null}
       <label className="label-for-main-search" htmlFor="searchingObject">plan</label>
       <div className="search-filters">
         <h1 className="main-search">
-          { props.targetSchedule }
+          { SettingsProps.targetSchedule }
         </h1>
         {
           !isMobile ? (
@@ -108,9 +94,10 @@ export const SettingsPanel: React.FC <SettingsProps> = (props) => {
                 { DesktopPicker('classroom') }
               </div>
             </>    
-          ): (
+          )
+          :(
             <div className="btn-wrapper">
-              <button className="mobile-search search" onClick={() => setDisplayingWindow('class')}>
+              <button className="mobile-search search" onClick={() => setVisibleMenu('class')}>
                 <img src={process.env.PUBLIC_URL + 'menu.svg'} alt=""/>
               </button>
             </div>

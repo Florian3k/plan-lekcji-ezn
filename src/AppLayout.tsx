@@ -15,7 +15,7 @@ export const App: React.FC = () => {
   const [selectedType, setSelectedType] = useState<'class' | 'teacher' | 'classroom'>('teacher')
   const [selected, setSelected] = useState('Gabor Michał')
 
-  const changeClass = (name: string, type: typeof selectedType) => {
+  const changeSelectedTimetable = (name: string, type: typeof selectedType) => {
     setSelectedType(type)
     setSelected(name)
   }
@@ -32,21 +32,21 @@ export const App: React.FC = () => {
 
   if (!cards) {
     return <div>
-      "Error - not data found"
+      "Error - not data found"class
     </div>
   }
   return (
     <div className={isDesktopOrLaptop ? 'App': isMobile ? 'App-mobile' : 'App-medium'}>
       <SettingsPanel 
-        targetSchedule={selected}
-        classroom = {timetable.classrooms}
-        class = {timetable.classes}
-        teacher = {timetable.teachers}
-        changeClass={changeClass}/>
+        targetSchedule  = {selected}
+        classroom       = {timetable.classrooms}
+        class           = {timetable.classes}
+        teacher         = {timetable.teachers}
+        changeClass     = {changeSelectedTimetable}/>
       <Schedule
-        selectedType={selectedType}
-        periods={timetable.periods}
-        clazz={R.groupBy((l) => l.days, cards)}
+        selectedType  = {selectedType}
+        periods       = {timetable.periods}
+        clazz         = {R.groupBy((l) => l.days, cards)}
       />
     </div>
   )

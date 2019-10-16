@@ -82,7 +82,7 @@ export const PickerMenu: React.FC<PickerMenuProps> = (props) => {
           null
         );
       default:
-        throw new Error("Unknown type =/= 'teacher' | 'class' | 'classroom' | ''");
+        throw new Error(`Unknown type ${props.type} =/= 'teacher' | 'class' | 'classroom' | ''`);
     }
   }
   return (
