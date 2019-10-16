@@ -67,13 +67,6 @@
     display: inline-block;
   }
 
-  .comic {
-    font-family: 'Comic Sans MS';
-    font-weight: bold;
-    background: linear-gradient(to left, red, orange, yellow, yellow, green, blue, indigo);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
 }
 .lesson-mobile {
   width: calc(100% - 2px);
