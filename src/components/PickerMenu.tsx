@@ -63,6 +63,12 @@ export const PickerMenu: React.FC<PickerMenuProps> = (props) => {
           </div>
         ))
       case 'classroom':
+        const aaa: any = R.pipe(
+          R.groupBy(({ name }) => {
+            if(name[0] === 2) return name;
+            return name.length;
+          }
+          ))(props.data as any)
         return (
           <div className="classroom-list">
             { props.data.map((a: any) => (

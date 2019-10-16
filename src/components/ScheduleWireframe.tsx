@@ -45,8 +45,35 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
     }
     
     // lessons mobile style: daysArray of Lessons compontents
-    lessonsByDay = lessonsInfo.map(day => 
-      day.map((lesson: any) => <Lesson lesson={lesson} period={props.periods[lesson[0].period]} selectedType={props.selectedType}/>)
+    lessonsByDay = lessonsInfo.map(day =>{
+      let previousPeriod: string;
+      return day.map((lesson: any, i: number) => {
+        // lesson starts more than 1 lesson's hour after previous
+        if (previousPeriod && (+previousPeriod) + 1 !== +lesson[0].period) {
+          previousPeriod = lesson[0].period;
+          return (
+              <>
+                <div className="free-period">
+                  { +day[i-1][0].period + 2 < +lesson[0].period ? 'Okienka' : 'Okienko'}
+                </div>
+                <Lesson
+                  lesson={lesson}
+                  period={props.periods[lesson[0].period]}
+                  selectedType={props.selectedType}
+                />
+              </>
+            )
+            
+        }
+        previousPeriod = lesson[0].period;
+        return (
+        <Lesson 
+          lesson={lesson}
+          period={props.periods[lesson[0].period]}
+          selectedType={props.selectedType}
+        />)
+      }
+      )}
     );
 
   }  
@@ -61,7 +88,9 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
           <div className="day-mobile day-4" onClick={() => setchosenDay(4)}>PT</div>
         </div>
         <SwipeableViews onChangeIndex = {(index) => changeChosenDay(index)} index={chosenDay}>
-          {lessonsByDay.map(column => <div> {column} </div>)}
+          {
+            lessonsByDay.map(column => <div> {column} </div>)
+          }
         </SwipeableViews>
       </div>
     )

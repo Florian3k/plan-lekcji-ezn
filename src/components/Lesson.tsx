@@ -30,7 +30,6 @@ export const Lesson: React.FC<LessonProps> = (props) => {
     )}
     return null
   }
-  const isWindowsOS = (window.navigator.userAgent.indexOf("Windows") !== -1 || window.navigator.userAgent.indexOf("Windows") !== -1)  
   
   if(props.lesson && props.selectedType) {
     const maxLenghtOfLesson = isMobile ? 20 : 15;
@@ -70,7 +69,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
             }
           </div>
           <div className="bottom-side">
-            <div className={`teacher ${partLesson.teacher === "Gabor Michał" && isWindowsOS ? "comic": ""}`}>{lessonWith}</div>
+            <div className='teacher'>{lessonWith}</div>
             {
                 partLesson.group && partLesson.group !== 'Cała klasa' ? (<div className="group"> {week+ ' ' + partLesson.group} </div>): null}
           </div>
@@ -109,7 +108,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
               }
             </div>
             <div className="bottom-side">
-              <div className={`teacher ${props.lesson[0].teacher === "Gabor Michał" && isWindowsOS ? "comic" : ""}`}> {lessonWith} </div>
+              <div className='teacher'> {lessonWith} </div>
               {props.lesson[0].group && props.lesson[0].group !== 'Cała klasa' ? (<div className="group"> {props.lesson[0].group} </div>) : null}
             </div>
         </div> 

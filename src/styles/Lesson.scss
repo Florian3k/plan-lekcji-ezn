@@ -67,13 +67,6 @@
     display: inline-block;
   }
 
-  .comic {
-    font-family: 'Comic Sans MS';
-    font-weight: bold;
-    background: linear-gradient(to left, red, orange, yellow, yellow, green, blue, indigo);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
 }
 .lesson-mobile {
   width: calc(100% - 2px);
@@ -181,4 +174,18 @@
   .lesson {
     padding: 4px;
   }
+}
+
+.free-period {
+  width: 100%;
+  height: 12vw;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: bolder;
+  letter-spacing: 2px;
+
+  color: rgba(0, 0, 0, .25);
 }
