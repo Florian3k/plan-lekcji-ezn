@@ -30,9 +30,6 @@ export const SettingsPanel: React.FC <SettingsProps> = (SettingsProps) => {
       setVisibleMenu('');      
       return ;
     }
-    for (let i = 0; i < 14; i++) {  // set rows to default size
-      document.documentElement.style.setProperty(`--row-${i}-height`, "5em");
-    }
     SettingsProps.changeClass(name, type); //change current target
     setVisibleMenu('');
   }

@@ -27,13 +27,6 @@ export const Lesson: React.FC<LessonProps> = (props) => {
     return null
   }
 
-  const updateRowHeight = (row: number, n: number) => {
-    const rowHeightInEm = +document.documentElement.style.getPropertyValue(`--row-${row}-height`).slice(0, -2);
-    if (rowHeightInEm < (n - 1) * 3.25 + 5) {
-      document.documentElement.style.setProperty(`--row-${row}-height`, `${(n - 1) * 3.25 + 5}em`);
-    }
-  }
-
   // Return empty lesson when no props
   if (!props.lessonsAtSameTime || !props.selectedType) {
     return <div className="lesson-block"></div>
@@ -41,12 +34,6 @@ export const Lesson: React.FC<LessonProps> = (props) => {
   const maxLenghtOfLesson = isMobile ? 20 : 15;
   const period = props.lessonsAtSameTime[0].period;
   const day = props.lessonsAtSameTime[0].days.split("").indexOf("1");
-
-
-  // Make row higher when inside of LessonBlock are more lessons than 1
-  if (props.lessonsAtSameTime.length > 1) {
-    updateRowHeight(period, props.lessonsAtSameTime.length)
-  }
 
   const LessonBlock = props.lessonsAtSameTime.map( (lesson: any) => {
     

@@ -1,10 +1,4 @@
 :root {
-  --row-height: 4.5em;
-  --menu-height: 60px;
-  --hours-width: 120px;
-  @for $i from 0 through 13 {
-    --row-#{$i}-height: 5em;
-  }
 }
 body {
   margin: 0;
