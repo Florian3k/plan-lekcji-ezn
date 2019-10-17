@@ -4,18 +4,19 @@
     display: none;
   }
   .lesson-block {
+    background-color: #E9E9E9;
     border-right: 1px solid rgba(#000, .2);
     border-bottom: 1px solid rgba(#000, .2);
-    
+
     display: grid;
     grid-auto-rows: 1fr;
-    // grid-template-columns: repeat(auto-fill, 1fr);
+    
     // add class determining location in grid
     @for $r from 0 through 13 {
       @for $c from 0 through 4 {
         &.lesson-block-#{ $r }-#{ $c } {
-          grid-column: #{ $c + 1 } /span 1;
-          grid-row: #{ $r + 1 } /span 1;
+          grid-column: #{ $c + 2 } /span 1;
+          grid-row: #{ $r + 2 } /span 1;
         }
       }
     }

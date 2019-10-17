@@ -108,11 +108,9 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
         <div className="covering-area"></div>
         <Hours periods={ScheduleProps.periods} />
         <DayNames />
-        <div className="schedule-wireframe">
-          {
-            LessonsArray
-          }
-        </div>
+        {
+          LessonsArray
+        }
       </div>
     )
   }

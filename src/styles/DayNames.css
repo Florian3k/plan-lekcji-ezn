@@ -1,6 +1,7 @@
 .day-names {
-  grid-area: dayNames;
-  
+  /* grid-column: 2/ span 5; */
+  grid-area: d;
+  /* grid-row: 1/ span 1; */
   /* padding-left: var(--hours-width); */
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -15,4 +16,9 @@
   width: 100%;
   font-size: 1.75em;
   font-weight: 550;
+}
+@media screen and (min-width: 900px) and (max-width: 1224px) {
+  .day {
+    font-size: 1.55em;
+  }
 }
