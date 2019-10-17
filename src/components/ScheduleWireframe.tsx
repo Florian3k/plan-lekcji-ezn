@@ -20,7 +20,7 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
 
   // Mobile feature, allow choose day by clicking at day name
   const changeChosenDay = (index: number) => setchosenDay(index)
-
+  
   if(!props.class) {
     return <div>
       Loading data...

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import '../styles/Lesson.scss';
-import { Class } from '../types';
 
 interface LessonProps {
   lessonsAtSameTime: any,
@@ -13,115 +12,91 @@ interface LessonProps {
   }
 }
 export const Lesson: React.FC<LessonProps> = (props) => {
-  const updateRowHeight = (row: number, n: number) => {
-    document.documentElement.style.setProperty(`--row-${row}-height`, `${(n-1)*3.25 + 5}em`);
-  }
 
-  const isMobile = useMediaQuery({
-    query: '(max-width: 900px)'
-  })
+  const isMobile = useMediaQuery({ query: '(max-width: 900px)' })
+
   const displayingHoursElement = (isDisplayed: boolean) => {
     if (isDisplayed) {
       return (
         <div className="hours">
           <div className="hour-start">{props.period!.starttime}</div>
-          <div className="hour-end">{props.period!.endtime}</div>          
+          <div className="hour-end">{props.period!.endtime}</div>
         </div>
-    )}
+      )
+    }
     return null
   }
-  console.log(props)
-  if(props.lessonsAtSameTime && props.selectedType) {
-    const maxLenghtOfLesson = isMobile ? 20 : 15;
-    const period = props.lessonsAtSameTime[0].period;
-    const day = props.lessonsAtSameTime[0].days.split("").indexOf("1");
 
-    if(props.lessonsAtSameTime.length > 1) {
-      // At this period of time last 2 or more lessons
-      updateRowHeight(props.lessonsAtSameTime[0].period, props.lessonsAtSameTime.length)
-      const content = props.lessonsAtSameTime.map((partLesson: any, i: number) => {
-        const week = partLesson.weeks === '10' ?
-          'Parzysty'
-          : partLesson.weeks === '01' ?
-            'Nieparzysty' : '';
-
-        const lessonWith = props.selectedType === 'teacher' ?
-          partLesson.clazz ?
-            partLesson.clazz.name
-            : ''
-          : partLesson.teacher;
-        return (
-        <div className={`lesson-divided-part`}>
-          <div className="upper-side">
-            <h3>
-              {
-                partLesson.subject.length > maxLenghtOfLesson ?
-                  partLesson.subject_short
-                  : partLesson.subject
-              }
-            </h3>
-            {
-              props.selectedType === 'classroom' ?
-                props.lessonsAtSameTime.clazz.map((x: Class) => x.name).join(' / ')
-                  : partLesson.classroom ?
-                  <div className="room">Sala {partLesson.classroom}</div>
-                  : null
-            }
-          </div>
-          <div className="bottom-side">
-            <div className='teacher'>{lessonWith}</div>
-            {
-                partLesson.group && partLesson.group !== 'Cała klasa' ? (<div className="group"> {week+ ' ' + partLesson.group} </div>): null}
-          </div>
-        </div>
-      )})
-      return (
-        <div className={`lesson${isMobile ? "-mobile" : ""} part-${props.lessonsAtSameTime.length}-of-lesson lesson-${period}-${day}`}>
-          {displayingHoursElement(isMobile)}
-          { content }
-        </div>
-      )
-    }
-    else {
-      // At this period of time lasts 1 lesson
-      const lessonWith = props.selectedType === 'teacher' ? 
-        props.lessonsAtSameTime[0].clazz?
-          props.lessonsAtSameTime[0].clazz.name
-          : ''
-        : props.lessonsAtSameTime[0].teacher;
-      return (
-        <div className={`lesson${isMobile? "-mobile" : ""} lesson-${period}-${day}`}>
-            {displayingHoursElement(isMobile)}          
-            <div className="upper-side">
-              <h3>
-                {
-                  props.lessonsAtSameTime[0].subject.length > maxLenghtOfLesson ?
-                    props.lessonsAtSameTime[0].subject_short
-                    : props.lessonsAtSameTime[0].subject
-                }
-              </h3>
-              { props.selectedType === 'classroom' ? 
-                <div className="room"> {props.lessonsAtSameTime[0].clazz.map((x: Class) => x.name).join(' / ')} </div>
-                : props.lessonsAtSameTime[0].classroom ?
-                  <div className="room">Sala {props.lessonsAtSameTime[0].classroom}</div>
-                  : null
-              }
-            </div>
-            <div className="bottom-side">
-              <div className='teacher'> {lessonWith} </div>
-              {props.lessonsAtSameTime[0].group && props.lessonsAtSameTime[0].group !== 'Cała klasa' ? (<div className="group"> {props.lessonsAtSameTime[0].group} </div>) : null}
-            </div>
-        </div> 
-      )
+  const updateRowHeight = (row: number, n: number) => {
+    const rowHeightInEm = +document.documentElement.style.getPropertyValue(`--row-${row}-height`).slice(0, -2);
+    if (rowHeightInEm < (n - 1) * 3.25 + 5) {
+      document.documentElement.style.setProperty(`--row-${row}-height`, `${(n - 1) * 3.25 + 5}em`);
     }
   }
-  else {
-    // This is border filler
+
+  // Return empty lesson when no props
+  if (!props.lessonsAtSameTime || !props.selectedType) {
+    return <div className="lesson-block"></div>
+  }
+  const maxLenghtOfLesson = isMobile ? 20 : 15;
+  const period = props.lessonsAtSameTime[0].period;
+  const day = props.lessonsAtSameTime[0].days.split("").indexOf("1");
+
+
+  // Make row higher when inside of LessonBlock are more lessons than 1
+  if (props.lessonsAtSameTime.length > 1) {
+    updateRowHeight(period, props.lessonsAtSameTime.length)
+  }
+
+  const LessonBlock = props.lessonsAtSameTime.map( (lesson: any) => {
+    
+    // UpperLeft default -> subject
+    let upperLeft: any = lesson.subject.length > maxLenghtOfLesson ?
+      lesson.subject_short
+      : lesson.subject
+    // UpperRight default -> classroom
+    let upperRight: any = lesson.classroom? 'Sala ' + lesson.classroom : null
+    // BottomLeft default -> none
+    let bottomLeft: any;
+    // BottomRight default -> group
+    let bottomRight: any = lesson.group === 'Cała klasa' ?
+      null
+      : lesson.group
+
+    switch (props.selectedType) {
+      case 'teacher':
+        bottomLeft = lesson.clazz ? lesson.clazz.name : null
+      break
+      case 'class':
+        bottomLeft = lesson.teacher + ' Jankiewicz-bankiewicz'
+        break
+      case 'classroom':
+        break
+      default:
+        throw new Error('Wrong selectedtype in lesson')
+    }
     return (
       <div className="lesson">
-        
+        <div className="lesson__upper-panel">
+          <div className="lesson__upper-panel-left lesson__info-field">
+            { upperLeft }
+          </div>
+          <div className="lesson__upper-panel-right lesson__info-field">
+            { upperRight }
+          </div>
+        </div>
+        <div className="lesson__bottom-panel lesson__info-field">
+          <div className="lesson__bottom-panel-left lesson__info-field">
+            { bottomLeft }
+          </div>
+          <div className="lesson__bottom-panel-right lesson__info-field">
+            { bottomRight }
+          </div>
+        </div>
       </div>
     )
-  }
+  })
+  return <div className={`lesson-block lesson-block-${period}-${day}`}>
+    { LessonBlock }
+  </div> 
 }
-
