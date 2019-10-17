@@ -68,7 +68,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
         bottomLeft = lesson.clazz ? lesson.clazz.name : null
       break
       case 'class':
-        bottomLeft = lesson.teacher + ' Jankiewicz-bankiewicz'
+        bottomLeft = lesson.teacher
         break
       case 'classroom':
         break
