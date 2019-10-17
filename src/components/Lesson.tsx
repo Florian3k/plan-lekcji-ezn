@@ -30,7 +30,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
     )}
     return null
   }
-  
+  console.log(props)
   if(props.lessonsAtSameTime && props.selectedType) {
     const maxLenghtOfLesson = isMobile ? 20 : 15;
     const period = props.lessonsAtSameTime[0].period;

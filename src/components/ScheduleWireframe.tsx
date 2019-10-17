@@ -4,7 +4,6 @@ import SwipeableViews from 'react-swipeable-views';
 import * as R from 'ramda';
 import { Lesson } from './Lesson';
 import '../styles/ScheduleWireframe.scss';
-import { Lesson as LessonType } from '../types';
 
 interface ClassProps {
   class: any,
@@ -13,15 +12,14 @@ interface ClassProps {
 }
 
 export const ScheduleWireframe: React.FC<ClassProps> = props => {
-  // let lessons: any = [] //JSX.Element[] = []
-  let lessonsByDay: JSX.Element[][] = []
-  const isMobile = useMediaQuery({query: '(max-width: 900px)'})
   const [chosenDay, setchosenDay] = useState(0)
+  
+  const overallLessonBlocksNumber: number = 60
+
+  const isMobile = useMediaQuery({query: '(max-width: 900px)'})
 
   // Mobile feature, allow choose day by clicking at day name
-  const changeChosenDay = (index: number) => {
-    setchosenDay(index)
-  }
+  const changeChosenDay = (index: number) => setchosenDay(index)
 
   if(!props.class) {
     return <div>
@@ -30,61 +28,58 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
   }
 
   //[days][lessons][lessonsAtSameTime]
-  const lessonsInfo: any[][][] = Object.entries(props.class)
+  const classesAtSameTimeArr: any[][][] = Object.entries(props.class)
     .sort(([a], [b]) => (b as any) - (a as any))
     .map(([k, v]: any) => R.groupBy((x: any) => x.period, v))
     .map(Object.values)
   
 
-  const LessonsArray: JSX.Element[][] = lessonsInfo.map( day => 
-  day.map((lessonsAtSameTime: any, index) => 
-    <Lesson 
-      lessonsAtSameTime = {lessonsAtSameTime}
-      selectedType = {props.selectedType}
-      key = {index}
-    />
-  ))
+  const LessonsArray: JSX.Element[][] = classesAtSameTimeArr.map( day => 
+    day.map((lessonsAtSameTime: any, index) => {
 
-  const lessonsAmount: number = lessonsInfo.reduce((p: any, c: any) => c.length + p, 0)
+      // Check if between two lessons are free periods
+      let FreePeriod: JSX.Element | null = null 
+      if(index) {
+        const previousPeriod: number = +day[index - 1][0].period
+        const currentPeriod: number = +lessonsAtSameTime[0].period
+
+        switch(currentPeriod) {
+          case previousPeriod + 1:
+            FreePeriod = null
+            break
+          case previousPeriod + 2:
+            FreePeriod = <div className="free-period">Okienko</div>
+            break
+          default:
+            FreePeriod = <div className="free-period">Okienka</div>
+            break
+        }
+      }
+      return (
+        <>
+          { FreePeriod }
+          <Lesson 
+            lessonsAtSameTime = {lessonsAtSameTime}
+            period={props.periods[lessonsAtSameTime[0].period]}
+            selectedType = {props.selectedType}
+            key = {index}
+          />
+        </>
+      )
+    })
+  )
+
+  const lessonsAmount: number = classesAtSameTimeArr.reduce((p: any, c: any) => c.length + p, 0)
 
   // fill LessonsArray with empty Lesson components
-  for (let i = 0;  i < 12*5 - lessonsAmount; i++) {
+  for (let i = 0;  i < overallLessonBlocksNumber - lessonsAmount; i++) {
     LessonsArray.push([<Lesson lessonsAtSameTime={null} key={i + lessonsAmount} />])
   }
-  
-  // lessons mobile style: daysArray of Lessons compontents
-  lessonsByDay = lessonsInfo.map(day =>{
-    let previousPeriod: string;
-    return day.map((lesson: any, i: number) => {
-      // lesson starts more than 1 lesson's hour after previous
-      if (previousPeriod && (+previousPeriod) + 1 !== +lesson[0].period) {
-        previousPeriod = lesson[0].period;
-        return (
-          <>
-            <div className="free-period">
-              { +day[i-1][0].period + 2 < +lesson[0].period ? 'Okienka' : 'Okienko'}
-            </div>
-            <Lesson
-              lessonsAtSameTime={lesson}
-              period={props.periods[lesson[0].period]}
-              selectedType={props.selectedType}
-            />
-          </>
-        )
-          
-        }
-        previousPeriod = lesson[0].period;
-        return (
-        <Lesson 
-          lessonsAtSameTime={lesson}
-          period={props.periods[lesson[0].period]}
-          selectedType={props.selectedType}
-        />)
-      }
-      )}
-    );
+
   if(isMobile) {
     // Mobile
+    const LessonsArrayMobile = LessonsArray.slice(0, 5).map((column: any) => <div> {column} </div>)
+
     return (
       <div className="xd">
         <div className={`days-mobile target-${chosenDay}`}>
@@ -96,7 +91,7 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
         </div>
         <SwipeableViews onChangeIndex = {(index) => changeChosenDay(index)} index={chosenDay}>
           {
-            lessonsByDay.map(column => <div> {column} </div>)
+            LessonsArrayMobile
           }
         </SwipeableViews>
       </div>
@@ -106,7 +101,9 @@ export const ScheduleWireframe: React.FC<ClassProps> = props => {
     // Desktop, laptop etc
     return (
       <div className="schedule-wireframe">
-        {LessonsArray}
+        {
+          LessonsArray
+        }
       </div>
     )
   }

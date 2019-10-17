@@ -45,3 +45,8 @@
   background: #EFF0F0;
   height: 100%;
 }
+@media screen and (min-width: 900px) {
+  .free-period {
+    display: none;
+  }
+}
