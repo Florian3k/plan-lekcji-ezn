@@ -45,14 +45,21 @@ export const Lesson: React.FC<LessonProps> = (props) => {
     // BottomLeft default -> teacher
     let bottomLeft: any = lesson.teacher;
     
-    // BottomRight default -> group
-    let bottomRight: any = lesson.group === 'Cała klasa' ?
+    // BottomRight default -> 'parzysty'/'nieparzysty' group
+    let bottomRight: any = lesson.weeks === '10' ?
+    'Parzysty '
+    : lesson.weeks === '01' ?
+      'Nieparzysty '
+      : '';
+
+    bottomRight += lesson.group === 'Cała klasa' ?
       null
       : lesson.group
 
     switch (props.selectedType) {
       case 'teacher':
         bottomLeft = lesson.clazz ? lesson.clazz.name : null
+      
       break
       case 'class':
         break
