@@ -1,3 +1,6 @@
+// $menu-height: 60px;
+
+// ALL, especially desktop
 .settings-panel {
   background-color: rgba(13, 33, 73, .86);
   color: #c7c7c7;
@@ -67,6 +70,7 @@
   }
 }
 
+// Max width: 1224px;
 .settings-panel-medium {
   position: relative;
   width: 100vw;
@@ -98,53 +102,54 @@
     margin: 0 2em;
   }
 
+  // Mobile
   @media (max-width: 900px) {
+    // height: $menu-height;
     .search-filters {
-    display: flex;
-    height: 100%;
+      display: flex;
+      padding: 0.8em 0;
+      height: 100%;
     }
     .search {
       margin: 0;
       font-size: 0.75em;
     }
+    .btn-wrapper {
+      position: absolute !important;
+      right: 0;
+      top: calc( 100% / 2);
+      transform: translateY(-50%);
+      width: 15vw;
+      button {
+        padding: 0 !important;
+        width: 100% !important;
+        background: transparent !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          width: 50%;
+          height: auto;
+        }
+      }
+    }
+    .main-search {
+      margin: 0  15vw !important;
+      font-size: 1.5em !important;
+      max-height: 100%;
+      font-size: 20px !important;
+    }
+    .search-filters {
+      position: relative !important;
+      align-items: center;
+      // height: fit-content;
+    }
+    .settings-panel-medium {
+      // height: $menu-height;
+    }
   }
 }
 
-@media (max-width: 900px) {
-  .btn-wrapper {
-    position: absolute !important;
-    right: 0;
-    top: calc(var(--menu-height) / 2);
-    transform: translateY(-50%);
-    width: 15vw;
-    button {
-      padding: 0 !important;
-      width: 100% !important;
-      background: transparent !important;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      img {
-        width: 50%;
-        height: auto;
-      }
-    }
-  }
-  .main-search {
-    margin: 0  15vw !important;
-    font-size: 1.5em !important;
-    max-height: 100%;
-    font-size: 20px !important;
-  }
-  .search-filters {
-    position: relative !important;
-    align-items: center;
-    height: fit-content;
-  }
-  .settings-panel-medium {
-    height: var(--menu-height);
-  }
-}
 
 // .outside-checker {
 //   background:red;
@@ -155,6 +160,7 @@
 //   width: 100vw;
 //   height: 100vh;
 // }
+
 .mobile-search {
   font-size: 1em !important;
 }

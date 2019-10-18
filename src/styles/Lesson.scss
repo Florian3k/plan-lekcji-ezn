@@ -79,22 +79,28 @@
 }
 
 // MOBILE
-$grey-space-width: 11vw;
+$grey-space-width: 15vw;
 @media screen and (max-width: 900px) {
+  .free-period {
+    width: 100%;
+    padding: 1em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 0.9em;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: rgba(#000, .3);
+  }
   .lesson-block {
-    padding: 0.8em 0.5em 0.8em 0;
+    position: relative;
+    padding: 0.75em 1em;
     margin: 0.5em 0;
-
     background-color: white;
-    border-radius: 6px;
-    overflow-x: hidden;
-
+    border-radius: 8px;
     box-shadow: 0 1px 3px rgba(#000, .15);
-    display: grid;
-    grid-template-columns: $grey-space-width auto;
-    grid-auto-rows: 1fr;
     .lesson {
-      grid-column: 2 / span 1;
       // display: flex;
       // flex-flow: column nowrap;
       margin-left: $grey-space-width;
@@ -131,10 +137,13 @@ $grey-space-width: 11vw;
     }
 
     .hours {
-      // width: 15vw;
-      // height: 100%;
-      grid-column: 1 / span 1;
-      grid-row: 1 / -1;
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: $grey-space-width;
+      height: 100%;
+
+      z-index: 100;
 
       display: flex;
       flex-flow: column nowrap;
@@ -149,5 +158,19 @@ $grey-space-width: 11vw;
 
       }
     }
+
+  // grey rectangle at beginning of the lesson
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    height: 100%;
+    width: $grey-space-width;
+    background-color: #EBEBEB;
+    z-index: 50;
+  }
+
   }
 }
