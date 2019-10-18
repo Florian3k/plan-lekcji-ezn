@@ -83,7 +83,7 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
 
   if(isMobile) {
     // Mobile view
-    const LessonsArrayMobile = LessonsArray.slice(0, 5).map((column: any) => <div> {column} </div>)
+    const LessonsArrayMobile = LessonsArray.slice(0, 5).map((column: any) => <div className="day-lessons-wrapper"> {column} </div>)
 
     return (
       <div className="mobile-main">

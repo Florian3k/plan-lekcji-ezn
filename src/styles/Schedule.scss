@@ -31,6 +31,10 @@
   background-color: #ccc;
   width: 100%;
   height: calc(100vh - var(--menu-height));
+
+  .day-lessons-wrapper {
+    margin: 0 2px;
+  }
 }
 
 // from schedule wireframe

@@ -104,7 +104,6 @@
 
   // Mobile
   @media (max-width: 900px) {
-    // height: $menu-height;
     .search-filters {
       display: flex;
       padding: 0.8em 0;
@@ -142,24 +141,9 @@
     .search-filters {
       position: relative !important;
       align-items: center;
-      // height: fit-content;
-    }
-    .settings-panel-medium {
-      // height: $menu-height;
     }
   }
 }
-
-
-// .outside-checker {
-//   background:red;
-//   position: fixed;
-//   z-index: 500;
-//   left: 0;
-//   height: 0;
-//   width: 100vw;
-//   height: 100vh;
-// }
 
 .mobile-search {
   font-size: 1em !important;

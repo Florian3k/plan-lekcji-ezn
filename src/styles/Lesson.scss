@@ -28,7 +28,7 @@
       display: grid;
       // grid-template-rows: repeat(auto-fill, 1fr);
       grid-auto-rows:  1fr;
-
+      
       @media screen and (max-width: 1500px) {
         font-size: 0.9em;
       }
@@ -100,10 +100,16 @@ $grey-space-width: 15vw;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(#000, .15);
+    overflow: hidden;
     .lesson {
       // display: flex;
       // flex-flow: column nowrap;
       margin-left: $grey-space-width;
+      
+      // Margin between lessons
+      & + .lesson {
+        margin-top: 0.5em;
+      }
       .lesson__upper-panel,
       .lesson__bottom-panel {
         display: flex;
@@ -111,26 +117,30 @@ $grey-space-width: 15vw;
         justify-content: space-between;
       }
       .lesson__upper-panel {
+        margin-bottom: 0.3em;
         .lesson__upper-panel-left {
           font-size: 1em;
           font-weight: bold;
         }
 
         .lesson__upper-panel-right {
-          font-size: 0.7em;
+          font-size: 0.75em;
+          color: rgba(#000, .7);
           text-align: right;
+
         }
       }
 
       .lesson__bottom-panel {
         .lesson__bottom-panel-left {
           font-size: 0.8em;
+          color: rgba(#000, .7);
         }
 
         .lesson__bottom-panel-right {
-          font-size: 0.75em;
+          font-size: 0.9em;
           font-weight: bold;
-          color: darken(#F00A6B, 15%);
+          color: #F00A6B;
           text-align: right;
         }
       }
@@ -151,12 +161,12 @@ $grey-space-width: 15vw;
       align-items: center;
 
       font-size: 10px;
-      .hour-start {
+      // .hour-start {
 
-      }
-      .hour-end {
+      // }
+      // .hour-end {
 
-      }
+      // }
     }
 
   // grey rectangle at beginning of the lesson
@@ -170,6 +180,18 @@ $grey-space-width: 15vw;
     width: $grey-space-width;
     background-color: #EBEBEB;
     z-index: 50;
+  }
+  // yellow line at the beginning of the lesson
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 60;
+
+    height: 100%;
+    width: 4px;
+    background-color: #FFCD00;
   }
 
   }

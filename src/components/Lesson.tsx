@@ -38,10 +38,13 @@ export const Lesson: React.FC<LessonProps> = (props) => {
     let upperLeft: any = lesson.subject.length > maxLenghtOfLesson ?
       lesson.subject_short
       : lesson.subject
+    
     // UpperRight default -> classroom
     let upperRight: any = lesson.classroom? 'Sala ' + lesson.classroom : null
-    // BottomLeft default -> none
-    let bottomLeft: any;
+    
+    // BottomLeft default -> teacher
+    let bottomLeft: any = lesson.teacher;
+    
     // BottomRight default -> group
     let bottomRight: any = lesson.group === 'Cała klasa' ?
       null
@@ -52,13 +55,14 @@ export const Lesson: React.FC<LessonProps> = (props) => {
         bottomLeft = lesson.clazz ? lesson.clazz.name : null
       break
       case 'class':
-        bottomLeft = lesson.teacher
         break
       case 'classroom':
+        upperRight = lesson.clazz ? lesson.clazz[0].name : null
         break
       default:
         throw new Error('Wrong selectedtype in lesson')
     }
+
     return (
       <div className="lesson">
         <div className="lesson__upper-panel">
