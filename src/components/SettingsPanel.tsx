@@ -40,6 +40,7 @@ export const SettingsPanel: React.FC <SettingsProps> = (SettingsProps) => {
         type={visibleMenu}
         data={SettingsProps[visibleMenu]}
         handleTargetClick={(name: string) => handleTargetClick(name, visibleMenu)}
+        targetSchedule = {SettingsProps.targetSchedule}
       /> : null
   }
   const outerInvisibleLayer = () => {
@@ -67,6 +68,7 @@ export const SettingsPanel: React.FC <SettingsProps> = (SettingsProps) => {
             classroom={SettingsProps.classroom}
             handleTargetClick={handleTargetClick}
             setVisibleMenu={setVisibleMenu}
+            targetSchedule={SettingsProps.targetSchedule}
           />
         )
         : null}

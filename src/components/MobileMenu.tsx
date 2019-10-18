@@ -10,7 +10,8 @@ interface MobileMenuProps {
 
   visibleMenu: 'teacher' | 'class' | 'classroom' | '',
   setVisibleMenu: Function,
-  handleTargetClick: Function
+  handleTargetClick: Function,
+  targetSchedule: string
 }
 
 export const MobileMenu: React.FC<MobileMenuProps> = MobileMenuProps => {
@@ -35,6 +36,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = MobileMenuProps => {
         type={MobileMenuProps.visibleMenu}
         data={MobileMenuProps[MobileMenuProps.visibleMenu]}
         handleTargetClick={(name: string, type: 'class' | 'teacher' | 'classroom') => MobileMenuProps.handleTargetClick(name, type)}
+        targetSchedule={MobileMenuProps.targetSchedule}
       />
     </div>
   )
