@@ -39,6 +39,7 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
     .map(([k, v]: any) => R.groupBy((x: any) => x.period, v))
     .map(Object.values)
 
+  // Create array filled with Lesson components
   const LessonsArray: JSX.Element[][] = classesAtSameTimeArr.map(day =>
     day.map((lessonsAtSameTime: any, index) => {
 
@@ -81,6 +82,7 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
   }
 
   if(isMobile) {
+    // Mobile view
     const LessonsArrayMobile = LessonsArray.slice(0, 5).map((column: any) => <div> {column} </div>)
 
     return (
@@ -103,6 +105,7 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
     )
   }
   else {
+    // Desktop view
     return (
       <div className="main">
         <div className="covering-area"></div>
