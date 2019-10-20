@@ -14,7 +14,7 @@ interface SettingsProps {
   changeClass: Function,
 }
 
-export const SettingsPanel: React.FC <SettingsProps> = SettingsProps => {
+export const SettingsPanel: React.FC <SettingsProps> = settingsProps => {
   const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1224px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 900px)' })
   // States: displaying menu for windows and mobile
@@ -28,7 +28,7 @@ export const SettingsPanel: React.FC <SettingsProps> = SettingsProps => {
 
   // happen when clicked on target; setting 
   const handleTargetClick = (name: string, type: any) => {  //temp 'class' | 'teacher' | 'classroom'
-    SettingsProps.changeClass(name, type) //change current target
+    settingsProps.changeClass(name, type) //change current target
     setVisibleMenu('')
   }
 
@@ -36,9 +36,9 @@ export const SettingsPanel: React.FC <SettingsProps> = SettingsProps => {
     return visibleMenu === type ?
       <PickerMenu
         type={visibleMenu}
-        data={SettingsProps[visibleMenu]}
+        data={settingsProps[visibleMenu]}
         handleTargetClick={(name: string) => handleTargetClick(name, visibleMenu)}
-        targetSchedule = {SettingsProps.targetSchedule}
+        targetSchedule = {settingsProps.targetSchedule}
       /> : null
   }
 
@@ -58,19 +58,19 @@ export const SettingsPanel: React.FC <SettingsProps> = SettingsProps => {
         (
           <MobileMenu 
             visibleMenu={visibleMenu}
-            teacher={SettingsProps.teacher}
-            class={SettingsProps.class}
-            classroom={SettingsProps.classroom}
+            teacher={settingsProps.teacher}
+            class={settingsProps.class}
+            classroom={settingsProps.classroom}
             handleTargetClick={handleTargetClick}
             setVisibleMenu={setVisibleMenu}
-            targetSchedule={SettingsProps.targetSchedule}
+            targetSchedule={settingsProps.targetSchedule}
           />
         )
         : null}
       <label className="label-for-main-search" htmlFor="searchingObject">plan</label>
       <div className="search-filters">
         <h1 className="main-search">
-          { SettingsProps.targetSchedule }
+          { settingsProps.targetSchedule }
         </h1>
         {
           !isMobile ? (

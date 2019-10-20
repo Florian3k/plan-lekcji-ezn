@@ -11,28 +11,28 @@ interface LessonProps {
     starttime: string
   }
 }
-export const Lesson: React.FC<LessonProps> = (props) => {
+export const Lesson: React.FC<LessonProps> = lessonProps => {
 
   const isMobile = useMediaQuery({ query: '(max-width: 900px)' })  
 
   // Return empty lesson when no props
-  if (!props.lessonsAtSameTime || !props.selectedType) {
+  if (!lessonProps.lessonsAtSameTime || !lessonProps.selectedType) {
     return <div className="lesson-block"></div>
   }
 
   
   const maxLenghtOfLesson = isMobile ? 20 : 15;
-  const period = props.lessonsAtSameTime[0].period;
-  const day = props.lessonsAtSameTime[0].days.split("").indexOf("1");
+  const period = lessonProps.lessonsAtSameTime[0].period;
+  const day = lessonProps.lessonsAtSameTime[0].days.split("").indexOf("1");
   
   const displayingHoursElement = (
     <div className="hours">
-      <div className="hour-start">{props.period!.starttime}</div>
-      <div className="hour-end">{props.period!.endtime}</div>
+      <div className="hour-start">{lessonProps.period!.starttime}</div>
+      <div className="hour-end">{lessonProps.period!.endtime}</div>
     </div>
   )
 
-  const LessonBlock = props.lessonsAtSameTime.map( (lesson: any) => {
+  const LessonBlock = lessonProps.lessonsAtSameTime.map( (lesson: any) => {
     
     // UpperLeft default -> subject
     let upperLeft: any = lesson.subject.length > maxLenghtOfLesson ?
@@ -56,7 +56,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
       ''
       : lesson.group
 
-    switch (props.selectedType) {
+    switch (lessonProps.selectedType) {
       case 'teacher':
         bottomLeft = lesson.clazz ? lesson.clazz.name : null
       

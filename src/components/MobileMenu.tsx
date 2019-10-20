@@ -14,29 +14,29 @@ interface MobileMenuProps {
   targetSchedule: string
 }
 
-export const MobileMenu: React.FC<MobileMenuProps> = MobileMenuProps => {
+export const MobileMenu: React.FC<MobileMenuProps> = mobileMenuProps => {
   return (
     <div className="mobile-menu-wrapper">
       <div className="close">
-        <button onClick={() => MobileMenuProps.setVisibleMenu('')}>&#8592;</button>
+        <button onClick={() => mobileMenuProps.setVisibleMenu('')}>&#8592;</button>
       </div>
 
       <div className="mobile-menu">
-        <div className="choose" onClick={() => MobileMenuProps.setVisibleMenu('class')}>
+        <div className="choose" onClick={() => mobileMenuProps.setVisibleMenu('class')}>
           Klasy
         </div>
-        <div className="choose" onClick={() => MobileMenuProps.setVisibleMenu('teacher')}>
+        <div className="choose" onClick={() => mobileMenuProps.setVisibleMenu('teacher')}>
           Nauczyciele
         </div>
-        <div className="choose" onClick={() => MobileMenuProps.setVisibleMenu('classroom')}>
+        <div className="choose" onClick={() => mobileMenuProps.setVisibleMenu('classroom')}>
           Sale
         </div>
       </div>
       <PickerMenu
-        type={MobileMenuProps.visibleMenu}
-        data={MobileMenuProps[MobileMenuProps.visibleMenu]}
-        handleTargetClick={(name: string, type: 'class' | 'teacher' | 'classroom') => MobileMenuProps.handleTargetClick(name, type)}
-        targetSchedule={MobileMenuProps.targetSchedule}
+        type={mobileMenuProps.visibleMenu}
+        data={mobileMenuProps[mobileMenuProps.visibleMenu]}
+        handleTargetClick={(name: string, type: 'class' | 'teacher' | 'classroom') => mobileMenuProps.handleTargetClick(name, type)}
+        targetSchedule={mobileMenuProps.targetSchedule}
       />
     </div>
   )

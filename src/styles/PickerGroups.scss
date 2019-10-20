@@ -1,0 +1,13 @@
+// DESKTOP
+@media screen and (min-width: 1224px) {
+  .picker-groups {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+
+    .group {
+      background: white;
+    }
+  }
+}
