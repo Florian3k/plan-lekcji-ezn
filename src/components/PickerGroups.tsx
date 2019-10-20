@@ -2,16 +2,25 @@ import React from 'react';
 import '../styles/PickerGroups.scss';
 
 interface PickerGroupsProps {
-  groups: string[],
+  activeGroups: {
+    [key: string]: string
+  },
 
   setActiveGroups: Function,
 }
 export const PickerGroups: React.FC<PickerGroupsProps> = pickerGroupsProps => {
-  const Groups = pickerGroupsProps.groups.map( (group: string) => (
-    <div className="group"
+  const Groups = Object.keys(pickerGroupsProps.activeGroups).map( (group: string) => (
+    <div className={pickerGroupsProps.activeGroups[group] ? "active-group group" : "inactive-group group"}
       onClick={() => pickerGroupsProps.setActiveGroups(group)}
     >
-      { group }
+      <div className="group-name">
+        { group }
+      </div>
+      <div className="toggle-button">
+        <div className="toggle-button__dot">
+
+        </div>
+      </div>
     </div>
   ))  
   

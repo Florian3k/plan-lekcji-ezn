@@ -3,11 +3,15 @@ import { useMediaQuery } from 'react-responsive';
 import { PickerMenu } from './PickerMenu';
 import '../styles/SettingsPanel.scss';
 import { MobileMenu } from './MobileMenu';
+import { PickerGroups } from './PickerGroups';
 
 interface SettingsProps {
   'teacher': any[],
   'class': any[],
   'classroom': any,
+  activeGroups: {},
+  toggleActiveGroup: Function,
+
   ''?: null,
 
   targetSchedule: string,
@@ -87,7 +91,11 @@ export const SettingsPanel: React.FC <SettingsProps> = settingsProps => {
                 <button className="room-search search" onClick={() => toggleWindow('classroom')}>Sale szkolne</button>
                 { DesktopPicker('classroom') }
               </div>
-            </>    
+              <PickerGroups
+                activeGroups = {settingsProps.activeGroups}
+                setActiveGroups = {settingsProps.toggleActiveGroup}
+                />
+            </>
           )
           :(
             <div className="btn-wrapper">
