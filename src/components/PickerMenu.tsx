@@ -35,6 +35,7 @@ export const PickerMenu: React.FC<PickerMenuProps> = (props) => {
             }
           </div>
         );
+
       case 'class':
         const classesByGrade: any = R.pipe(
           R.groupBy(({ name }) => {
@@ -64,6 +65,7 @@ export const PickerMenu: React.FC<PickerMenuProps> = (props) => {
             )}
           </div>
         ))
+
       case 'classroom':
         const aaa: any = R.pipe(
           R.groupBy(({ name }) => {
@@ -81,6 +83,7 @@ export const PickerMenu: React.FC<PickerMenuProps> = (props) => {
             ))}
           </div>
         );
+
       case '':
         return (
           null

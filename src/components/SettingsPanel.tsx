@@ -14,24 +14,22 @@ interface SettingsProps {
   changeClass: Function,
 }
 
-export const SettingsPanel: React.FC <SettingsProps> = (SettingsProps) => {
+export const SettingsPanel: React.FC <SettingsProps> = SettingsProps => {
   const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1224px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 900px)' })
   // States: displaying menu for windows and mobile
   const [visibleMenu, setVisibleMenu] = useState<'class' | 'teacher' | 'classroom' | ''>('')
   
+  // Toggle specific pickermenu window
   const toggleWindow = (target: 'class' | 'teacher' | 'classroom') => {
-    if (visibleMenu === target) setVisibleMenu('');
-    else setVisibleMenu(target);
+    if (visibleMenu === target) setVisibleMenu('')
+    else setVisibleMenu(target)
   }
-  // happen when clicked on target for example: 3H
+
+  // happen when clicked on target; setting 
   const handleTargetClick = (name: string, type: any) => {  //temp 'class' | 'teacher' | 'classroom'
-    if(name === SettingsProps.targetSchedule) {
-      setVisibleMenu('');      
-      return ;
-    }
-    SettingsProps.changeClass(name, type); //change current target
-    setVisibleMenu('');
+    SettingsProps.changeClass(name, type) //change current target
+    setVisibleMenu('')
   }
 
   const DesktopPicker = (type: string) => {
@@ -43,22 +41,19 @@ export const SettingsPanel: React.FC <SettingsProps> = (SettingsProps) => {
         targetSchedule = {SettingsProps.targetSchedule}
       /> : null
   }
-  const outerInvisibleLayer = () => {
-    return visibleMenu && !isMobile? (
-      <div 
-        className="outer-invisible-layer"
-        onClick={() => setVisibleMenu('')}  
-      >
 
-      </div>
-    ): null
-  
-  }
+  // full width and height invisible layer responsible for closing menu window when clicked outside of it
+  const OuterInvisibleLayer = (
+    <div 
+      className="outer-invisible-layer"
+      onClick={() => setVisibleMenu('')}  
+    ></div>
+  )
 
 
   return (
     <div className={`${isDesktopOrLaptop ? "settings-panel" : "settings-panel-medium"}`}>
-      { outerInvisibleLayer() }
+      { visibleMenu && !isMobile? OuterInvisibleLayer : null }
       {isMobile && visibleMenu ?
         (
           <MobileMenu 

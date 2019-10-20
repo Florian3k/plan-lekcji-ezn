@@ -53,7 +53,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
       : '';
 
     bottomRight += lesson.group === 'Cała klasa' ?
-      null
+      ''
       : lesson.group
 
     switch (props.selectedType) {
