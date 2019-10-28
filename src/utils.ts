@@ -1,9 +1,24 @@
-import { Timetable } from "./types";
+import { Timetable, TimetableMap } from "./types";
 import * as R from 'ramda';
 
 const byId = (id: string) => R.propEq('id', id);
 
 const maybeGetProp = <T extends Object>(obj: T | undefined | null, prop: keyof T) => obj ? obj[prop] : null;
+
+
+export function denormalizeData(timetable: TimetableMap) {
+  return timetable.cards.map(({ classroomids, lessonid, ...card }) => {
+    const lesson = timetable.lessons.get(lessonid)!
+    return {
+      ...card,
+      classrooms: classroomids.split(',').map(classroomid => timetable.classrooms.get(classroomid)!),
+      lesson,
+      classes: lesson.classids.split(',').map(lessonid => timetable.classes.get(lessonid)!),
+      groups: lesson.groupids.split(',').map(groupid => timetable.groups.get(groupid)!),
+      teacher: timetable.teachers.get(lesson.teacherids)!,
+    }
+  })
+}
 
 export function getClassTimetable(timetable: Timetable, selectedClass: string) {
   const clazz = timetable.classes.find(({ name }) => name === selectedClass)
@@ -91,8 +106,8 @@ export function getClassroomTimetable(timetable: Timetable, selectedClassroom: s
         group: maybeGetProp(timetable.groups.find(byId(lesson.groupids)), 'name'),
       })
     }).map(c => {
-        return ({
-          ...R.pick(['period', 'weeks', 'days', 'teacher', 'subject', 'subject_short', 'group'], c),
+      return ({
+        ...R.pick(['period', 'weeks', 'days', 'teacher', 'subject', 'subject_short', 'group'], c),
         clazz: timetable.classes.filter(clazz => c.classids.split(',').includes(clazz.id)),
         classroom: selectedClassroom,
       })
