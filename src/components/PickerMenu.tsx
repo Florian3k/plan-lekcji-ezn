@@ -24,9 +24,6 @@ export const PickerMenu: React.FC<PickerMenuProps> = (props) => {
                 <div
                   className={"teacher" + (props.targetSchedule === teacher.name ? ' current-target' : '')}
                   onClick={() => props.handleTargetClick(teacher.name, 'teacher')}>
-                  <span className="teacher-short">
-                    { teacher.short }
-                  </span>
                   <span className="teacher-name">
                     { teacher.name }
                   </span>
