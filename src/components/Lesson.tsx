@@ -14,7 +14,6 @@ interface LessonProps {
 export const Lesson: React.FC<LessonProps> = (props) => {
 
   const isMobile = useMediaQuery({ query: '(max-width: 900px)' })  
-
   // Return empty lesson when no props
   if (!props.lessonsAtSameTime || !props.selectedType) {
     return <div className="lesson-block"></div>

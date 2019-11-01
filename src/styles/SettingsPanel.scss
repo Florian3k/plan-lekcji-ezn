@@ -5,7 +5,7 @@
   background-color: rgba(13, 33, 73, .86);
   color: #c7c7c7;
   box-shadow: 0 3px 6px rgba(0,0,0,.36);
-
+  z-index: 50;
   .label-for-main-search {
     display: inline-block;
     width: 15%;
@@ -17,6 +17,7 @@
     position: relative;
     margin-bottom: 6vh;
     width: 100%;
+    text-align: center;
   }
 
   .search {
@@ -28,7 +29,7 @@
 
   button.search {
     padding: 14px;
-
+    width: 80%;
     background: rgba(255, 255, 255, .1);
     border: 1px solid #343434;
     border-radius: 2px;
@@ -40,8 +41,8 @@
 
   .main-search {
     padding: 4px 2px;
-    margin-bottom: 12vh;
-
+    margin: 0 auto 12vh;
+    width: 80%;
     background: transparent;
     border: none;
     border-bottom: 1px solid #c7c7c7;
@@ -52,7 +53,8 @@
   .search-filters {
     display: flex;
     flex-flow: column wrap;
-    padding: 0 15%;
+    // padding: 0 15%;
+    width: 100%;
 
     font-size: 1em;
   }

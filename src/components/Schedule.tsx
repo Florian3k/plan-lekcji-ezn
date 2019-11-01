@@ -75,16 +75,16 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
   )
 
   const lessonsAmount: number = classesAtSameTimeArr.reduce((p: any, c: any) => c.length + p, 0)
-
+  const EmptyLessonsArray: JSX.Element[][] = []
+  
   // fill LessonsArray with empty Lesson components
   for (let i = 0; i < overallLessonBlocksNumber - lessonsAmount; i++) {
-    LessonsArray.push([<Lesson lessonsAtSameTime={null} key={i + lessonsAmount} />])
+    EmptyLessonsArray.push([<Lesson lessonsAtSameTime={null} key={i + lessonsAmount} />])
   }
 
   if(isMobile) {
     // Mobile view
-    const LessonsArrayMobile = LessonsArray.slice(0, 5).map((column: any) => <div className="day-lessons-wrapper"> {column} </div>)
-
+    const LessonsArrayMobile = LessonsArray.map((column: any) => <div className="day-lessons-wrapper"> {column} </div>)
     return (
       <div className="mobile-main">
         <div className="xd">
@@ -95,7 +95,7 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
             <div className="day-mobile day-3" onClick={() => setchosenDay(3)}>CZW</div>
             <div className="day-mobile day-4" onClick={() => setchosenDay(4)}>PT</div>
           </div>
-          <SwipeableViews onChangeIndex={(index) => changeChosenDay(index)} index={chosenDay}>
+          <SwipeableViews className="swipeable-views" onChangeIndex={(index) => changeChosenDay(index)} index={chosenDay}>
             {
               LessonsArrayMobile
             }
@@ -112,7 +112,7 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
         <Hours periods={ScheduleProps.periods} />
         <DayNames />
         {
-          LessonsArray
+          [...LessonsArray, ...EmptyLessonsArray]
         }
       </div>
     )

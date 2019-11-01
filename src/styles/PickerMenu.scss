@@ -1,6 +1,6 @@
 .picker-menu {
   padding: 8px;
-  width: 280px;
+  width: 100%;
   display: flex;
   justify-content: center;
   position: absolute;
@@ -16,7 +16,10 @@
 
   max-height: 45vh;
   overflow-y: auto;
-
+  // MEDIUM
+  @media screen and (min-width: 900px) and (max-width: 1224px) {
+    width: 50%;
+  }
   // MOBILE
   @media screen and (max-width: 900px) {
     width: 100%;
