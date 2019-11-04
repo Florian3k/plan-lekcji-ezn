@@ -1,6 +1,6 @@
 .App, .App-medium, .App-mobile {
   width: 100vw;
-  overflow-x: hidden; 
+  /* overflow-x: hidden;  */
 }
 .App {
   min-height: 100vh;

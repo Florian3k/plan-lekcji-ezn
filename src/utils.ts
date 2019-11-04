@@ -5,7 +5,7 @@ const byId = (id: string) => R.propEq('id', id);
 
 const maybeGetProp = <T extends Object>(obj: T | undefined | null, prop: keyof T) => obj ? obj[prop] : null;
 
-interface PopulatedLesson {
+export interface PopulatedLesson {
   classrooms: Classroom[];
   lesson: Lesson;
   classes: Class[];

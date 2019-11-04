@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { Hours } from './Hours';
-import { DayNames } from './DayNames';
+import SwipeableViews from 'react-swipeable-views';
 import * as R from 'ramda';
 
-// import { ScheduleWireframe } from './ScheduleWireframe';
-import { Period, Lesson as LessonType } from '../types';
+import { DayNames } from './DayNames';
+import { Hours } from './Hours';
+import { Period } from '../types';
 import '../styles/Schedule.scss';
 import { Lesson } from './Lesson';
-import SwipeableViews from 'react-swipeable-views';
+import { PopulatedLesson } from '../utils';
 
 interface ScheduleProps {
   periods: Period[],
   selectedType: 'class' | 'classroom' | 'teacher',
-  clazz: {
-    [index: string]: LessonType[] | any[]
-  }
+  lessons: PopulatedLesson[],
 }
 
 export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {  
@@ -27,21 +25,32 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
   // Mobile feature, allow choose day by clicking at day name
   const changeChosenDay = (index: number) => setchosenDay(index)
 
-  if (!ScheduleProps.clazz) {
-    return <div>
-      Loading data...
-    </div>
-  }
+  const classesAtSameTimeArr = R.pipe(
+    R.groupBy((lesson: {days: string}) => lesson.days),
+    days => Object.values(days),
+    days => days.map((day: any[]) => R.groupBy((lesson: {period: string}) => lesson.period)(day)),
+    days => days.map(day => Object.values(day)),
+  )(ScheduleProps.lessons)
+
+
+  // const lessonsByDayObj = R.groupBy( (lesson: {days: string}) => lesson.days)(ScheduleProps.lessons)
+  // // console.log(lessonsByDayObj)
+  // const lessonsByDayArr = Object.entries(lessonsByDayObj)
+  //   .map(e => R.groupBy( (lesson:any) => lesson.period )(R.sort((a: any, b: any) => a.period - b.period)(e[1])) )
+  
+  // console.log(xdd)
+
 
   //[days][lessons][lessonsAtSameTime]
-  const classesAtSameTimeArr: any[][][] = Object.entries(ScheduleProps.clazz)
-    .sort(([a], [b]) => (b as any) - (a as any))
-    .map(([k, v]: any) => R.groupBy((x: any) => x.period, v))
-    .map(Object.values)
+  // const classesAtSameTimeArr: any[][][] = Object.entries(ScheduleProps.lessons)
+  //   .sort(([a], [b]) => (b as any) - (a as any))
+  //   .map(([k, v]: any) => R.groupBy((x: any) => x.period, v))
+  //   .map(Object.values)
 
   // Create array filled with Lesson components
-  const LessonsArray: JSX.Element[][] = classesAtSameTimeArr.map(day =>
-    day.map((lessonsAtSameTime: any, index) => {
+  const LessonsArray: JSX.Element[][] = classesAtSameTimeArr.map((day: any) => {
+    console.log(day)
+    return day.map((lessonsAtSameTime: any, index: number) => {
 
       // Check if between two lessons are free periods
       let FreePeriod: JSX.Element | null = null
@@ -71,7 +80,7 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
           />
         </>
       )
-    })
+    })}
   )
 
   const lessonsAmount: number = classesAtSameTimeArr.reduce((p: any, c: any) => c.length + p, 0)
