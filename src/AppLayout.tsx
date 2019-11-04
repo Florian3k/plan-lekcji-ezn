@@ -8,7 +8,7 @@ import { getClassTimetable, getTeacherTimetable, getClassroomTimetable } from '.
 import './styles/App.css';
 
 export const App: React.FC = () => {
-  const timetable = useTimetable()
+  const timetables = useTimetable()
   const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1224px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 900px)' })
 
@@ -20,9 +20,11 @@ export const App: React.FC = () => {
     setSelected(name)
   }
 
-  if (!timetable) {
+  if (!timetables) {
     return <div>Loading...</div>
   }
+
+  const [timetable] = timetables
 
   const cards = {
     class: getClassTimetable,
