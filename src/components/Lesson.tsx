@@ -3,16 +3,15 @@ import { useMediaQuery } from 'react-responsive';
 import '../styles/Lesson.scss';
 
 interface LessonProps {
-  lessonsAtSameTime: any,
+  lessonsAtSameTime?: any,
   selectedType?: 'class' | 'classroom' | 'teacher',
   period?: {
-    period: string,
+    name: string,
     endtime: string,
     starttime: string
   }
 }
 export const Lesson: React.FC<LessonProps> = (props) => {
-
   const isMobile = useMediaQuery({ query: '(max-width: 900px)' })  
   // Return empty lesson when no props
   if (!props.lessonsAtSameTime || !props.selectedType) {
@@ -21,7 +20,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
 
   
   const maxLenghtOfLesson = isMobile ? 20 : 15;
-  const period = props.lessonsAtSameTime[0].period;
+  const period = props.period!.name;
   const day = props.lessonsAtSameTime[0].days.split("").indexOf("1");
   
   const displayingHoursElement = (
@@ -34,15 +33,15 @@ export const Lesson: React.FC<LessonProps> = (props) => {
   const LessonBlock = props.lessonsAtSameTime.map( (lesson: any) => {
     
     // UpperLeft default -> subject
-    let upperLeft: any = lesson.subject.length > maxLenghtOfLesson ?
-      lesson.subject_short
-      : lesson.subject
+    let upperLeft: any = lesson.subject.name.length > maxLenghtOfLesson ?
+      lesson.subject.short
+      : lesson.subject.name
     
     // UpperRight default -> classroom
-    let upperRight: any = lesson.classroom? 'Sala ' + lesson.classroom : null
+    let upperRight: any = lesson.classrooms[0]? 'Sala ' + lesson.classrooms[0].name : null
     
     // BottomLeft default -> teacher
-    let bottomLeft: any = lesson.teacher;
+    let bottomLeft: any = lesson.teacher.name;
     
     // BottomRight default -> 'parzysty'/'nieparzysty' group
     let bottomRight: any = lesson.weeks === '10' ?
@@ -51,19 +50,19 @@ export const Lesson: React.FC<LessonProps> = (props) => {
       'Nieparzysty '
       : '';
 
-    bottomRight += lesson.group === 'Cała klasa' ?
+    bottomRight += lesson.groups[0].name === 'Cała klasa' ?
       ''
-      : lesson.group
+      : lesson.groups[0].name
 
     switch (props.selectedType) {
       case 'teacher':
-        bottomLeft = lesson.clazz ? lesson.clazz.name : null
-      
+        bottomLeft = lesson.classes[0] ? lesson.classes.map((classs: {name: string}) => classs.name).join(', ') : null
+
       break
       case 'class':
         break
       case 'classroom':
-        upperRight = lesson.clazz ? lesson.clazz[0].name : null
+        upperRight = lesson.classes[0] ? lesson.classes.map((classs: { name: string }) => classs.name).join(', ') : null
         break
       default:
         throw new Error('Wrong selectedtype in lesson')

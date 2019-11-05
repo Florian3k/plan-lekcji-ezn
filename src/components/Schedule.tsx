@@ -24,7 +24,7 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
   
   // Mobile feature, allow choose day by clicking at day name
   const changeChosenDay = (index: number) => setchosenDay(index)
-
+  
   const classesAtSameTimeArr = R.pipe(
     R.groupBy((lesson: {days: string}) => lesson.days),
     days => Object.values(days),
@@ -32,24 +32,8 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
     days => days.map(day => Object.values(day)),
   )(ScheduleProps.lessons)
 
-
-  // const lessonsByDayObj = R.groupBy( (lesson: {days: string}) => lesson.days)(ScheduleProps.lessons)
-  // // console.log(lessonsByDayObj)
-  // const lessonsByDayArr = Object.entries(lessonsByDayObj)
-  //   .map(e => R.groupBy( (lesson:any) => lesson.period )(R.sort((a: any, b: any) => a.period - b.period)(e[1])) )
-  
-  // console.log(xdd)
-
-
-  //[days][lessons][lessonsAtSameTime]
-  // const classesAtSameTimeArr: any[][][] = Object.entries(ScheduleProps.lessons)
-  //   .sort(([a], [b]) => (b as any) - (a as any))
-  //   .map(([k, v]: any) => R.groupBy((x: any) => x.period, v))
-  //   .map(Object.values)
-
   // Create array filled with Lesson components
   const LessonsArray: JSX.Element[][] = classesAtSameTimeArr.map((day: any) => {
-    console.log(day)
     return day.map((lessonsAtSameTime: any, index: number) => {
 
       // Check if between two lessons are free periods
