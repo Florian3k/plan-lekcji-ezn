@@ -1,4 +1,4 @@
-import { Timetable, TimetableMap, Classroom, Lesson, Class, Group, Teacher } from "./types";
+import { Timetable, TimetableMap, Classroom, Lesson, Class, Group, Teacher, Subject } from "./types";
 import * as R from 'ramda';
 
 const byId = (id: string) => R.propEq('id', id);
@@ -8,6 +8,7 @@ const maybeGetProp = <T extends Object>(obj: T | undefined | null, prop: keyof T
 interface PopulatedLesson {
   classrooms: Classroom[];
   lesson: Lesson;
+  subject: Subject,
   classes: Class[];
   groups: Group[];
   teacher: Teacher;
@@ -24,6 +25,7 @@ export function denormalizeData(timetable: TimetableMap): PopulatedLesson[] {
       ...card,
       classrooms: classroomids.split(',').map(classroomid => timetable.classrooms.get(classroomid)!),
       lesson,
+      subject: timetable.subjects.get(lesson.subjectid)!,
       classes: lesson.classids.split(',').map(lessonid => timetable.classes.get(lessonid)!),
       groups: lesson.groupids.split(',').map(groupid => timetable.groups.get(groupid)!),
       teacher: timetable.teachers.get(lesson.teacherids)!,
