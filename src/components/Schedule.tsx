@@ -25,11 +25,12 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
   // Mobile feature, allow choose day by clicking at day name
   const changeChosenDay = (index: number) => setchosenDay(index)
   
+
   const classesAtSameTimeArr = R.pipe(
-    R.groupBy((lesson: {days: string}) => lesson.days),
-    days => Object.values(days),
-    days => days.map((day: any[]) => R.groupBy((lesson: {period: string}) => lesson.period)(day)),
-    days => days.map(day => Object.values(day)),
+    R.groupBy<PopulatedLesson>(R.prop('days')),
+    R.values,
+    R.map(R.groupBy(R.prop('period'))),
+    R.map(R.values),
   )(ScheduleProps.lessons)
 
   // Create array filled with Lesson components
