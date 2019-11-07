@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { SettingsPanel } from './components/SettingsPanel';
 import { Schedule } from './components/Schedule';
-import { denormalizeData, PopulatedLesson } from './utils';
+import { denormalizeData, PopulatedLesson, maybeGetProp } from './utils';
 import './styles/App.css';
 import { Timetable, TimetableMap } from './types';
 
@@ -24,7 +24,7 @@ export const AppLayout: React.FC<Props> = ({ timetables, selectedType, selected,
       const fn: (l: PopulatedLesson) => boolean = {
         class: (l: PopulatedLesson) => l.classes.map(c => c.name).includes(selected),
         teacher: (l: PopulatedLesson) => l.teacher.name === selected,
-        classroom: (l: PopulatedLesson) => l.classrooms[0].name === selected,
+        classroom: (l: PopulatedLesson) => maybeGetProp(l.classrooms[0], 'name') === selected,
       }[selectedType]
       return fn
     },

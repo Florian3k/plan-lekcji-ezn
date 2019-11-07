@@ -3,7 +3,7 @@ import * as R from 'ramda';
 
 const byId = (id: string) => R.propEq('id', id);
 
-const maybeGetProp = <T extends Object>(obj: T | undefined | null, prop: keyof T) => obj ? obj[prop] : null;
+export const maybeGetProp = <T extends Object>(obj: T | undefined | null, prop: keyof T) => obj ? obj[prop] : null;
 
 export interface PopulatedLesson {
   classrooms: Classroom[];
