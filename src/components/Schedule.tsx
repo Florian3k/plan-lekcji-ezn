@@ -8,6 +8,7 @@ import { Hours } from './Hours';
 import { Period } from '../types';
 import '../styles/Schedule.scss';
 import { Lesson } from './Lesson';
+import { EmptyLesson } from './EmptyLesson';
 import { PopulatedLesson } from '../utils';
 
 interface ScheduleProps {
@@ -70,10 +71,10 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
 
   const lessonsAmount: number = classesAtSameTimeArr.reduce((p: any, c: any) => c.length + p, 0)
   const EmptyLessonsArray: JSX.Element[][] = []
-  
+
   // fill LessonsArray with empty Lesson components
   for (let i = 0; i < overallLessonBlocksNumber - lessonsAmount; i++) {
-    EmptyLessonsArray.push([<Lesson lessonsAtSameTime={null} key={i + lessonsAmount} />])
+    EmptyLessonsArray.push([<EmptyLesson />])
   }
 
   if(isMobile) {

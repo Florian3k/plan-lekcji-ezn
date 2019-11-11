@@ -13,12 +13,7 @@ interface LessonProps {
 }
 export const Lesson: React.FC<LessonProps> = (props) => {
   const isMobile = useMediaQuery({ query: '(max-width: 900px)' })  
-  // Return empty lesson when no props
-  if (!props.lessonsAtSameTime || !props.selectedType) {
-    return <div className="lesson-block"></div>
-  }
 
-  
   const maxLenghtOfLesson = isMobile ? 20 : 15;
   const period = props.period!.name;
   const day = props.lessonsAtSameTime[0].days.split("").indexOf("1");
