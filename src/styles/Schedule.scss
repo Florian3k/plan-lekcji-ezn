@@ -2,26 +2,34 @@
   display: grid;
   // c covering-area, d day-names, h hours, . lessons
   grid-template-areas: 
-  "c d d d d d"
-  "h . . . . ."
-  "h . . . . ."
-  "h . . . . ."
-  "h . . . . ."
-  "h . . . . ."
-  "h . . . . ."
-  "h . . . . ."
-  "h . . . . ."
-  "h . . . . ."
-  "h . . . . ."
-  "h . . . . ."
-  "h . . . . .";
+  "c d d d d d f"
+  "h . . . . . f"
+  "h . . . . . f"
+  "h . . . . . f"
+  "h . . . . . f"
+  "h . . . . . f"
+  "h . . . . . f"
+  "h . . . . . f"
+  "h . . . . . f"
+  "h . . . . . f"
+  "h . . . . . f"
+  "h . . . . . f"
+  "h . . . . . f";
 
   grid-auto-flow: column;
-  grid-auto-columns: 120px 1fr 1fr 1fr 1fr 1fr;
+  grid-auto-columns: 120px 1fr 1fr 1fr 1fr 1fr 0.12fr;
   grid-template-rows: 4em;
-  @media screen and (min-width: 1224px) {
-  }
 }
+
+.right-panel-filler {
+  grid-area: f;
+  background: #fff;
+  z-index: 100;
+  
+  //translate to hide right border of friday lessons 
+  transform: translateX(-1px);
+}
+
 .mobile-main {
   background-color: #ccc;
   width: 100%;

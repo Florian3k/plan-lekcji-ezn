@@ -109,6 +109,7 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
         {
           [...LessonsArray, ...EmptyLessonsArray]
         }
+        <div className="right-panel-filler"></div>
       </div>
     )
   }
