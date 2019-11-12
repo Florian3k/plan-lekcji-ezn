@@ -67,7 +67,7 @@ export const SettingsPanel: React.FC <SettingsProps> = SettingsProps => {
           />
         )
         : null}
-      <label className="label-for-main-search" htmlFor="searchingObject">plan</label>
+      <div className="version-info">Beta - w trakcie dopracowywania</div>
       <div className="search-filters">
         <h1 className="main-search">
           { SettingsProps.targetSchedule }

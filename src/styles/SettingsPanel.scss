@@ -7,13 +7,7 @@
   color: #c7c7c7;
   box-shadow: 0 3px 6px rgba(0,0,0,.36);
   z-index: 50;
-  .label-for-main-search {
-    display: inline-block;
-    width: 15%;
-    margin: 4px 0;
 
-    text-align: right;
-  }
   .btn-wrapper {
     position: relative;
     margin-bottom: 6vh;
@@ -55,7 +49,6 @@
 
     font-size: 1em;
   }
-
   @media (max-width: 1280px) {
     .search:not(.main-search) {
       font-size: 0.9rem;
@@ -70,7 +63,13 @@
     }
   }
 }
-
+  .version-info {
+    color: rgba(#fff, .35);
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-align: left;
+    margin: 2px;
+  }
 // Max width: 1224px;
 .settings-panel-medium {
   position: relative;
@@ -78,9 +77,6 @@
   text-align: center;
   background-color: rgba(13, 33, 73, .86);
   color: #c7c7c7;
-  .label-for-main-search {
-    display: none;
-  }
   .search-filters {
     display: flex;
     flex-flow: row wrap;
