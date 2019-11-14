@@ -32,7 +32,7 @@
   }
 
   .main-search {
-    padding: 4px 2px;
+    padding: 2rem 4px 1rem 4px;
     margin: 0 auto 12vh;
     width: 80%;
     background: transparent;
@@ -65,15 +65,17 @@
   }
 }
   .version-info {
-    color: rgba(red, .85);
+    color: rgba(red, .90);
     font-size: 0.75rem;
-    font-weight: bold;
+    font-weight: medium;
     text-align: center;
     margin: 2px;
+    @media (min-width: 900px) {
+      font-size: 0.9rem;      
+    }
     @media (min-width: 1224px) {
       position: fixed;
       width: 280px;
-      font-size: 0.85rem;
       padding: 1rem;
       margin: 0;
       top: 100vh;

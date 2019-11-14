@@ -15,7 +15,7 @@
     @for $r from 0 through 13 {
       @for $c from 0 through 4 {
         &.lesson-block-#{ $r }-#{ $c } {
-          grid-column: #{ $c + 2 } /span 1;
+          grid-column: #{ $c + 3 } /span 1;
           grid-row: #{ $r + 2 } /span 1;
         }
       }

@@ -2,27 +2,32 @@
   display: grid;
   // c covering-area, d day-names, h hours, . lessons
   grid-template-areas: 
-  "c d d d d d f"
-  "h . . . . . f"
-  "h . . . . . f"
-  "h . . . . . f"
-  "h . . . . . f"
-  "h . . . . . f"
-  "h . . . . . f"
-  "h . . . . . f"
-  "h . . . . . f"
-  "h . . . . . f"
-  "h . . . . . f"
-  "h . . . . . f"
-  "h . . . . . f";
+  "l c d d d d d r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r";
 
   grid-auto-flow: column;
-  grid-auto-columns: 120px 1fr 1fr 1fr 1fr 1fr 0.15fr;
+  grid-auto-columns: 0.1fr 120px 1fr 1fr 1fr 1fr 1fr 0.3fr;
   grid-template-rows: 4em;
 }
 
+.left-panel-filler {
+  grid-area: l;
+}
 .right-panel-filler {
-  grid-area: f;
+  grid-area: r;
+}
+.panel-filler {
   background: #fff;
   z-index: 100;
   

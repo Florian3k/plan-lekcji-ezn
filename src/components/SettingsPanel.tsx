@@ -97,7 +97,7 @@ export const SettingsPanel: React.FC <SettingsProps> = SettingsProps => {
           )
         }
       </div>
-      <div className="version-info">Wersja beta - błędy prosimy zgłaszać panu Gaborowi przez librusa</div>
+      <div className="version-info">Wersja beta - ewentualne uwagi prosimy wysyłać do Michała Gabora za pomocą dziennika Librus Synergia</div>
     </div>
   )
 }

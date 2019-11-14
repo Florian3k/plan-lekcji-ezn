@@ -103,13 +103,14 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
     // Desktop view
     return (
       <div className="main">
+        <div className="left-panel-filler panel-filler"></div>        
         <div className="covering-area"></div>
         <Hours periods={ScheduleProps.periods} />
         <DayNames />
         {
           [...LessonsArray, ...EmptyLessonsArray]
         }
-        <div className="right-panel-filler"></div>
+        <div className="right-panel-filler panel-filler"></div>
       </div>
     )
   }
