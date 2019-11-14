@@ -1,52 +1,53 @@
-import React, { useState } from 'react';
-import * as R from 'ramda';
+import React, { useMemo } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { SettingsPanel } from './components/SettingsPanel';
 import { Schedule } from './components/Schedule';
-import { useTimetable } from './hooks/useTimetable';
-import { getClassTimetable, getTeacherTimetable, getClassroomTimetable } from './utils';
+import { denormalizeData, PopulatedLesson, maybeGetProp } from './utils';
 import './styles/App.css';
+import { Timetable, TimetableMap } from './types';
 
-export const App: React.FC = () => {
-  const timetable = useTimetable()
+interface Props {
+  timetables: [Timetable, TimetableMap],
+  selectedType: 'class' | 'teacher' | 'classroom',
+  selected: string,
+  changeSelectedTimetable: (name: string, type: 'class' | 'teacher' | 'classroom') => void,
+}
+
+export const AppLayout: React.FC<Props> = ({ timetables, selectedType, selected, changeSelectedTimetable }) => {
   const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1224px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 900px)' })
 
-  const [selectedType, setSelectedType] = useState<'class' | 'teacher' | 'classroom'>('teacher')
-  const [selected, setSelected] = useState('Gabor Michał')
+  const [timetable, timetableMap] = timetables
 
-  const changeClass = (name: string, type: typeof selectedType) => {
-    setSelectedType(type)
-    setSelected(name)
-  }
+  const filterFn = useMemo(
+    () => {
+      const fn: (l: PopulatedLesson) => boolean = {
+        class: (l: PopulatedLesson) => l.classes.map(c => c.name).includes(selected),
+        teacher: (l: PopulatedLesson) => l.teacher.name === selected,
+        classroom: (l: PopulatedLesson) => maybeGetProp(l.classrooms[0], 'name') === selected,
+      }[selectedType]
+      return fn
+    },
+    [selectedType, selected],
+  )
 
-  if (!timetable) {
-    return <div>Loading...</div>
-  }
+  const lessons = useMemo(
+    () => denormalizeData(timetableMap).filter(filterFn),
+    [timetableMap, filterFn]
+  )
 
-  const cards = {
-    class: getClassTimetable,
-    teacher: getTeacherTimetable,
-    classroom: getClassroomTimetable,
-  }[selectedType](timetable, selected)
-
-  if (!cards) {
-    return <div>
-      "Error - not data found"
-    </div>
-  }
   return (
-    <div className={isDesktopOrLaptop ? 'App': isMobile ? 'App-mobile' : 'App-medium'}>
-      <SettingsPanel 
+    <div className={isDesktopOrLaptop ? 'App' : isMobile ? 'App-mobile' : 'App-medium'}>
+      <SettingsPanel
         targetSchedule={selected}
-        classroom = {timetable.classrooms}
-        class = {timetable.classes}
-        teacher = {timetable.teachers}
-        changeClass={changeClass}/>
+        classroom={timetable.classrooms}
+        class={timetable.classes}
+        teacher={timetable.teachers}
+        changeClass={changeSelectedTimetable} />
       <Schedule
         selectedType={selectedType}
         periods={timetable.periods}
-        clazz={R.groupBy((l) => l.days, cards)}
+        lessons={lessons}
       />
     </div>
   )

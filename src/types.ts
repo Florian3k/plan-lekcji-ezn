@@ -121,3 +121,9 @@ export interface Timetable {
   lessons: Lesson[];
   cards: Card[];
 }
+
+type MapIds<T> = {
+  [P in keyof T]: T[P] extends { id: string }[] ? Map<string, T[P][number]> : T[P];
+}
+
+export type TimetableMap = MapIds<Timetable>

@@ -1,23 +1,101 @@
 .main {
   display: grid;
-  grid-template-columns: var(--hours-width) auto;
-  grid-template-rows: 4em auto;
+  // c covering-area, d day-names, h hours, . lessons
   grid-template-areas: 
-  "coveringArea dayNames"
-  "hours scheduleWireframe";
+  "l c d d d d d r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r"
+  "l h . . . . . r";
+
+  grid-auto-flow: column;
+  grid-auto-columns: 0.1fr 120px 1fr 1fr 1fr 1fr 1fr 0.3fr;
+  grid-template-rows: 4em;
 }
-.covering-area {
-  background-color: white;
-  grid-area: coveringArea;
-  z-index: 30;
+
+.left-panel-filler {
+  grid-area: l;
 }
-@media (min-width: 900px) {
-  .main {
-    margin-right: 14px;
-  }
+.right-panel-filler {
+  grid-area: r;
 }
+.panel-filler {
+  background: #fff;
+  z-index: 100;
+  
+  //translate to hide right border of friday lessons 
+  transform: translateX(-1px);
+}
+
 .mobile-main {
   background-color: #ccc;
   width: 100%;
   height: calc(100vh - var(--menu-height));
+
+  .day-lessons-wrapper {
+    margin: 0 2px;
+  }
+}
+
+// from schedule wireframe
+
+
+@for $i from 0 through 4 {
+  .target-#{$i} {
+    .day-#{$i} {
+      background: rgba(255, 255, 255, .18);
+      color: #009ACD;
+      transition: background-color 1.2s;
+    }
+  }
+}
+
+.days-mobile {
+  transform: translateY(-1px); //get rid of annynoing gap between this and settings panel
+  display: flex;
+  justify-content: space-around;
+  width: 100vw;
+  background: #343434;
+  color: #E9E9E9;
+
+  .day-mobile {
+    display: inline-block;
+    width: 10vw;
+    height: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    margin: 4px;
+    font-size: 12px;
+    line-height: 12px;
+  }
+}
+
+.xd {
+  background: #EFF0F0;
+  height: 100%;
+}
+
+@media screen and (min-width: 900px) {
+  .free-period {
+    display: none;
+  }
+}
+.lessons-table {
+  grid-area: l;
+}
+.covering-area {
+  grid-area: c;
+  width: 100%;
+  z-index: 30;
+  background-color: white;
 }

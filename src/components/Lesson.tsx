@@ -1,127 +1,93 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import '../styles/Lesson.scss';
-import { Class } from '../types';
 
 interface LessonProps {
-  lesson: any,
+  lessonsAtSameTime?: any,
   selectedType?: 'class' | 'classroom' | 'teacher',
   period?: {
-    period: string,
+    name: string,
     endtime: string,
     starttime: string
   }
 }
 export const Lesson: React.FC<LessonProps> = (props) => {
-  const updateRowHeight = (row: number, n: number) => {
-    document.documentElement.style.setProperty(`--row-${row}-height`, `${(n-1)*3 + 4.5}em`);
-  }
+  const isMobile = useMediaQuery({ query: '(max-width: 900px)' })  
 
-  const isMobile = useMediaQuery({
-    query: '(max-width: 900px)'
-  })
-  const displayingHoursElement = (isDisplayed: boolean) => {
-    if (isDisplayed) {
-      return (
-        <div className="hours">
-          <div className="hour-start">{props.period!.starttime}</div>
-          <div className="hour-end">{props.period!.endtime}</div>          
-        </div>
-    )}
-    return null
-  }
+  const maxLenghtOfLesson = isMobile ? 20 : 15;
+  const period = props.period!.name;
+  const day = props.lessonsAtSameTime[0].days.split("").indexOf("1");
   
-  if(props.lesson && props.selectedType) {
-    const maxLenghtOfLesson = isMobile ? 20 : 15;
-    const period = props.lesson[0].period;
-    const day = props.lesson[0].days.split("").indexOf("1");
+  const displayingHoursElement = (
+    <div className="hours">
+      <div className="hour-start">{props.period!.starttime}</div>
+      <div className="hour-end">{props.period!.endtime}</div>
+    </div>
+  )
 
-    if(props.lesson.length > 1) {
-      // At this period of time last 2 or more lessons
-      updateRowHeight(props.lesson[0].period, props.lesson.length)
-      const content = props.lesson.map((partLesson: any, i: number) => {
-        const week = partLesson.weeks === '10' ?
-          'Parzysty'
-          : partLesson.weeks === '01' ?
-            'Nieparzysty' : '';
+  const LessonBlock = props.lessonsAtSameTime.map( (lesson: any) => {
+    
+    // UpperLeft default -> subject
+    let upperLeft: any = lesson.subject.name.length > maxLenghtOfLesson ?
+      lesson.subject.short
+      : lesson.subject.name
+    
+    // UpperRight default -> classroom
+    let upperRight: any = lesson.classrooms[0]? 'Sala ' + lesson.classrooms[0].name : null
+    
+    // BottomLeft default -> teacher
+    let bottomLeft: any = lesson.teacher.name;
+    
+    // BottomRight default -> 'parzysty'/'nieparzysty' group
+    let bottomRight: any = lesson.weeks === '10' ?
+    'Parzysty '
+    : lesson.weeks === '01' ?
+      'Nieparzysty '
+      : '';
 
-        const lessonWith = props.selectedType === 'teacher' ?
-          partLesson.clazz ?
-            partLesson.clazz.name
-            : ''
-          : partLesson.teacher;
-        return (
-        <div className={`lesson-divided-part`}>
-          <div className="upper-side">
-            <h3>
-              {
-                partLesson.subject.length > maxLenghtOfLesson ?
-                  partLesson.subject_short
-                  : partLesson.subject
-              }
-            </h3>
-            {
-              props.selectedType === 'classroom' ?
-                props.lesson.clazz.map((x: Class) => x.name).join(' / ')
-                  : partLesson.classroom ?
-                  <div className="room">Sala {partLesson.classroom}</div>
-                  : null
-            }
-          </div>
-          <div className="bottom-side">
-            <div className='teacher'>{lessonWith}</div>
-            {
-                partLesson.group && partLesson.group !== 'Cała klasa' ? (<div className="group"> {week+ ' ' + partLesson.group} </div>): null}
-          </div>
-        </div>
-      )})
-      return (
-        <div className={`lesson${isMobile ? "-mobile" : ""} part-${props.lesson.length}-of-lesson lesson-${period}-${day}`}>
-          {displayingHoursElement(isMobile)}
-          { content }
-        </div>
-      )
+    bottomRight += lesson.groups[0].name === 'Cała klasa' ?
+      ''
+      : lesson.groups[0].name
+
+    switch (props.selectedType) {
+      case 'teacher':
+        bottomLeft = lesson.classes[0] ? lesson.classes.map((classs: {name: string}) => classs.name).join(', ') : null
+
+      break
+      case 'class':
+        break
+      case 'classroom':
+        upperRight = lesson.classes[0] ? lesson.classes.map((classs: { name: string }) => classs.name).join(', ') : null
+        break
+      default:
+        throw new Error('Wrong selectedtype in lesson')
     }
-    else {
-      // At this period of time lasts 1 lesson
-      const lessonWith = props.selectedType === 'teacher' ? 
-        props.lesson[0].clazz?
-          props.lesson[0].clazz.name
-          : ''
-        : props.lesson[0].teacher;
-      return (
-        <div className={`lesson${isMobile? "-mobile" : ""} lesson-${period}-${day}`}>
-            {displayingHoursElement(isMobile)}          
-            <div className="upper-side">
-              <h3>
-                {
-                  props.lesson[0].subject.length > maxLenghtOfLesson ?
-                    props.lesson[0].subject_short
-                    : props.lesson[0].subject
-                }
-              </h3>
-              { props.selectedType === 'classroom' ? 
-                <div className="room"> {props.lesson[0].clazz.map((x: Class) => x.name).join(' / ')} </div>
-                : props.lesson[0].classroom ?
-                  <div className="room">Sala {props.lesson[0].classroom}</div>
-                  : null
-              }
-            </div>
-            <div className="bottom-side">
-              <div className='teacher'> {lessonWith} </div>
-              {props.lesson[0].group && props.lesson[0].group !== 'Cała klasa' ? (<div className="group"> {props.lesson[0].group} </div>) : null}
-            </div>
-        </div> 
-      )
-    }
-  }
-  else {
-    // This is border filler
+
     return (
       <div className="lesson">
-        
+        <div className="lesson__upper-panel">
+          <div className="lesson__upper-panel-left lesson__info-field">
+            { upperLeft }
+          </div>
+          <div className="lesson__upper-panel-right lesson__info-field">
+            { upperRight }
+          </div>
+        </div>
+        <div className="lesson__bottom-panel lesson__info-field">
+          <div className="lesson__bottom-panel-left lesson__info-field">
+            { bottomLeft }
+          </div>
+          <div className="lesson__bottom-panel-right lesson__info-field">
+            { bottomRight }
+          </div>
+        </div>
       </div>
     )
-  }
-}
+  })
 
+
+  return <div className={`lesson-block lesson-block-${period}-${day}`}>
+    { isMobile? displayingHoursElement : null}
+    { LessonBlock }
+  </div> 
+}

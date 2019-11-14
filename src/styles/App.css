@@ -1,12 +1,12 @@
 .App, .App-medium, .App-mobile {
   width: 100vw;
-  overflow-x: hidden; 
+  /* overflow-x: hidden;  */
 }
 .App {
   min-height: 100vh;
   
   display: grid;
-  grid-template-columns: 324px auto;
+  grid-template-columns: 280px auto;
 }
 .App-medium {
   width: 100vw;
@@ -16,7 +16,9 @@
 }
 .App-mobile {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  background-color: #EFF0F0;
+  /* height: 100vh; */
   display: flex;
   flex-flow: column nowrap;
 
