@@ -7,6 +7,7 @@
   color: #c7c7c7;
   box-shadow: 0 3px 6px rgba(0,0,0,.36);
   z-index: 50;
+  position: relative;
 
   .btn-wrapper {
     position: relative;
@@ -64,11 +65,21 @@
   }
 }
   .version-info {
-    color: rgba(#fff, .35);
+    color: rgba(red, .85);
     font-size: 0.75rem;
     font-weight: bold;
-    text-align: left;
+    text-align: center;
     margin: 2px;
+    @media (min-width: 1224px) {
+      position: fixed;
+      width: 280px;
+      font-size: 0.85rem;
+      padding: 1rem;
+      margin: 0;
+      top: 100vh;
+      background: rgba(0,0,0, .3);
+      transform: translateY(-100%);
+    }
   }
 // Max width: 1224px;
 .settings-panel-medium {

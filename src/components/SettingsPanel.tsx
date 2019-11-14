@@ -67,7 +67,6 @@ export const SettingsPanel: React.FC <SettingsProps> = SettingsProps => {
           />
         )
         : null}
-      <div className="version-info">Beta - w trakcie dopracowywania</div>
       <div className="search-filters">
         <h1 className="main-search">
           { SettingsProps.targetSchedule }
@@ -98,6 +97,7 @@ export const SettingsPanel: React.FC <SettingsProps> = SettingsProps => {
           )
         }
       </div>
+      <div className="version-info">Wersja beta - błędy prosimy zgłaszać panu Gaborowi przez librusa</div>
     </div>
   )
 }
