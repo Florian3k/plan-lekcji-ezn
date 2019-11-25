@@ -1,0 +1,31 @@
+.version-info {
+  color: rgba(red, .90);
+  font-size: 0.75rem;
+  font-weight: medium;
+  text-align: center;
+  margin: 2px;
+
+  @media (min-width: 900px) {
+    font-size: 0.9rem;
+  }
+
+  @media (min-width: 1224px) {
+    position: fixed;
+    width: 280px;
+    padding: 1rem;
+    margin: 0;
+    top: 100vh;
+    background: rgba(0, 0, 0, .3);
+    transform: translateY(-100%);
+  }
+}
+
+.outer-invisible-layer {
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  width: 100vw;
+  height: 100vh;
+  z-index: 200;
+}

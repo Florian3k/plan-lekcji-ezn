@@ -17,6 +17,7 @@ interface SettingsProps {
 export const SettingsPanel: React.FC <SettingsProps> = SettingsProps => {
   const isDesktopOrLaptop = useMediaQuery({ query: '(min-width: 1224px)' })
   const isMobile = useMediaQuery({ query: '(max-width: 900px)' })
+
   // States: displaying menu for windows and mobile
   const [visibleMenu, setVisibleMenu] = useState<'class' | 'teacher' | 'classroom' | ''>('')
   
@@ -50,9 +51,11 @@ export const SettingsPanel: React.FC <SettingsProps> = SettingsProps => {
     ></div>
   )
 
+  const settingsPanelClassname = isDesktopOrLaptop ? 'settings-panel'
+    : isMobile ? 'settings-panel-mobile' : 'settings-panel-medium'
 
   return (
-    <div className={`${isDesktopOrLaptop ? "settings-panel" : "settings-panel-medium"}`}>
+    <div className={ settingsPanelClassname }>
       { visibleMenu && !isMobile? OuterInvisibleLayer : null }
       {isMobile && visibleMenu ?
         (
@@ -68,7 +71,7 @@ export const SettingsPanel: React.FC <SettingsProps> = SettingsProps => {
         )
         : null}
       <div className="search-filters">
-        <h1 className="main-search">
+        <h1 className="target-schedule">
           { SettingsProps.targetSchedule }
         </h1>
         {
