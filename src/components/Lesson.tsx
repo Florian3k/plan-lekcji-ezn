@@ -18,10 +18,15 @@ export const Lesson: React.FC<LessonProps> = (props) => {
   const period = props.period!.name;
   const day = props.lessonsAtSameTime[0].days.split("").indexOf("1");
   
-  const displayingHoursElement = (
-    <div className="hours">
-      <div className="hour-start">{props.period!.starttime}</div>
-      <div className="hour-end">{props.period!.endtime}</div>
+  const MobileHours = (
+    <div className="hours-block">
+      <div className="lesson-number">
+        {props.period!.name}
+      </div>
+      <div className="hours">
+        <div className="hour-start">{props.period!.starttime}</div>
+        <div className="hour-end">{props.period!.endtime}</div>
+      </div>
     </div>
   )
 
@@ -87,7 +92,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
 
 
   return <div className={`lesson-block lesson-block-${period}-${day}`}>
-    { isMobile? displayingHoursElement : null}
+    { isMobile? MobileHours : null}
     { LessonBlock }
   </div> 
 }
