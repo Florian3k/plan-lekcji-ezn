@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { PickerMenu } from './PickerMenu';
 import '../styles/SettingsPanel.scss';
-import { MobileMenu } from './MobileMenu';
+import { MenuMobile } from './MenuMobile';
 
 interface SettingsProps {
   'teacher': any[],
@@ -56,7 +56,7 @@ export const SettingsPanel: React.FC <SettingsProps> = SettingsProps => {
       { visibleMenu && !isMobile? OuterInvisibleLayer : null }
       {isMobile && visibleMenu ?
         (
-          <MobileMenu 
+          <MenuMobile 
             visibleMenu={visibleMenu}
             teacher={SettingsProps.teacher}
             class={SettingsProps.class}
