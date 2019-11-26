@@ -30,14 +30,12 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
   const classesAtSameTimeArr = R.pipe(
     R.sort<PopulatedLesson>((a, b) => a.days.indexOf('1') - b.days.indexOf('1')),
     R.groupBy<PopulatedLesson>(R.prop('days')),
-    // R.sort<PopulatedLesson[]>((a, b) => a[0].days.indexOf('1') - b[0].days.indexOf('1')),
-    // R.sort(R.keys())
     R.values,
     R.map(R.groupBy(R.prop('period'))),
     R.map(R.values),
     )(ScheduleProps.lessons)
-  console.log(classesAtSameTimeArr)
-  // Create array filled with Lesson components
+  
+    // Create array filled with Lesson components
   const LessonsArray: JSX.Element[][] = classesAtSameTimeArr.map((day: any) => {
     return day.map((lessonsAtSameTime: any, index: number) => {
 
