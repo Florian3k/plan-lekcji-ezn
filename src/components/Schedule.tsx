@@ -33,9 +33,9 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
     R.values,
     R.map(R.groupBy(R.prop('period'))),
     R.map(R.values),
-    )(ScheduleProps.lessons)
-  
-    // Create array filled with Lesson components
+  )(ScheduleProps.lessons)
+
+  // Create array filled with Lesson components
   const LessonsArray: JSX.Element[][] = classesAtSameTimeArr.map((day: any) => {
     return day.map((lessonsAtSameTime: any, index: number) => {
 
