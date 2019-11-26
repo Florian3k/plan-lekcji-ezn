@@ -4,13 +4,17 @@
   text-align: center;
   background-color: rgba(13, 33, 73, .86);
   color: #c7c7c7;
-
+  display: flex;
+  flex-flow: column nowrap;
+  
   .search-filters {
     display: flex;
-    padding: 0.8em 0 0 0;
-    // height: 100%;
+    flex-grow: 3;
+    // padding: 0.8em 0;
   }
-
+  .version-info {
+    flex-grow: 2;
+  }
   .search {
     margin: 0;
     font-size: 0.75em;
@@ -50,5 +54,6 @@
     position: relative !important;
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 }
