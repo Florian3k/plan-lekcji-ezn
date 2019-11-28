@@ -28,6 +28,7 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
   
 
   const classesAtSameTimeArr = R.pipe(
+    R.sort<PopulatedLesson>((a, b) => a.days.indexOf('1') - b.days.indexOf('1')),
     R.groupBy<PopulatedLesson>(R.prop('days')),
     R.values,
     R.map(R.groupBy(R.prop('period'))),

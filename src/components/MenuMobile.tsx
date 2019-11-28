@@ -14,7 +14,7 @@ interface MobileMenuProps {
   targetSchedule: string
 }
 
-export const MobileMenu: React.FC<MobileMenuProps> = MobileMenuProps => {
+export const MenuMobile: React.FC<MobileMenuProps> = MobileMenuProps => {
   return (
     <div className="mobile-menu-wrapper">
       <div className="close">

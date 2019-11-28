@@ -1,0 +1,54 @@
+.settings-panel-mobile {
+  position: relative;
+  width: 100vw;
+  text-align: center;
+  background-color: rgba(13, 33, 73, .86);
+  color: #c7c7c7;
+
+  .search-filters {
+    display: flex;
+    padding: 0.8em 0;
+    height: 100%;
+  }
+
+  .search {
+    margin: 0;
+    font-size: 0.75em;
+  }
+
+  .btn-wrapper {
+    position: absolute !important;
+    right: 0;
+    top: calc(100% / 2);
+    transform: translateY(-50%);
+    width: 15vw;
+
+    button {
+      padding: 0 !important;
+      border: none;
+      width: 100% !important;
+      background: transparent !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        width: 50%;
+        height: auto;
+      }
+    }
+  }
+
+  .target-schedule {
+    margin: 0 15vw !important;
+    font-size: 1.5em !important;
+    max-height: 100%;
+    font-size: 20px !important;
+  }
+
+  .search-filters {
+    position: relative !important;
+    display: flex;
+    justify-content: center;
+  }
+}

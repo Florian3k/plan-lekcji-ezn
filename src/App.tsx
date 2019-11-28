@@ -1,7 +1,5 @@
-import React, { useState, useMemo, useCallback } from 'react';
-import { useMediaQuery } from 'react-responsive';
+import React, { useState } from 'react';
 import { useTimetable } from './hooks/useTimetable';
-import './styles/App.css';
 import { AppLayout } from './AppLayout';
 
 export const App: React.FC = () => {

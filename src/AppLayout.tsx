@@ -3,11 +3,11 @@ import { useMediaQuery } from 'react-responsive';
 import { SettingsPanel } from './components/SettingsPanel';
 import { Schedule } from './components/Schedule';
 import { denormalizeData, PopulatedLesson, maybeGetProp } from './utils';
-import './styles/App.css';
 import { Timetable, TimetableMap } from './types';
+import './styles/App.scss';
 
 interface Props {
-  timetables: [Timetable, TimetableMap],
+  timetables: [ Timetable, TimetableMap ],
   selectedType: 'class' | 'teacher' | 'classroom',
   selected: string,
   changeSelectedTimetable: (name: string, type: 'class' | 'teacher' | 'classroom') => void,

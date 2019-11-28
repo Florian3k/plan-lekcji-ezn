@@ -1,0 +1,60 @@
+.settings-panel {
+  background-color: rgba(13, 33, 73, .86);
+  color: #c7c7c7;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, .36);
+  z-index: 50;
+  position: relative;
+
+  .btn-wrapper {
+    position: relative;
+    margin-bottom: 6vh;
+    width: 100%;
+    text-align: center;
+  }
+
+  button.search {
+    color: #c7c7c7;
+    font-weight: bold;
+
+    padding: 1.15rem 0;
+    width: 80%;
+    background: rgba(#0E1116, .35);
+    border: 1px solid rgba(#1B2021, .3);
+    border-radius: 2px;
+    text-align: center;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+  }
+
+  .target-schedule {
+    padding: 2rem 4px 1rem 4px;
+    margin: 0 auto 12vh;
+    width: 80%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #c7c7c7;
+    text-align: center;
+    font-size: 1.5em;
+  }
+
+  .search-filters {
+    display: flex;
+    flex-flow: column wrap;
+    // padding: 0 15%;
+    width: 100%;
+
+    font-size: 1em;
+  }
+
+  @media (min-width: 1700px) {
+    .search:not(.target-schedule) {
+      font-size: 1.15rem;
+      padding: 16px;
+    }
+  }
+}
+
+.mobile-search {
+  font-size: 1em !important;
+}

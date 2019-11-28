@@ -79,7 +79,7 @@
 }
 
 // MOBILE
-$grey-space-width: 15vw;
+$grey-space-width: 18vw;
 @media screen and (max-width: 900px) {
   .free-period {
     width: 100%;
@@ -146,7 +146,8 @@ $grey-space-width: 15vw;
       }
     }
 
-    .hours {
+    .hours-block {
+      padding: 0 0.25rem;
       position: absolute;
       left: 0;
       top: 0;
@@ -155,18 +156,23 @@ $grey-space-width: 15vw;
 
       z-index: 100;
 
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: space-around;
-      align-items: center;
+      
+      display: grid;
+      grid-template-columns: 1.75rem auto;
+      .lesson-number {
+        font-size: 1.25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .hours {
+        font-size: 10px;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-around;
+        align-items: center;
+      }
 
-      font-size: 10px;
-      // .hour-start {
-
-      // }
-      // .hour-end {
-
-      // }
     }
 
   // grey rectangle at beginning of the lesson
