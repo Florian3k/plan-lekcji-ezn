@@ -23,7 +23,7 @@ export const AppLayout: React.FC<Props> = ({ timetables, selectedType, selected,
     () => {
       const fn: (l: PopulatedLesson) => boolean = {
         class: (l: PopulatedLesson) => l.classes.map(c => c.name).includes(selected),
-        teacher: (l: PopulatedLesson) => l.teacher.name === selected,
+        teacher: (l: PopulatedLesson) => l.teacher && l.teacher.name === selected,
         classroom: (l: PopulatedLesson) => maybeGetProp(l.classrooms[0], 'name') === selected,
       }[selectedType]
       return fn

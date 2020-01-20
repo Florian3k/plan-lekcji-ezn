@@ -19,7 +19,9 @@
   min-height: 100vh;
   background-color: #EFF0F0;
   
-  display: flex;
-  flex-flow: column nowrap;
-
+  // display: flex;
+  // flex-flow: column nowrap;
+  display: grid;
+  grid-template-rows: 6rem auto;
+  grid-auto-columns: 100%;
 }
