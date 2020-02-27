@@ -41,7 +41,7 @@ export const Lesson: React.FC<LessonProps> = (props) => {
     let upperRight: any = lesson.classrooms[0]? 'Sala ' + lesson.classrooms[0].name : null
     
     // BottomLeft default -> teacher
-    let bottomLeft: any = lesson.teacher.name;
+    let bottomLeft: any = lesson.teacher? lesson.teacher.name : null;
     
     // BottomRight default -> 'parzysty'/'nieparzysty' group
     let bottomRight: any = lesson.weeks === '10' ?
