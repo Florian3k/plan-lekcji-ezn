@@ -36,40 +36,44 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
   )(ScheduleProps.lessons)
 
   // Create array filled with Lesson components
-  const LessonsArray: JSX.Element[][] = classesAtSameTimeArr.map((day: any) => {
-    return day.map((lessonsAtSameTime: any, index: number) => {
+  const LessonsArray: JSX.Element[][] | null[] = [[],[],[],[],[]]
+  
+  classesAtSameTimeArr.map((day: any, i: number) => {
+    const currentDayIndex = day[0][0].days.split("").indexOf("1")
 
-      // Check if between two lessons are free periods
-      let FreePeriod: JSX.Element | null = null
-      if (index) {
-        const previousPeriod: number = +day[index - 1][0].period
-        const currentPeriod: number = +lessonsAtSameTime[0].period
+      const dayJSX = day.map((lessonsAtSameTime: any, index: number) => {
+        // Check if between two lessons are free periods
+        let FreePeriod: JSX.Element | null = null
+        if (index) {
+          const previousPeriod: number = +day[index - 1][0].period
+          const currentPeriod: number = +lessonsAtSameTime[0].period
 
-        switch (currentPeriod) {
-          case previousPeriod + 1:
-            FreePeriod = null
-            break
-          case previousPeriod + 2:
-            FreePeriod = <div className="free-period">Okienko</div>
-            break
-          default:
-            FreePeriod = <div className="free-period">Okienka</div>
+          switch (currentPeriod) {
+            case previousPeriod + 1:
+              FreePeriod = null
+              break
+            case previousPeriod + 2:
+              FreePeriod = <div className="free-period">Okienko</div>
+              break
+            default:
+              FreePeriod = <div className="free-period">Okienka</div>
+          }
         }
-      }
-      return (
-        <>
-          {FreePeriod}
-          <Lesson
-            lessonsAtSameTime={lessonsAtSameTime}
-            period={ScheduleProps.periods[lessonsAtSameTime[0].period]}
-            selectedType={ScheduleProps.selectedType}
-            key={index}
-          />
-        </>
-      )
-    })}
+        return (
+          <>
+            {FreePeriod}
+            <Lesson
+              lessonsAtSameTime={lessonsAtSameTime}
+              period={ScheduleProps.periods[lessonsAtSameTime[0].period]}
+              selectedType={ScheduleProps.selectedType}
+              key={index}
+            />
+          </>
+        )
+      })
+      LessonsArray[currentDayIndex].push(dayJSX)
+    }
   )
-
   const lessonsAmount: number = classesAtSameTimeArr.reduce((p: any, c: any) => c.length + p, 0)
   const EmptyLessonsArray: JSX.Element[][] = []
 
