@@ -5,7 +5,7 @@ import { AppLayout } from './AppLayout';
 export const App: React.FC = () => {
   const timetables = useTimetable()
   const [selectedType, setSelectedType] = useState<'class' | 'teacher' | 'classroom'>('teacher')
-  const [selected, setSelected] = useState('Gabor Michał')
+  const [selected, setSelected] = useState('Główczyński Tadeusz')
 
   const changeSelectedTimetable = (name: string, type: typeof selectedType) => {
     setSelectedType(type)
