@@ -27,7 +27,7 @@ fi
 CONVERTED_FILE="planEZN.xml"
 
 echo "Converting file to utf8..."
-iconv -f WINDOWS-1250 -t UTF-8 $SOURCE_FILE -o $CONVERTED_FILE
+iconv -f WINDOWS-1250 -t UTF-8 $SOURCE_FILE > $CONVERTED_FILE
 
 if [ ! -f $CONVERTED_FILE ]; then
   echo "Error when converting file to utf-8"
