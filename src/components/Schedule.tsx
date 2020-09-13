@@ -21,7 +21,7 @@ export const Schedule: React.FC <ScheduleProps> = ScheduleProps => {
   const isMobile = useMediaQuery({query: '(max-width: 900px)'})
   const [chosenDay, setchosenDay] = useState(0) // 0 - 4, for Swipeableviews
   
-  const overallLessonBlocksNumber: number = 60
+  const overallLessonBlocksNumber: number = 65
   
   // Mobile feature, allow choose day by clicking at day name
   const changeChosenDay = (index: number) => setchosenDay(index)
