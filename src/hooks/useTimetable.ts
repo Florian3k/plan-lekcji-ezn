@@ -5,7 +5,7 @@ export const useTimetable: () => [Timetable, TimetableMap] | null = () => {
   const [data, setData] = useState<Timetable | null>(null);
 
   useEffect(() => {
-    fetch('/data.json')
+    fetch('/data.json', { cache: 'no-store' })
       .then(res => res.json())
       .then(({ termsdefs, ...data }) => {
         if (!data) {
